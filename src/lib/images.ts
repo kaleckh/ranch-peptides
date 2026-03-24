@@ -1,18 +1,18 @@
-// Stock photos from Unsplash for product and site imagery
+// Stock photos from Unsplash - vials and lab imagery
 export const images = {
   // Hero background - lab/science aesthetic
   hero: "https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?w=1600&q=80",
 
-  // Product vial photos
+  // Product photos - vials, not pills
   products: {
     "bpc-157":
-      "https://images.unsplash.com/photo-1587854692152-cbe660dbde88?w=800&q=80",
+      "https://images.unsplash.com/photo-1585435557343-3b092031a831?w=800&q=80",
     retatrutide:
-      "https://images.unsplash.com/photo-1471864190281-a93a3070b6de?w=800&q=80",
+      "https://images.unsplash.com/photo-1631549916768-4119b2e5f926?w=800&q=80",
     "tb-500":
-      "https://images.unsplash.com/photo-1579165466741-7f35e4755660?w=800&q=80",
+      "https://images.unsplash.com/photo-1583912086296-be5b665036d3?w=800&q=80",
     "mt-2":
-      "https://images.unsplash.com/photo-1607619056574-7b8d3ee536b2?w=800&q=80",
+      "https://images.unsplash.com/photo-1578496781985-452d4a934d50?w=800&q=80",
   } as Record<string, string>,
 
   // Section images

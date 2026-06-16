@@ -1,20 +1,20 @@
 @import "tailwindcss";
 
 :root {
-  --background: #fafafa;
-  --foreground: #0f172a;
-  --primary: #059669;
-  --primary-dark: #047857;
-  --accent: #0ea5e9;
-  --muted: #64748b;
-  --border: #e2e8f0;
-  --card: #ffffff;
-  --badge-green: #ecfdf5;
-  --badge-green-text: #065f46;
-  --badge-blue: #eff6ff;
-  --badge-blue-text: #1e40af;
-  --badge-amber: #fffbeb;
-  --badge-amber-text: #92400e;
+  --background: #060606;
+  --foreground: #f2eee6;
+  --primary: #b88a4a;
+  --primary-dark: #8f6632;
+  --accent: #c9d2d6;
+  --muted: #a49b8f;
+  --border: #2a2620;
+  --card: #11100e;
+  --badge-green: #09231b;
+  --badge-green-text: #6ee7b7;
+  --badge-blue: #101820;
+  --badge-blue-text: #9cc7d6;
+  --badge-amber: #21180b;
+  --badge-amber-text: #d6aa63;
 }
 
 @theme inline {
@@ -26,16 +26,82 @@
   --color-muted: var(--muted);
   --color-border: var(--border);
   --color-card: var(--card);
-  --font-sans: var(--font-geist-sans);
+  --font-sans: var(--font-oswald);
   --font-mono: var(--font-geist-mono);
 }
 
 body {
-  background: var(--background);
+  background:
+    radial-gradient(circle at 18% 8%, rgba(184, 138, 74, 0.18), transparent 32rem),
+    radial-gradient(circle at 82% 16%, rgba(156, 199, 214, 0.08), transparent 26rem),
+    linear-gradient(135deg, #040404 0%, #0a0908 45%, #11100e 100%);
   color: var(--foreground);
+  min-width: 320px;
 }
 
 /* Smooth scrolling */
 html {
   scroll-behavior: smooth;
+}
+
+::selection {
+  background: rgba(184, 138, 74, 0.35);
+  color: #fff8ed;
+}
+
+.dark-panel {
+  background:
+    linear-gradient(145deg, rgba(255, 255, 255, 0.055), rgba(255, 255, 255, 0.018)),
+    #11100e;
+  border: 1px solid rgba(214, 170, 99, 0.16);
+  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.34);
+}
+
+.metal-panel {
+  background:
+    linear-gradient(135deg, rgba(184, 138, 74, 0.16), rgba(201, 210, 214, 0.055)),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0.015)),
+    #0c0b0a;
+  border: 1px solid rgba(184, 138, 74, 0.24);
+}
+
+.hairline-grid {
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
+  background-size: 52px 52px;
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, #d7a65d, #8f6632);
+  color: #080706;
+  box-shadow: 0 14px 36px rgba(184, 138, 74, 0.23);
+}
+
+.btn-primary:hover {
+  background: linear-gradient(135deg, #efc27b, #a57439);
+}
+
+.btn-ghost {
+  border: 1px solid rgba(242, 238, 230, 0.18);
+  background: rgba(255, 255, 255, 0.035);
+  color: var(--foreground);
+}
+
+.btn-ghost:hover {
+  border-color: rgba(214, 170, 99, 0.55);
+  background: rgba(184, 138, 74, 0.09);
+}
+
+.product-card {
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.055), rgba(255, 255, 255, 0.02)),
+    #11100e;
+  border: 1px solid rgba(242, 238, 230, 0.1);
+  box-shadow: 0 24px 70px rgba(0, 0, 0, 0.24);
+}
+
+.product-card:hover {
+  border-color: rgba(184, 138, 74, 0.52);
+  transform: translateY(-3px);
 }

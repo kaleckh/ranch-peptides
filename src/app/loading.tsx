@@ -4,7 +4,7 @@ export default function HomeLoading() {
   return (
     <div>
       {/* Hero skeleton */}
-      <section className="relative overflow-hidden bg-zinc-50">
+      <section className="relative overflow-hidden bg-[#080706]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24 lg:py-28">
           <div className="max-w-2xl">
             <Skeleton className="w-48 h-6 rounded-full mb-4 sm:mb-6" />
@@ -21,7 +21,7 @@ export default function HomeLoading() {
       </section>
 
       {/* Trust bar skeleton */}
-      <section className="border-y border-border bg-white">
+      <section className="border-y border-[#2a241b] bg-[#090807]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6">
             {Array.from({ length: 4 }).map((_, i) => (

@@ -43,7 +43,7 @@ export default function ScienceLoading() {
               <Skeleton className="w-3/4 h-4 mb-4" />
               <div className="space-y-2">
                 {Array.from({ length: 2 }).map((_, j) => (
-                  <div key={j} className="p-3 sm:p-4 bg-white rounded-xl border border-border">
+                  <div key={j} className="p-3 sm:p-4 dark-panel rounded-xl">
                     <Skeleton className="w-full h-4 mb-2" />
                     <Skeleton className="w-48 h-3 mb-2" />
                     <Skeleton className="w-full h-4" />

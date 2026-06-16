@@ -13,6 +13,14 @@ export const images = {
       "https://images.unsplash.com/photo-1583912086296-be5b665036d3?w=800&q=80",
     "mt-2":
       "https://images.unsplash.com/photo-1578496781985-452d4a934d50?w=800&q=80",
+    "mots-c":
+      "https://images.unsplash.com/photo-1576086213369-97a306d36557?w=800&q=80",
+    pinealon:
+      "https://images.unsplash.com/photo-1530026405186-ed1f139313f8?w=800&q=80",
+    epitalon:
+      "https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?w=800&q=80",
+    "ghk-cu":
+      "https://images.unsplash.com/photo-1582719471384-894fbb16e074?w=800&q=80",
   } as Record<string, string>,
 
   // Section images

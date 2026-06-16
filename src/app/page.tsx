@@ -42,16 +42,20 @@ function TrustIcon({ icon }: { icon: string }) {
 }
 
 const categoryColors: Record<string, string> = {
-  "Recovery & Repair": "bg-emerald-50 text-emerald-700",
-  "Metabolic Research": "bg-blue-50 text-blue-700",
-  "Melanocortin Research": "bg-amber-50 text-amber-700",
+  "Recovery & Repair": "bg-emerald-950/70 text-emerald-300 border border-emerald-500/20",
+  "Metabolic Research": "bg-sky-950/60 text-sky-200 border border-sky-400/20",
+  "Melanocortin Research": "bg-amber-950/60 text-amber-300 border border-amber-500/20",
+  "Mitochondrial Research": "bg-cyan-950/60 text-cyan-200 border border-cyan-400/20",
+  "Cognitive Research": "bg-violet-950/50 text-violet-200 border border-violet-400/20",
+  "Longevity Research": "bg-stone-900 text-stone-200 border border-primary/25",
+  "Copper Peptide Research": "bg-orange-950/50 text-orange-200 border border-orange-400/20",
 };
 
 export default function Home() {
   return (
-    <div>
+    <div className="overflow-hidden">
       {/* Hero */}
-      <section className="relative overflow-hidden">
+      <section className="relative overflow-hidden min-h-[calc(100svh-7.5rem)] flex items-center">
         <div className="absolute inset-0">
           <Image
             src={images.hero}
@@ -59,20 +63,23 @@ export default function Home() {
             fill
             className="object-cover"
             priority
+            sizes="100vw"
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-white via-white/95 to-white/70" />
+          <div className="absolute inset-0 bg-gradient-to-r from-black via-black/88 to-black/48" />
+          <div className="absolute inset-0 hairline-grid opacity-35" />
+          <div className="absolute bottom-0 left-0 right-0 h-40 bg-gradient-to-t from-background to-transparent" />
         </div>
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24 lg:py-28">
-          <div className="max-w-2xl">
-            <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-primary/10 text-primary text-xs font-semibold rounded-full mb-4 sm:mb-6">
-              <span className="w-1.5 h-1.5 bg-primary rounded-full" />
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14 sm:py-24 lg:py-28 w-full">
+          <div className="max-w-3xl">
+            <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-black/55 text-primary text-[10px] sm:text-xs font-black uppercase tracking-[0.18em] border border-primary/30 rounded-sm mb-5 sm:mb-7">
+              <span className="w-1.5 h-1.5 bg-primary" />
               Third-Party Verified &middot; 99%+ Purity
             </div>
-            <h1 className="text-3xl sm:text-4xl lg:text-6xl font-bold tracking-tight leading-[1.1]">
+            <h1 className="text-4xl sm:text-5xl lg:text-7xl font-black tracking-tight leading-[0.95] uppercase max-w-4xl">
               Research-Grade Peptides,{" "}
               <span className="text-primary">Rigorously Tested</span>
             </h1>
-            <p className="mt-4 sm:mt-6 text-base sm:text-lg text-muted max-w-2xl leading-relaxed">
+            <p className="mt-5 sm:mt-7 text-base sm:text-lg text-[#cfc5b5] max-w-2xl leading-relaxed">
               Every batch independently verified via HPLC and mass spectrometry.
               Certificate of Analysis included with every order. For laboratory
               and research use only.
@@ -80,13 +87,13 @@ export default function Home() {
             <div className="mt-6 sm:mt-8 flex flex-col sm:flex-row gap-3 sm:gap-4">
               <Link
                 href="/products"
-                className="inline-flex items-center justify-center px-6 py-3 sm:py-3.5 bg-primary text-white font-semibold rounded-xl hover:bg-primary-dark transition-colors text-sm sm:text-base"
+                className="inline-flex items-center justify-center px-6 py-3 sm:py-3.5 btn-primary font-black uppercase tracking-[0.12em] rounded-sm transition-colors text-xs sm:text-sm"
               >
                 Browse Products
               </Link>
               <Link
                 href="/science"
-                className="inline-flex items-center justify-center px-6 py-3 sm:py-3.5 border border-border text-foreground font-semibold rounded-xl hover:bg-zinc-50 transition-colors text-sm sm:text-base"
+                className="inline-flex items-center justify-center px-6 py-3 sm:py-3.5 btn-ghost font-black uppercase tracking-[0.12em] rounded-sm transition-colors text-xs sm:text-sm"
               >
                 View Research
               </Link>
@@ -96,7 +103,7 @@ export default function Home() {
       </section>
 
       {/* Trust Bar */}
-      <section className="border-y border-border bg-white">
+      <section className="border-y border-[#2a241b] bg-[#090807]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6">
             {trustBadges.map((badge) => (
@@ -105,7 +112,7 @@ export default function Home() {
                   <TrustIcon icon={badge.icon} />
                 </div>
                 <div>
-                  <p className="text-xs sm:text-sm font-semibold leading-tight">{badge.label}</p>
+                  <p className="text-xs sm:text-sm font-black uppercase tracking-[0.08em] leading-tight">{badge.label}</p>
                   <p className="text-[10px] sm:text-xs text-muted">{badge.detail}</p>
                 </div>
               </div>
@@ -118,9 +125,9 @@ export default function Home() {
       <section className="py-12 sm:py-16 lg:py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-8 sm:mb-12">
-            <h2 className="text-2xl sm:text-3xl font-bold">Our Products</h2>
+            <h2 className="text-2xl sm:text-4xl font-black uppercase tracking-tight">Our Products</h2>
             <p className="mt-2 sm:mt-3 text-sm sm:text-base text-muted max-w-xl mx-auto">
-              Four premium research peptides, each with full Certificate of Analysis and published literature references.
+              Eight premium research peptides, each with full Certificate of Analysis and published literature references.
             </p>
           </div>
 
@@ -129,39 +136,40 @@ export default function Home() {
               <Link
                 key={product.slug}
                 href={`/products/${product.slug}`}
-                className="group bg-white rounded-2xl border border-border p-4 sm:p-6 hover:shadow-lg hover:border-primary/30 transition-all"
+                className="group product-card rounded-xl p-4 sm:p-5 transition-all duration-300"
               >
                 {/* Product image */}
-                <div className="relative w-full h-36 sm:h-40 rounded-xl overflow-hidden mb-4">
+                <div className="relative w-full h-40 sm:h-44 rounded-lg overflow-hidden mb-4 border border-white/10">
                   <Image
                     src={images.products[product.slug] || images.lab}
                     alt={product.name}
                     fill
-                    className="object-cover group-hover:scale-105 transition-transform duration-300"
+                    className="object-cover grayscale saturate-50 brightness-75 contrast-125 group-hover:scale-105 transition-transform duration-300"
+                    sizes="(min-width: 1024px) 25vw, (min-width: 640px) 50vw, 100vw"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
-                  <div className="absolute bottom-2 left-2 bg-white/90 backdrop-blur rounded-md px-2 py-1">
-                    <p className="text-xs font-bold text-primary">{product.dosage}</p>
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/15 to-transparent" />
+                  <div className="absolute bottom-2 left-2 bg-black/70 backdrop-blur border border-primary/25 rounded-sm px-2 py-1">
+                    <p className="text-xs font-black text-primary">{product.dosage}</p>
                   </div>
                 </div>
 
-                <span className={`inline-block text-[10px] font-semibold uppercase tracking-wider px-2 py-1 rounded-full ${categoryColors[product.category] || "bg-zinc-100 text-zinc-700"}`}>
+                <span className={`inline-block text-[10px] font-black uppercase tracking-wider px-2 py-1 rounded-sm ${categoryColors[product.category] || "bg-zinc-900 text-zinc-300"}`}>
                   {product.category}
                 </span>
 
-                <h3 className="mt-2 sm:mt-3 text-base sm:text-lg font-bold group-hover:text-primary transition-colors">
+                <h3 className="mt-2 sm:mt-3 text-lg font-black group-hover:text-primary transition-colors">
                   {product.shortName}
                 </h3>
                 <p className="text-xs sm:text-sm text-muted mt-1">{product.tagline}</p>
 
                 <div className="mt-3 sm:mt-4 flex items-baseline justify-between">
-                  <span className="text-lg sm:text-xl font-bold">{formatPrice(product.price)}</span>
+                  <span className="text-xl sm:text-2xl font-black">{formatPrice(product.price)}</span>
                   <span className="text-[10px] sm:text-xs text-muted">per vial</span>
                 </div>
 
                 <div className="mt-2 sm:mt-3 flex items-center gap-1">
                   <span className="inline-block w-2 h-2 bg-emerald-500 rounded-full" />
-                  <span className="text-[10px] sm:text-xs text-emerald-700 font-medium">In Stock &middot; {product.purity} Pure</span>
+                  <span className="text-[10px] sm:text-xs text-emerald-300 font-bold">In Stock &middot; {product.purity} Pure</span>
                 </div>
               </Link>
             ))}
@@ -170,11 +178,11 @@ export default function Home() {
       </section>
 
       {/* Science Teaser */}
-      <section className="py-12 sm:py-16 bg-white border-y border-border">
+      <section className="py-12 sm:py-16 bg-[#080706] border-y border-[#2a241b]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-center">
             <div>
-              <h2 className="text-2xl sm:text-3xl font-bold">Peptides Are Not Steroids</h2>
+              <h2 className="text-2xl sm:text-4xl font-black uppercase tracking-tight">Peptides Are Not Steroids</h2>
               <p className="mt-3 sm:mt-4 text-sm sm:text-base text-muted leading-relaxed">
                 Peptides are short chains of amino acids that act as signaling molecules.
                 They support your body&apos;s existing biological pathways without introducing
@@ -189,7 +197,7 @@ export default function Home() {
                   "Backed by peer-reviewed clinical research",
                 ].map((item) => (
                   <li key={item} className="flex items-start gap-2 sm:gap-3">
-                    <span className="mt-0.5 sm:mt-1 w-5 h-5 bg-primary/10 text-primary rounded-full flex items-center justify-center flex-shrink-0">
+                    <span className="mt-0.5 sm:mt-1 w-5 h-5 bg-primary/15 text-primary border border-primary/25 rounded-sm flex items-center justify-center flex-shrink-0">
                       <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
                         <path strokeLinecap="round" strokeLinejoin="round" d="m4.5 12.75 6 6 9-13.5" />
                       </svg>
@@ -209,42 +217,42 @@ export default function Home() {
               </Link>
             </div>
 
-            <div className="bg-gradient-to-br from-zinc-50 to-zinc-100 rounded-2xl p-4 sm:p-8 overflow-x-auto">
-              <h3 className="font-bold text-base sm:text-lg mb-3 sm:mb-4">Quick Comparison</h3>
+            <div className="metal-panel rounded-xl p-4 sm:p-8 overflow-x-auto">
+              <h3 className="font-black text-base sm:text-lg mb-3 sm:mb-4 uppercase tracking-[0.08em]">Quick Comparison</h3>
               <div className="min-w-[280px]">
                 <table className="w-full text-xs sm:text-sm">
                   <thead>
-                    <tr className="border-b border-border">
+                    <tr className="border-b border-[#3a3329]">
                       <th className="text-left py-2 font-semibold text-muted">Property</th>
                       <th className="text-center py-2 font-semibold text-primary">Peptides</th>
-                      <th className="text-center py-2 font-semibold text-red-600">Steroids</th>
+                      <th className="text-center py-2 font-semibold text-red-300">Steroids</th>
                     </tr>
                   </thead>
                   <tbody className="text-[10px] sm:text-xs">
-                    <tr className="border-b border-border/50">
+                    <tr className="border-b border-[#3a3329]/70">
                       <td className="py-2 sm:py-2.5">Molecular type</td>
                       <td className="text-center">Amino acid chains</td>
                       <td className="text-center">Synthetic hormones</td>
                     </tr>
-                    <tr className="border-b border-border/50">
+                    <tr className="border-b border-[#3a3329]/70">
                       <td className="py-2 sm:py-2.5">Hormonal impact</td>
                       <td className="text-center text-emerald-600 font-medium">None</td>
-                      <td className="text-center text-red-600 font-medium">Direct override</td>
+                      <td className="text-center text-red-300 font-medium">Direct override</td>
                     </tr>
-                    <tr className="border-b border-border/50">
+                    <tr className="border-b border-[#3a3329]/70">
                       <td className="py-2 sm:py-2.5">Mechanism</td>
                       <td className="text-center">Signaling</td>
                       <td className="text-center">Hormonal</td>
                     </tr>
-                    <tr className="border-b border-border/50">
+                    <tr className="border-b border-[#3a3329]/70">
                       <td className="py-2 sm:py-2.5">Endocrine suppression</td>
                       <td className="text-center text-emerald-600 font-medium">No</td>
-                      <td className="text-center text-red-600 font-medium">Yes</td>
+                      <td className="text-center text-red-300 font-medium">Yes</td>
                     </tr>
                     <tr>
                       <td className="py-2 sm:py-2.5">Naturally occurring</td>
                       <td className="text-center text-emerald-600 font-medium">Yes</td>
-                      <td className="text-center text-red-600 font-medium">No</td>
+                      <td className="text-center text-red-300 font-medium">No</td>
                     </tr>
                   </tbody>
                 </table>
@@ -261,10 +269,11 @@ export default function Home() {
           alt="Research laboratory"
           fill
           className="object-cover"
+          sizes="100vw"
         />
-        <div className="absolute inset-0 bg-foreground/70 flex items-center justify-center">
+        <div className="absolute inset-0 bg-black/75 flex items-center justify-center hairline-grid">
           <div className="text-center text-white px-4">
-            <h2 className="text-xl sm:text-2xl lg:text-3xl font-bold">Every Batch. Every Time.</h2>
+            <h2 className="text-xl sm:text-2xl lg:text-4xl font-black uppercase tracking-tight">Every Batch. Every Time.</h2>
             <p className="mt-2 text-sm sm:text-base text-white/80 max-w-lg mx-auto">
               Independent HPLC and mass spectrometry verification. Certificate of Analysis included with every order.
             </p>
@@ -275,13 +284,13 @@ export default function Home() {
       {/* CTA */}
       <section className="py-12 sm:py-16 lg:py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-2xl sm:text-3xl font-bold">Ready to Order?</h2>
+          <h2 className="text-2xl sm:text-4xl font-black uppercase tracking-tight">Ready to Order?</h2>
           <p className="mt-2 sm:mt-3 text-sm sm:text-base text-muted max-w-lg mx-auto">
             All products ship with a Certificate of Analysis. Bulk discounts available on orders of 3+ vials.
           </p>
           <Link
             href="/products"
-            className="inline-flex items-center justify-center px-6 sm:px-8 py-3 sm:py-4 mt-6 sm:mt-8 bg-primary text-white font-semibold rounded-xl hover:bg-primary-dark transition-colors text-base sm:text-lg"
+            className="inline-flex items-center justify-center px-6 sm:px-8 py-3 sm:py-4 mt-6 sm:mt-8 btn-primary font-black uppercase tracking-[0.12em] rounded-sm transition-colors text-sm"
           >
             Shop All Peptides
           </Link>

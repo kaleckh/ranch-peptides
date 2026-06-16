@@ -27,7 +27,7 @@ export default function ProductDetailLoading() {
             </div>
 
             {/* Bulk pricing */}
-            <div className="mt-6 sm:mt-8 p-3 sm:p-4 bg-zinc-50 rounded-xl">
+            <div className="mt-6 sm:mt-8 p-3 sm:p-4 metal-panel rounded-xl">
               <Skeleton className="w-24 h-4 mb-3" />
               <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
                 {Array.from({ length: 4 }).map((_, i) => (
@@ -53,7 +53,7 @@ export default function ProductDetailLoading() {
         {/* Info cards */}
         <div className="mt-10 sm:mt-16 grid sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8">
           {Array.from({ length: 3 }).map((_, i) => (
-            <div key={i} className="bg-white rounded-2xl border border-border p-4 sm:p-6">
+            <div key={i} className="dark-panel rounded-xl p-4 sm:p-6">
               <Skeleton className="w-32 h-6 mb-4" />
               <div className="space-y-2">
                 <Skeleton className="w-full h-4" />
@@ -69,7 +69,7 @@ export default function ProductDetailLoading() {
           <Skeleton className="w-48 h-7 mb-6" />
           <div className="space-y-3 sm:space-y-4">
             {Array.from({ length: 3 }).map((_, i) => (
-              <div key={i} className="bg-white rounded-xl border border-border p-4 sm:p-6">
+              <div key={i} className="dark-panel rounded-xl p-4 sm:p-6">
                 <Skeleton className="w-full h-5 mb-2" />
                 <Skeleton className="w-64 h-3 mb-3" />
                 <Skeleton className="w-full h-4" />

@@ -1,0 +1,24 @@
+.banner { margin-bottom: 40px; background: #24261f; color: #f7f3e9; }
+.status { padding: 12px 28px; background: #ded6bf; color: #29291f; font-size: 11px; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; }
+.body { display: grid; grid-template-columns: 1.15fr 1fr; gap: 36px; padding: 36px 40px; align-items: center; }
+.eyebrow { font-size: 10px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; }
+.purity { font-size: clamp(64px, 8.5vw, 116px); font-weight: 800; letter-spacing: -.065em; line-height: 1.1; margin: 10px 0 4px; }
+.label { font-size: 13px; color: #ddd8cb; }
+.evidence h2 { font-size: clamp(27px, 3vw, 38px); line-height: 1.08; letter-spacing: -.04em; font-weight: 650; }
+.evidence h2 em { font-family: Georgia, serif; font-weight: 400; }
+.evidence p { margin: 15px 0 20px; font-size: 13px; line-height: 1.6; color: #ddd8cb; }
+.cta { display: inline-flex; gap: 32px; justify-content: space-between; align-items: center; background: #f7f3e9; color: #24261f; padding: 14px 20px; font-size: 13px; font-weight: 800; }
+.cta:hover { background: #ded6bf; }
+.banner a:focus-visible { outline: 3px solid #d3bc7c; outline-offset: 5px; }
+.footer { border-top: 1px solid #53554b; padding: 24px 40px; display: grid; grid-template-columns: 1.15fr 1fr; gap: 36px; font-size: 12px; line-height: 1.6; }
+.batch { display: inline-block; margin: 6px 0; color: #fff; font-size: 15px; font-weight: 750; text-decoration: underline; text-underline-offset: 4px; overflow-wrap: anywhere; }
+.scope { color: #d9d6cb; }
+.scope p + p { margin-top: 8px; }
+.notice { color: #f1d9a5; font-weight: 650; }
+@media (max-width: 640px) {
+  .status { padding: 12px 20px; font-size: 10px; }
+  .body, .footer { grid-template-columns: 1fr; padding: 24px 20px; gap: 24px; }
+  .purity { font-size: clamp(60px, 18vw, 100px); }
+  .cta { width: 100%; gap: 12px; }
+  .banner { margin-bottom: 28px; }
+}

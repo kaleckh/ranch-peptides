@@ -29,7 +29,7 @@ export default function ScienceLoading() {
         <div className="mt-12 sm:mt-16">
           <Skeleton className="w-72 h-7 mb-4" />
           <Skeleton className="w-full max-w-xl h-5 mb-6" />
-          <Skeleton className="w-full h-[400px] rounded-xl" />
+          <Skeleton className="w-full h-[400px] rounded-sm" />
         </div>
 
         {/* Product research sections */}
@@ -43,7 +43,7 @@ export default function ScienceLoading() {
               <Skeleton className="w-3/4 h-4 mb-4" />
               <div className="space-y-2">
                 {Array.from({ length: 2 }).map((_, j) => (
-                  <div key={j} className="p-3 sm:p-4 dark-panel rounded-xl">
+                  <div key={j} className="p-3 sm:p-4 dark-panel rounded-sm">
                     <Skeleton className="w-full h-4 mb-2" />
                     <Skeleton className="w-48 h-3 mb-2" />
                     <Skeleton className="w-full h-4" />

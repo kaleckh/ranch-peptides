@@ -2,7 +2,7 @@ import Link from "next/link";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "FAQ | Henry's Peptides",
+  title: "FAQ | SALT N’ PEP",
   description: "Frequently asked questions about ordering research peptides, shipping, storage, and more.",
 };
 
@@ -12,7 +12,7 @@ const faqs = [
     questions: [
       {
         q: "What are research peptides?",
-        a: "Research peptides are short chains of amino acids (typically 2-50 amino acids) synthesized for use in laboratory and scientific research. They are used to study biological signaling pathways, receptor interactions, and cellular mechanisms. All products sold by Henry's Peptides are for research use only.",
+        a: "Research peptides are short chains of amino acids (typically 2-50 amino acids) synthesized for use in laboratory and scientific research. They are used to study biological signaling pathways, receptor interactions, and cellular mechanisms. All products sold by SALT N’ PEP are for research use only.",
       },
       {
         q: "Are peptides the same as steroids?",
@@ -24,7 +24,7 @@ const faqs = [
       },
       {
         q: "Are these products for human consumption?",
-        a: "No. All products sold by Henry's Peptides are intended for laboratory and research use only. They are not for human consumption, and they are not intended to diagnose, treat, cure, or prevent any disease. By purchasing, you agree to use them solely for legitimate research purposes.",
+        a: "No. All products sold by SALT N’ PEP are intended for laboratory and research use only. They are not for human consumption, and they are not intended to diagnose, treat, cure, or prevent any disease. By purchasing, you agree to use them solely for legitimate research purposes.",
       },
     ],
   },
@@ -101,9 +101,9 @@ export default function FAQPage() {
   return (
     <div className="py-12 sm:py-16">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h1 className="text-3xl sm:text-4xl lg:text-6xl font-black uppercase tracking-tight">Frequently Asked Questions</h1>
+        <h1 className="text-3xl sm:text-4xl lg:text-6xl font-normal tracking-tight">Good to know.</h1>
         <p className="mt-4 text-muted text-lg">
-          Everything you need to know about ordering research peptides from Henry&apos;s Peptides.
+          Everything you need to know about ordering research peptides from SALT N’ PEP.
         </p>
 
         {faqs.map((section) => (
@@ -111,7 +111,7 @@ export default function FAQPage() {
             <h2 className="text-xl font-black uppercase tracking-[0.08em] mb-4">{section.category}</h2>
             <div className="space-y-3">
               {section.questions.map((faq) => (
-                <details key={faq.q} className="group dark-panel rounded-xl">
+                <details key={faq.q} className="group dark-panel rounded-sm">
                   <summary className="cursor-pointer p-4 font-bold text-sm flex items-center justify-between gap-4 list-none">
                     {faq.q}
                     <svg
@@ -133,27 +133,18 @@ export default function FAQPage() {
           </div>
         ))}
 
-        {/* Still have questions */}
-        <div className="mt-16 p-5 sm:p-8 metal-panel rounded-xl text-center">
-          <h2 className="text-xl font-black uppercase tracking-[0.08em]">Still Have Questions?</h2>
-          <p className="text-muted mt-2">
-            Reach out and we&apos;ll get back to you within 24 hours.
-          </p>
-          <p className="mt-4 text-primary font-semibold">support@henryspeptides.com</p>
-        </div>
-
         {/* Related links */}
         <div className="mt-8 flex flex-col sm:flex-row gap-4">
           <Link
             href="/science"
-            className="flex-1 p-4 dark-panel rounded-xl hover:border-primary/50 transition-colors text-center"
+            className="flex-1 p-4 dark-panel rounded-sm hover:border-primary/50 transition-colors text-center"
           >
             <p className="font-semibold text-sm">Science & Research</p>
-            <p className="text-xs text-muted mt-1">Published studies & peptide vs steroid comparison</p>
+            <p className="text-xs text-muted mt-1">Explore studies, evidence types & research context</p>
           </Link>
           <Link
             href="/products"
-            className="flex-1 p-4 dark-panel rounded-xl hover:border-primary/50 transition-colors text-center"
+            className="flex-1 p-4 dark-panel rounded-sm hover:border-primary/50 transition-colors text-center"
           >
             <p className="font-semibold text-sm">Browse Products</p>
             <p className="text-xs text-muted mt-1">View all peptides with pricing & specs</p>

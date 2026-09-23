@@ -17,3 +17,7 @@ Reason: `next dev` defaults to Turbopack in this project and previously produced
 The project is configured for static export with `output: "export"` and unoptimized `next/image` output.
 
 Reason: Render Static Site publishing needs a directory of static files. `next build` now emits `out/`, which should be used as the Render publish directory.
+
+## 2026-09-21: SALT N’ PEP visual identity
+
+The owner requested a full revamp using their black/ivory vial reference and explicitly confirmed SALT N’ PEP as the brand. This supersedes the graphite/brass direction. Use the supplied local hero image, neutral CSS packaging illustrations, warm ivory surfaces, charcoal controls, and editorial serif accents. Preserve static export and research-only product scope.

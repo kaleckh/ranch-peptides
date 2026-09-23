@@ -27,25 +27,25 @@ export default function ProductDetailLoading() {
             </div>
 
             {/* Bulk pricing */}
-            <div className="mt-6 sm:mt-8 p-3 sm:p-4 metal-panel rounded-xl">
+            <div className="mt-6 sm:mt-8 p-3 sm:p-4 metal-panel rounded-sm">
               <Skeleton className="w-24 h-4 mb-3" />
               <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
                 {Array.from({ length: 4 }).map((_, i) => (
-                  <Skeleton key={i} className="h-16 rounded-lg" />
+                  <Skeleton key={i} className="h-16 rounded-sm" />
                 ))}
               </div>
             </div>
 
             {/* Add to cart */}
             <div className="mt-4 sm:mt-6 flex flex-col sm:flex-row gap-3">
-              <Skeleton className="h-12 w-32 rounded-xl" />
-              <Skeleton className="h-12 flex-1 rounded-xl" />
+              <Skeleton className="h-12 w-32 rounded-sm" />
+              <Skeleton className="h-12 flex-1 rounded-sm" />
             </div>
 
             {/* Specs */}
             <div className="mt-4 sm:mt-6 grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-3">
-              <Skeleton className="h-14 rounded-lg" />
-              <Skeleton className="h-14 rounded-lg" />
+              <Skeleton className="h-14 rounded-sm" />
+              <Skeleton className="h-14 rounded-sm" />
             </div>
           </div>
         </div>
@@ -53,7 +53,7 @@ export default function ProductDetailLoading() {
         {/* Info cards */}
         <div className="mt-10 sm:mt-16 grid sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8">
           {Array.from({ length: 3 }).map((_, i) => (
-            <div key={i} className="dark-panel rounded-xl p-4 sm:p-6">
+            <div key={i} className="dark-panel rounded-sm p-4 sm:p-6">
               <Skeleton className="w-32 h-6 mb-4" />
               <div className="space-y-2">
                 <Skeleton className="w-full h-4" />
@@ -69,7 +69,7 @@ export default function ProductDetailLoading() {
           <Skeleton className="w-48 h-7 mb-6" />
           <div className="space-y-3 sm:space-y-4">
             {Array.from({ length: 3 }).map((_, i) => (
-              <div key={i} className="dark-panel rounded-xl p-4 sm:p-6">
+              <div key={i} className="dark-panel rounded-sm p-4 sm:p-6">
                 <Skeleton className="w-full h-5 mb-2" />
                 <Skeleton className="w-64 h-3 mb-3" />
                 <Skeleton className="w-full h-4" />

@@ -4,7 +4,7 @@ export default function HomeLoading() {
   return (
     <div>
       {/* Hero skeleton */}
-      <section className="relative overflow-hidden bg-[#080706]">
+      <section className="relative overflow-hidden bg-card">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24 lg:py-28">
           <div className="max-w-2xl">
             <Skeleton className="w-48 h-6 rounded-full mb-4 sm:mb-6" />
@@ -13,20 +13,20 @@ export default function HomeLoading() {
             <Skeleton className="w-full h-5 mb-2" />
             <Skeleton className="w-2/3 h-5 mb-6 sm:mb-8" />
             <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
-              <Skeleton className="w-40 h-12 rounded-xl" />
-              <Skeleton className="w-36 h-12 rounded-xl" />
+              <Skeleton className="w-40 h-12 rounded-sm" />
+              <Skeleton className="w-36 h-12 rounded-sm" />
             </div>
           </div>
         </div>
       </section>
 
       {/* Trust bar skeleton */}
-      <section className="border-y border-[#2a241b] bg-[#090807]">
+      <section className="border-y border-border bg-card">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6">
             {Array.from({ length: 4 }).map((_, i) => (
               <div key={i} className="flex items-center gap-2 sm:gap-3">
-                <Skeleton className="w-7 h-7 sm:w-8 sm:h-8 rounded-lg flex-shrink-0" />
+                <Skeleton className="w-7 h-7 sm:w-8 sm:h-8 rounded-sm flex-shrink-0" />
                 <div>
                   <Skeleton className="w-24 h-4 mb-1" />
                   <Skeleton className="w-20 h-3" />

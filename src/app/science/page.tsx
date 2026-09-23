@@ -1,197 +1,61 @@
-import Link from "next/link";
-import Image from "next/image";
-import { products } from "@/lib/products";
-import { images } from "@/lib/images";
 import type { Metadata } from "next";
+import ResearchLibrary from "./research-library";
+import styles from "./research.module.css";
 
 export const metadata: Metadata = {
-  title: "Science & Research | Henry's Peptides",
-  description: "Learn the science behind peptides, how they differ from steroids, and explore published clinical research.",
+  title: "Research Library | SALT N’ PEP",
+  description: "Explore a curated peptide research library with primary-source links, study models, and clear limitations for eight compounds.",
 };
 
 export default function SciencePage() {
   return (
-    <div className="py-8 sm:py-12 lg:py-16">
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Header */}
-        <h1 className="text-3xl sm:text-4xl lg:text-6xl font-black uppercase tracking-tight">Science & Research</h1>
-        <p className="mt-3 sm:mt-4 text-sm sm:text-base text-muted lg:text-lg leading-relaxed max-w-3xl">
-          We believe transparency and education are essential. Below you&apos;ll find a clear
-          explanation of what peptides are, how they work, how they differ from steroids, and
-          the published clinical research behind each of our products.
-        </p>
-
-        {/* Lab image */}
-        <div className="relative mt-8 sm:mt-10 rounded-xl overflow-hidden h-56 sm:h-72 border border-white/10">
-          <Image src={images.microscope} alt="Microscope in research lab" fill className="object-cover" sizes="(min-width: 1024px) 896px, 100vw" />
-          <div className="absolute inset-0 bg-gradient-to-r from-black/85 via-black/45 to-transparent flex items-center">
-            <p className="text-white font-black uppercase tracking-tight text-xl sm:text-2xl lg:text-3xl px-6 sm:px-10 max-w-md">
-              Rigorous science. Published data. Full transparency.
-            </p>
-          </div>
+    <div className={styles.page}>
+      <header className={styles.hero}>
+        <div>
+          <p className={styles.eyebrow}>SALT N’ PEP / Research notes</p>
+          <h1>Curiosity,<br /><em>with context.</em></h1>
+          <p className={styles.intro}>Good research starts with better questions. Explore the papers, understand the models, and see where the evidence ends.</p>
+          <a className={styles.primaryLink} href="#study-library">Explore the library <span aria-hidden="true">↘</span></a>
         </div>
+        <aside className={styles.heroNote} aria-label="About this reading list">
+          <span className={styles.star} aria-hidden="true">✳</span>
+          <p className={styles.eyebrow}>The reading room</p>
+          <h2>Small compounds.<br />A closer look.</h2>
+          <p>Eight selected primary papers, with the experimental context kept in view.</p>
+          <div className={styles.noteMeta}><span>Edition 01</span><span>September 2026</span></div>
+        </aside>
+      </header>
 
-        {/* What are peptides */}
-        <section className="mt-12 sm:mt-16">
-          <h2 className="text-xl sm:text-3xl font-black uppercase tracking-tight">What Are Peptides?</h2>
-          <div className="mt-3 sm:mt-4 space-y-3 sm:space-y-4">
-            <p className="text-sm sm:text-base text-muted leading-relaxed">
-              Peptides are short chains of amino acids linked by peptide bonds. While proteins
-              typically contain 50+ amino acids, peptides are smaller &mdash; usually between
-              2 and 50 amino acids in length. This compact size allows them to act as highly
-              specific signaling molecules in biological systems.
-            </p>
-            <p className="text-sm sm:text-base text-muted leading-relaxed">
-              In the human body, peptides serve as hormones, neurotransmitters, and growth factors.
-              They regulate processes including tissue repair, immune response, metabolism, and
-              cell-to-cell communication. Synthetic peptides used in research are designed to mimic
-              or enhance these natural signaling functions.
-            </p>
-            <p className="text-sm sm:text-base text-muted leading-relaxed">
-              Importantly, peptides work <em>with</em> the body&apos;s existing systems. They activate
-              receptors that are already present in cells, triggering natural downstream cascades.
-              They do not introduce foreign hormonal activity or override the endocrine system.
-            </p>
-          </div>
-        </section>
-
-        {/* Peptides vs Steroids */}
-        <section className="mt-12 sm:mt-16" id="peptides-vs-steroids">
-          <h2 className="text-xl sm:text-3xl font-black uppercase tracking-tight">Peptides vs. Steroids: A Clear Distinction</h2>
-          <p className="mt-3 sm:mt-4 text-sm sm:text-base text-muted leading-relaxed">
-            One of the most common misconceptions is that peptides and anabolic steroids are the same thing.
-            They are fundamentally different in every way &mdash; structure, mechanism, effects, and safety profile.
-          </p>
-
-          <div className="mt-6 sm:mt-8 overflow-x-auto rounded-xl border border-[#3a3329]">
-            <table className="w-full text-xs sm:text-sm min-w-[500px]">
-              <thead className="bg-[#14110d]">
-                <tr>
-                  <th className="text-left py-2.5 sm:py-3 px-3 sm:px-4 font-semibold">Property</th>
-                  <th className="text-center py-2.5 sm:py-3 px-3 sm:px-4 font-semibold text-primary">Peptides</th>
-                  <th className="text-center py-2.5 sm:py-3 px-3 sm:px-4 font-semibold text-red-600">Anabolic Steroids</th>
-                </tr>
-              </thead>
-              <tbody>
-                {[
-                  ["Chemical structure", "Short amino acid chains (2-50 aa)", "Synthetic derivatives of testosterone"],
-                  ["Molecular type", "Signaling molecules", "Exogenous hormones"],
-                  ["Primary mechanism", "Activate specific receptors to trigger natural cascades", "Directly bind androgen receptors, override endocrine system"],
-                  ["Hormonal impact", "None \u2014 no androgenic/estrogenic activity", "Direct testosterone/DHT mimicry"],
-                  ["Endocrine suppression", "No suppression of HPT axis", "Suppresses hypothalamic-pituitary-testicular axis"],
-                  ["Receptor specificity", "Highly specific (e.g., GLP-1R, MC1R)", "Broad androgen receptor activation"],
-                  ["Side effect profile", "Generally mild in research literature", "Liver toxicity, cardiovascular risk, hormonal disruption"],
-                  ["Post-cycle recovery", "Not applicable", "Requires post-cycle therapy (PCT)"],
-                  ["Legal status (US)", "Legal for research purposes", "Schedule III controlled substances"],
-                  ["Naturally occurring", "Many identical to endogenous peptides", "Synthetic; not found in nature"],
-                ].map(([prop, peptide, steroid], i) => (
-                  <tr key={i} className="border-t border-[#3a3329]">
-                    <td className="py-2.5 sm:py-3 px-3 sm:px-4 font-medium">{prop}</td>
-                    <td className="py-2.5 sm:py-3 px-3 sm:px-4 text-center text-emerald-300">{peptide}</td>
-                    <td className="py-2.5 sm:py-3 px-3 sm:px-4 text-center text-red-300">{steroid}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-
-          <div className="mt-4 sm:mt-6 p-4 sm:p-5 bg-sky-950/30 border border-sky-400/25 rounded-xl">
-            <p className="text-xs sm:text-sm text-sky-100/80 leading-relaxed">
-              <strong>The key difference:</strong> Peptides are signaling molecules. They tell your body&apos;s
-              cells to do something they can already do &mdash; heal faster, produce more of a protein, activate
-              a receptor. Steroids are synthetic hormones that directly flood the body with androgens, overriding
-              the natural endocrine system.
-            </p>
-          </div>
-        </section>
-
-        {/* Product-specific research */}
-        <section className="mt-12 sm:mt-16">
-          <h2 className="text-xl sm:text-3xl font-black uppercase tracking-tight">Clinical Research by Product</h2>
-          <p className="mt-2 sm:mt-3 text-sm sm:text-base text-muted">
-            Published, peer-reviewed studies for each peptide in our catalog.
-          </p>
-
-          {products.map((product) => (
-            <div key={product.slug} className="mt-8 sm:mt-10">
-              <div className="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-3 mb-3 sm:mb-4">
-                <h3 className="text-lg sm:text-xl font-black">{product.shortName}</h3>
-                <span className="text-xs sm:text-sm text-muted">&mdash; {product.tagline}</span>
-              </div>
-
-              <p className="text-xs sm:text-sm text-muted leading-relaxed mb-3 sm:mb-4">{product.mechanism}</p>
-
-              <div className="space-y-2 sm:space-y-3">
-                {product.keyStudies.map((study, i) => (
-                  <div key={i} className="p-3 sm:p-4 dark-panel rounded-xl">
-                    <h4 className="font-semibold text-xs sm:text-sm leading-snug">{study.title}</h4>
-                    <p className="text-[10px] sm:text-xs text-muted mt-1">
-                      {study.authors} &middot; <em>{study.journal}</em> ({study.year})
-                      {study.doi && (
-                        <span className="block sm:inline sm:ml-2 font-mono text-primary mt-0.5 sm:mt-0">DOI: {study.doi}</span>
-                      )}
-                    </p>
-                    <p className="text-xs sm:text-sm mt-2 leading-relaxed">{study.finding}</p>
-                  </div>
-                ))}
-              </div>
-
-              <Link
-                href={`/products/${product.slug}`}
-                className="inline-flex items-center gap-1 mt-2 sm:mt-3 text-xs sm:text-sm text-primary font-medium hover:underline"
-              >
-                View {product.shortName} product page
-                <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
-                </svg>
-              </Link>
-            </div>
-          ))}
-        </section>
-
-        {/* How we test */}
-        <section className="mt-12 sm:mt-16">
-          <h2 className="text-xl sm:text-3xl font-black uppercase tracking-tight">Our Testing Process</h2>
-          <div className="mt-4 sm:mt-6 grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4">
-            <div className="p-4 sm:p-5 dark-panel rounded-xl">
-              <div className="w-9 h-9 sm:w-10 sm:h-10 bg-primary/15 text-primary border border-primary/25 rounded-sm flex items-center justify-center mb-2 sm:mb-3">
-                <span className="font-black text-sm sm:text-base">1</span>
-              </div>
-              <h3 className="font-semibold text-sm sm:text-base">HPLC Analysis</h3>
-              <p className="text-xs sm:text-sm text-muted mt-1 sm:mt-2">
-                High-Performance Liquid Chromatography confirms purity percentage (we require 98%+ minimum).
-              </p>
-            </div>
-            <div className="p-4 sm:p-5 dark-panel rounded-xl">
-              <div className="w-9 h-9 sm:w-10 sm:h-10 bg-primary/15 text-primary border border-primary/25 rounded-sm flex items-center justify-center mb-2 sm:mb-3">
-                <span className="font-black text-sm sm:text-base">2</span>
-              </div>
-              <h3 className="font-semibold text-sm sm:text-base">Mass Spectrometry</h3>
-              <p className="text-xs sm:text-sm text-muted mt-1 sm:mt-2">
-                MS analysis verifies molecular identity and confirms the correct molecular weight for each peptide.
-              </p>
-            </div>
-            <div className="p-4 sm:p-5 dark-panel rounded-xl">
-              <div className="w-9 h-9 sm:w-10 sm:h-10 bg-primary/15 text-primary border border-primary/25 rounded-sm flex items-center justify-center mb-2 sm:mb-3">
-                <span className="font-black text-sm sm:text-base">3</span>
-              </div>
-              <h3 className="font-semibold text-sm sm:text-base">COA Publication</h3>
-              <p className="text-xs sm:text-sm text-muted mt-1 sm:mt-2">
-                Every batch gets a Certificate of Analysis with full results. COAs are included with every order.
-              </p>
-            </div>
-          </div>
-        </section>
-
-        {/* Disclaimer */}
-        <div className="mt-12 sm:mt-16 p-4 sm:p-6 bg-amber-950/30 border border-amber-500/25 rounded-xl">
-          <p className="text-xs sm:text-sm text-amber-200 leading-relaxed">
-            <strong>Research Use Only:</strong> All information on this page is provided for educational purposes
-            and relates to published scientific research. It is not medical advice. Products sold by Henry&apos;s Peptides
-            are intended for laboratory and research purposes only and are not for human consumption.
-          </p>
+      <section className={styles.guide} aria-labelledby="reading-guide">
+        <div className={styles.guideIntro}>
+          <p className={styles.eyebrow}>Before you dive in</p>
+          <h2 id="reading-guide">Read the model.<br /><em>Then the result.</em></h2>
+          <p>Evidence labels below describe the selected paper, not the entire body of research on a compound.</p>
         </div>
-      </div>
+        <div className={styles.guideItems}>
+          <details>
+            <summary><span>01</span> What counts as human evidence?</summary>
+            <p>Look for participants, a comparison group, measured outcomes, and follow-up. A small early trial answers different questions from a larger randomized study. A human-cell experiment remains preclinical.</p>
+          </details>
+          <details>
+            <summary><span>02</span> What can preclinical studies tell us?</summary>
+            <p>Cell, tissue, and animal experiments help investigate mechanisms and generate hypotheses. Their results need separate evaluation in people; they do not establish human benefit or safety.</p>
+          </details>
+          <details>
+            <summary><span>03</span> Does a paper validate a product?</summary>
+            <p>Check the exact molecule, sequence, formulation, model, and outcome. A publication about a compound is not a batch analysis, a product endorsement, or instructions for use.</p>
+          </details>
+        </div>
+      </section>
+
+      <ResearchLibrary />
+
+      <aside className={styles.boundary}>
+        <p className={styles.eyebrow}>A note on scope</p>
+        <h2>Keep the question open.</h2>
+        <p>This is a curated starting point, not a systematic review or a claim to include the latest evidence. Read each original source for its methods, adverse events, and limitations. Links were checked on September 21, 2026.</p>
+        <p>Educational information only; no dosing or treatment guidance. SALT N’ PEP products are intended for laboratory research and are not for human consumption. Published findings do not verify the identity, quality, or safety of products sold here.</p>
+      </aside>
     </div>
   );
 }

@@ -17,8 +17,9 @@ export function AddToCartButton({ product }: { product: Product }) {
 
   return (
     <div className="mt-4 sm:mt-6 flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
-      <div className="flex items-center justify-center border border-[#3a3329] rounded-sm overflow-hidden bg-black/25">
+      <div className="flex items-center justify-center border border-border rounded-sm overflow-hidden bg-background">
         <button
+          aria-label="Decrease quantity"
           onClick={() => setQty((q) => Math.max(1, q - 1))}
           className="px-4 py-3 text-muted hover:text-primary hover:bg-primary/10 transition-colors min-w-12"
         >
@@ -26,6 +27,7 @@ export function AddToCartButton({ product }: { product: Product }) {
         </button>
         <span className="px-4 py-3 text-sm font-black min-w-[3rem] text-center">{qty}</span>
         <button
+          aria-label="Increase quantity"
           onClick={() => setQty((q) => q + 1)}
           className="px-4 py-3 text-muted hover:text-primary hover:bg-primary/10 transition-colors min-w-12"
         >
@@ -36,11 +38,11 @@ export function AddToCartButton({ product }: { product: Product }) {
         onClick={handleAdd}
         className={`flex-1 py-3 font-black uppercase tracking-[0.12em] rounded-sm transition-all text-xs sm:text-sm ${
           added
-            ? "bg-emerald-600 text-white"
+            ? "bg-primary text-white"
             : "btn-primary"
         }`}
       >
-        {added ? "Added to Cart!" : "Add to Cart"}
+        <span aria-live="polite">{added ? "Added to Cart!" : "Add to Cart"}</span>
       </button>
     </div>
   );

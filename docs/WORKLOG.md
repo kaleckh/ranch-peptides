@@ -1,5 +1,11 @@
 # Worklog
 
+## 2026-09-24 - Catalog product image mapping
+
+- Mapped all eight product slugs to their uploaded local PNG assets through the shared `ProductVial` component, covering clickable catalog cards and product detail pages.
+- Updated image surfaces to square, edge-to-edge containers using centered `object-fit: cover`; product copy, pricing, links, and cart behavior remain unchanged.
+- Verified `npm run lint` and `npm run build`.
+
 ## 2026-09-23 - Locked vial asset reuse
 
 - Added the existing `ProductVial` photographic asset to collection cards without recreating or modifying the vial silhouette, label, proportions, or branding.

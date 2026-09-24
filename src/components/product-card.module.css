@@ -1,5 +1,5 @@
 .card { --surface:#282925; display:flex; flex-direction:column; min-width:0; padding:24px; background:var(--surface); color:#fffdf5; border:1px solid transparent; position:relative; transition:background .2s,transform .2s,border-color .2s; }
-.visual { position:relative; height:250px; margin:-24px -24px 0; overflow:hidden; background:#b9aea0; }
+.visual { position:relative; width:calc(100% + 48px); aspect-ratio:1; margin:-24px -24px 0; overflow:hidden; background:#b9aea0; }
 .card[data-tone="1"] .visual { background:#c1b8aa; }
 .card[data-tone="2"] .visual { background:#9e8d7d; }
 .card[data-tone="3"] .visual { background:#aaa79d; }

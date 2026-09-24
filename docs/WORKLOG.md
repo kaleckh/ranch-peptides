@@ -1,5 +1,23 @@
 # Worklog
 
+## 2026-09-23 - Homepage hero restraint pass
+
+- Refined the existing full-bleed `header.png` hero without changing its structure or copy: reduced image crop, slimmed the transparent overlay header, reduced headline and CTA scale, tightened supporting content, and padded bottom microcopy inside the viewport.
+- Added narrow-screen sizing and positioning adjustments; no additional image or product layer introduced.
+- Verified `npm run lint` and `npm run build`; Playwright was not run.
+
+## 2026-09-23 - Final full-bleed homepage hero
+
+- Replaced the prior salt-flat plus layered-vial hero treatment with `public/images/header.png` as the single full-screen homepage background; removed the extra vial layer and split composition.
+- Positioned the existing announcement messaging and transparent navigation over the homepage image while preserving normal header behavior on other routes.
+- Preserved all existing hero copy and interactions; verified `npm run lint` and `npm run build`.
+
+## 2026-09-23 - Homepage hero editorial composition
+
+- Reworked only the homepage hero into a full-bleed `hero-salt-flats.png` salt-flat scene with selectable HTML copy and the existing Salt N’ Pep vial layered as a large angled foreground product image.
+- Preserved the announcement bar, navigation, existing hero wording, CTA, research index, and study caption; added responsive mobile positioning without changing downstream homepage sections.
+- Verified `npm run lint` and `npm run build`; Playwright was not run per request.
+
 ## 2026-07-12 - Control Tower contracts
 
 - Added repo-owned document-authority and bounded read-only health contracts; the declared lint check passed.

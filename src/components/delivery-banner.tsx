@@ -2,7 +2,7 @@ import styles from "./delivery-banner.module.css";
 
 export function DeliveryBanner() {
   return (
-    <div className={styles.banner}>
+    <div className={`${styles.banner} delivery-banner`}>
       <p className={styles.delivery}>
         <svg
           aria-hidden="true"

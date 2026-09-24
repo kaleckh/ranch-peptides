@@ -5,6 +5,7 @@ import { ProductCard } from "@/components/product-card";
 export default function Home() {
   return <>
     <section className="hero">
+      <div className="hero-backdrop" aria-hidden="true"><Image src="/images/header.png" alt="" fill priority sizes="100vw" /></div>
       <div className="hero-copy">
         <p className="eyebrow"><span className="tiny-cross">✳</span> A new perspective on research</p>
         <h1>Small compounds.<br /><span>Big curiosity.</span></h1>
@@ -12,10 +13,7 @@ export default function Home() {
         <Link className="button" href="/products">Explore the collection <span aria-hidden="true">↗</span></Link>
         <div className="hero-footnote"><span className="index-number">01 /</span><span>RESEARCH COMPOUNDS<br />BY SALT N’ PEP</span></div>
       </div>
-      <div className="hero-visual">
-        <Image src="/images/salt-n-pep-reference.png" alt="SALT N’ PEP glass vial with a textured black and ivory label on a stone surface" fill priority sizes="(max-width: 760px) 100vw, 50vw" />
-        <span className="image-note">A STUDY IN SIMPLICITY.</span>
-      </div>
+      <span className="image-note">A STUDY IN SIMPLICITY.</span>
     </section>
     <div className="principles-strip"><span>Research use only</span><span aria-hidden="true">✳</span><span>Considered compounds</span><span aria-hidden="true">✳</span><span>Curiosity, refined</span><span aria-hidden="true">✳</span><span>Nothing ordinary</span></div>
     <section className="collection section-wrap">

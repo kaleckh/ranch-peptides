@@ -7,10 +7,8 @@ export default function Home() {
     <section className="hero">
       <div className="hero-backdrop" aria-hidden="true"><Image src="/images/header.png" alt="" fill priority sizes="100vw" /></div>
       <div className="hero-copy">
-        <p className="eyebrow"><span className="tiny-cross">✳</span> A new perspective on research</p>
         <h1>Small compounds.<br /><span>Big curiosity.</span></h1>
-        <p className="hero-description">For the questions worth asking.<br />Explore a considered collection of peptides,<br className="desktop-break" /> made for the world of research.</p>
-        <Link className="button" href="/products">Explore the collection <span aria-hidden="true">↗</span></Link>
+        <p className="hero-description">For the questions worth asking.<br />Explore a considered collection of peptides.</p>
         <div className="hero-footnote"><span className="index-number">01 /</span><span>RESEARCH COMPOUNDS<br />BY SALT N’ PEP</span></div>
       </div>
       <span className="image-note">A STUDY IN SIMPLICITY.</span>

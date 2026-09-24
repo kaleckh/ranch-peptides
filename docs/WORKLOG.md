@@ -1,5 +1,11 @@
 # Worklog
 
+## 2026-09-23 - Screenshot-matched hero content pass
+
+- Refined the existing `header.png` full-screen hero to match the supplied reference: layered left atmospheric wash, `18vh` headline placement, single-line editorial headline treatment, shortened supporting copy, and mid-hero `01` block.
+- Removed the homepage eyebrow and CTA from this hero as requested; preserved the photograph, transparent shell, navigation, and downstream sections.
+- Verified `npm run lint` and `npm run build`; Playwright was not run.
+
 ## 2026-09-23 - Homepage hero restraint pass
 
 - Refined the existing full-bleed `header.png` hero without changing its structure or copy: reduced image crop, slimmed the transparent overlay header, reduced headline and CTA scale, tightened supporting content, and padded bottom microcopy inside the viewport.

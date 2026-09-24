@@ -1,5 +1,11 @@
 # Worklog
 
+## 2026-09-23 - Locked vial asset reuse
+
+- Added the existing `ProductVial` photographic asset to collection cards without recreating or modifying the vial silhouette, label, proportions, or branding.
+- Limited styling changes to the surrounding card image area and neutral mineral-toned framing; product information remains unchanged.
+- Verified `npm run lint` and `npm run build`.
+
 ## 2026-09-23 - Screenshot-matched hero content pass
 
 - Refined the existing `header.png` full-screen hero to match the supplied reference: layered left atmospheric wash, `18vh` headline placement, single-line editorial headline treatment, shortened supporting copy, and mid-hero `01` block.

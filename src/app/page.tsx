@@ -5,15 +5,14 @@ import { ProductCard } from "@/components/product-card";
 export default function Home() {
   return <>
     <section className="hero">
-      <div className="hero-backdrop" aria-hidden="true"><Image src="/images/header.png" alt="" fill priority sizes="100vw" /></div>
-      <div className="hero-copy">
-        <h1>Small compounds.<br /><span>Big curiosity.</span></h1>
-        <p className="hero-description">For the questions worth asking.<br />Explore a considered collection of peptides.</p>
-        <div className="hero-footnote"><span className="index-number">01 /</span><span>RESEARCH COMPOUNDS<br />BY SALT N’ PEP</span></div>
+      <picture className="hero-backdrop">
+        <source media="(max-width: 760px)" srcSet="/images/header%20phone.png" />
+        <Image src="/images/header%20desktop.png" alt="" fill priority sizes="100vw" />
+      </picture>
+      <div className="hero-action">
+        <Link className="hero-action-link" href="/products">Explore the Collection <span aria-hidden="true">→</span></Link>
       </div>
-      <span className="image-note">A STUDY IN SIMPLICITY.</span>
     </section>
-    <div className="principles-strip"><span>Research use only</span><span aria-hidden="true">✳</span><span>Considered compounds</span><span aria-hidden="true">✳</span><span>Curiosity, refined</span><span aria-hidden="true">✳</span><span>Nothing ordinary</span></div>
     <section className="collection section-wrap">
       <div className="section-heading"><div><p className="eyebrow">The collection / 01</p><h2>Meet your next<br /><em>line of inquiry.</em></h2></div><Link className="text-link" href="/products">View all compounds <span aria-hidden="true">↗</span></Link></div>
       <div className="collection-grid">{[products[0], products[2], products[4], products[7]].map((product, index) => <ProductCard key={product.slug} product={product} index={index} />)}</div>

@@ -1,5 +1,17 @@
 # Worklog
 
+## 2026-09-28 - Homepage hero hierarchy cleanup
+
+- Removed the redundant homepage header wordmark, hero disclaimer under the CTA, and principles/tagline strip; retained the single top research notice.
+- Lightened homepage navigation and aligned delivery-message contrast; changed the CTA to “Explore the Collection” and moved it upward without altering hero artwork or crop.
+- Verified `npm run lint` and `npm run build`.
+
+## 2026-09-28 - Responsive homepage hero artwork
+
+- Switched the homepage hero to the supplied desktop and phone header images through responsive picture sources, preserving each image's proportions without stretching.
+- Removed prior hero copy and overlays; added only the collection CTA and research-use disclaimer as live HTML.
+- Verified warning-free `npm run lint` and `npm run build`.
+
 ## 2026-09-24 - Catalog product image mapping
 
 - Mapped all eight product slugs to their uploaded local PNG assets through the shared `ProductVial` component, covering clickable catalog cards and product detail pages.

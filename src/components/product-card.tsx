@@ -8,7 +8,7 @@ export function ProductCard({ product, index = 0 }: { product: Product; index?: 
     <div className={styles.visual}><ProductVial product={product} /></div>
     <div className={styles.top}><span className={styles.dose}>{product.dosage}</span></div>
     <div className={styles.identity}><p className={styles.category}>{product.category}</p><h3>{product.shortName}</h3><p className={styles.tagline}>{product.tagline}</p></div>
-    <div className={styles.bottom}><div><strong>{formatPrice(product.price)}</strong><span>Per vial · {product.format}</span></div><span className={styles.arrow}><ArrowIcon /></span></div>
+    <div className={styles.bottom}><div><strong>{formatPrice(product.price)}</strong><span>{product.dosage} vial</span></div><span className={styles.arrow}><ArrowIcon /></span></div>
     <span className={styles.action}>View compound <ArrowIcon direction="right" /></span>
   </Link>;
 }

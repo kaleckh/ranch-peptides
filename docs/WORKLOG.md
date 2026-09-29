@@ -1,5 +1,11 @@
 # Worklog
 
+## 2026-09-28 - Mobile hero image refresh
+
+- Swapped only the mobile hero source to the uploaded `salty mobile offical.png` asset; retained the existing 100svh cover behavior and left desktop/content unchanged.
+- The asset filename is spelled “offical” in `public/images`.
+- Verified `npm run lint` and `npm run build`.
+
 ## 2026-09-28 - Mobile hero artwork swap
 
 - Switched the mobile-only hero source to `mobile official.png` and kept centered `cover` rendering in the full `100svh` hero; desktop source and layout are unchanged.

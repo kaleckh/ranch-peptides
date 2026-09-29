@@ -8,7 +8,7 @@ export default function Home() {
   return <>
     <section className="hero">
       <picture className="hero-backdrop">
-        <source media="(max-width: 768px)" srcSet="/images/mobile%20official.png" />
+        <source media="(max-width: 768px)" srcSet="/images/salty%20mobile%20offical.png" />
         <Image src="/images/header%20desk.png" alt="" fill priority sizes="100vw" />
       </picture>
       <DeliveryBanner className="desktop-hero-delivery" />

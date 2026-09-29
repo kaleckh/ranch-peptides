@@ -1,8 +1,8 @@
 import styles from "./delivery-banner.module.css";
 
-export function DeliveryBanner() {
+export function DeliveryBanner({ className = "" }: { className?: string }) {
   return (
-    <div className={`${styles.banner} delivery-banner`}>
+    <div className={`${styles.banner} delivery-banner ${className}`}>
       <p className={styles.delivery}>
         <svg
           aria-hidden="true"

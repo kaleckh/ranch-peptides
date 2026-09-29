@@ -1,5 +1,23 @@
 # Worklog
 
+## 2026-09-28 - Mobile status block moved into header row
+
+- Moved the mobile delivery/research block into the header itself at the top-left; kept Bag and menu on the top-right and removed the mobile wordmark/icon.
+- Kept the desktop hero banner visible and hid the mobile header instance outside the mobile breakpoint.
+- Verified header alignment at 360–430px, no horizontal overflow, and confirmed desktop banner visibility. `npm run lint` and `npm run build` pass.
+
+## 2026-09-28 - Fixed mobile utility placement
+
+- Changed the mobile hero utility block to fixed 24px left padding and 88px safe-area-relative top padding; removed viewport-height-dependent utility spacing.
+- Kept the mobile image, CTA, header controls, and desktop layout unchanged.
+- Verified matching utility coordinates at 375x667, 375x812, 390x844, 393x852, 414x896, 430x932, and 390x700; `npm run lint` and `npm run build` pass.
+
+## 2026-09-28 - Responsive mobile hero flow
+
+- Moved the existing delivery/research banner into the homepage hero so mobile can lay it out in normal flow below the transparent navigation; the shared header retains it on other routes.
+- Kept only Bag/menu controls at the mobile top-right, hid the duplicate wordmark, and let the CTA flow to the bottom with safe-area padding.
+- Tested 375x667, 375x812, 390x844, 393x852, 414x896, 430x932, and 390x700 against the static export; no horizontal overflow, utility/header overlap, or CTA clipping. Verified `npm run lint` and `npm run build`.
+
 ## 2026-09-28 - Mobile hero header spacing
 
 - Hid the standalone brand asterisk on mobile and changed the delivery/research notices from a cramped row to a left-aligned stacked block beneath navigation.

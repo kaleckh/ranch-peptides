@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { DeliveryBanner } from "@/components/delivery-banner";
 import { products } from "@/lib/products";
 import { ProductCard } from "@/components/product-card";
 export default function Home() {
@@ -9,6 +10,7 @@ export default function Home() {
         <source media="(max-width: 768px)" srcSet="/images/header%20mobile.png" />
         <Image src="/images/header%20desktop.png" alt="" fill priority sizes="100vw" />
       </picture>
+      <DeliveryBanner className="desktop-hero-delivery" />
       <div className="hero-action">
         <Link className="hero-action-link" href="/products">EXPLORE THE COLLECTION <span aria-hidden="true">→</span></Link>
       </div>

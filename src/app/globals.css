@@ -116,13 +116,15 @@ h2 em { font-family:Georgia,serif; font-weight:400; }
 	.hero-backdrop img { object-fit:cover; object-position:center center; }
 	.hero-action { display:flex; left:50%; right:auto; top:auto; bottom:calc(env(safe-area-inset-bottom) + 26px); transform:translateX(-50%); align-items:center; }
 	.hero-action-link { justify-content:center; gap:20px; padding:15px 22px; color:#fffdf7; background:#24231f75; border-color:#f5f2ecb8; white-space:nowrap; font-size:11px; letter-spacing:.1em; }
-	body:has(.hero) .delivery-banner { display:flex; position:absolute; top:calc(env(safe-area-inset-top) + 68px); left:0; right:0; z-index:51; flex-direction:row; justify-content:center; gap:12px; padding:0 12px; background:transparent; color:#f5f2ec; opacity:.88; }
+	body:has(.hero) .delivery-banner { display:flex; position:absolute; top:calc(env(safe-area-inset-top) + 76px); left:6vw; right:auto; z-index:51; flex-direction:column; align-items:flex-start; justify-content:flex-start; gap:3px; padding:0; background:transparent; color:#f5f2ec; opacity:.88; }
 	body:has(.hero) .delivery-banner p { color:#f5f2ec; font-size:8px; line-height:1.4; letter-spacing:.12em; white-space:nowrap; }
+	body:has(.hero) .delivery-banner > p:first-child { font-weight:700; letter-spacing:.14em; }
+	body:has(.hero) .delivery-banner > p:last-child { margin-left:20px; font-size:7px; font-weight:400; letter-spacing:.13em; opacity:.78; }
 	body:has(.hero) .delivery-banner svg { color:#f5f2ec; width:12px; height:12px; }
-	body:has(.hero) .delivery-banner .divider { height:10px; background:#f5f2ec99; }
+	body:has(.hero) .delivery-banner .divider { display:none; }
 	body:has(.hero) .site-header { top:max(12px,env(safe-area-inset-top)); height:54px; padding-left:max(18px,env(safe-area-inset-left)); padding-right:max(18px,env(safe-area-inset-right)); }
 	body:has(.hero) .site-header .wordmark { visibility:visible; font-size:16px; gap:4px; }
-	body:has(.hero) .site-header .wordmark .brand-asterisk { font-size:18px; margin-left:2px; }
+	body:has(.hero) .site-header .wordmark .brand-asterisk { display:none; }
 	.desktop-nav { display:none; }
 	.menu-button { display:block; }
 	.header-actions { gap:14px; }

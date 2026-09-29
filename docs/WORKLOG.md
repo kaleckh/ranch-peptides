@@ -1,5 +1,11 @@
 # Worklog
 
+## 2026-09-28 - Mobile hero header spacing
+
+- Hid the standalone brand asterisk on mobile and changed the delivery/research notices from a cramped row to a left-aligned stacked block beneath navigation.
+- Preserved the mobile hero image, crop, baked typography, and bottom safe-area CTA; desktop remains unchanged.
+- Verified `npm run lint`.
+
 ## 2026-09-28 - Mobile hero UI restoration
 
 - Restored the existing logo and transparent bag/menu navigation on mobile, plus the delivery/research utility labels beneath navigation.

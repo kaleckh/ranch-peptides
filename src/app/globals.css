@@ -45,6 +45,9 @@ body:has(.hero) .site-header .mobile-header-delivery { display:none; }
 .hero-action-link svg { width:16px; height:16px; flex:0 0 auto; transition:transform .2s ease; }
 .hero-action-link:hover { background:#4c4941; border-color:#4c4941; }
 .hero-action-link:hover svg { transform:translateX(2px); }
+.research-feature { position:relative; width:100%; overflow:hidden; }
+.research-feature > img { display:block; width:100%; height:auto; }
+.research-feature-cta { position:absolute; left:6%; top:62%; transform:translateY(-50%); z-index:1; }
 .hero-action p { margin:0; color:#24231f; font-size:9px; letter-spacing:.13em; text-transform:uppercase; }
 .hero-copy { position:absolute; top:18vh; left:4vw; width:62%; padding:0; display:flex; flex-direction:column; align-items:flex-start; }
 .eyebrow { text-transform:uppercase; font-size:10px; font-weight:500; letter-spacing:.17em; line-height:1.8; }

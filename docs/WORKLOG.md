@@ -1,5 +1,16 @@
 # Worklog
 
+## 2026-09-28 - Resources section image refresh
+
+- Replaced the Resources section image with `resources new.png`; its native dimensions match the prior asset, so existing natural-ratio sizing and CTA placement remain unchanged.
+- Retained the single “VIEW RESEARCH” link to `/science` and all baked-in image text.
+- Verified `npm run lint` and `npm run build`.
+
+## 2026-09-28 - Homepage research artwork section
+
+- Replaced only the “Curiosity is in our nature” section with `studies.png` at its natural 1905:825 aspect ratio and one `/science` CTA positioned beneath the baked-in left copy.
+- Verified responsive image/CTA bounds at 1440x900, 390x844, 375x667, and 430x932 with no overflow; `npm run lint` and `npm run build` pass.
+
 ## 2026-09-28 - Collection intro copy refinement
 
 - Changed the Collection intro eyebrow to “THE COLLECTION” and headline to “Research Compounds”; reduced the headline size while preserving its existing layout and supporting copy.

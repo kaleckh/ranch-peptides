@@ -1,5 +1,10 @@
 # Worklog
 
+## 2026-09-28 - Collection intro copy refinement
+
+- Changed the Collection intro eyebrow to “THE COLLECTION” and headline to “Research Compounds”; reduced the headline size while preserving its existing layout and supporting copy.
+- Verified `npm run lint` and `npm run build`.
+
 ## 2026-09-28 - Collection card numbering removed
 
 - Removed the `SNP / 01`-style labels from shared product cards and kept dosage badges aligned at the upper-right.

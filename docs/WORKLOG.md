@@ -1,5 +1,11 @@
 # Worklog
 
+## 2026-09-28 - Mobile hero poster fit
+
+- Changed only the mobile hero image fit from `cover` to centered `contain` at both mobile breakpoints, preserving the full dedicated poster composition over the existing hero background color.
+- Kept the desktop `cover` behavior, mobile asset, crop source, overlays, and CTA unchanged.
+- Verified 375, 390, 393, 414, and 430px widths at standard and short heights; no horizontal overflow or CTA clipping. `npm run lint` and `npm run build` pass.
+
 ## 2026-09-28 - Collection vial caption removed
 
 - Removed the “THE SALT N’ PEP STANDARD / BRAND PHOTOGRAPH” caption from the collection intro image; no image, crop, sizing, or surrounding layout changed.

@@ -111,12 +111,32 @@ h2 em { font-family:Georgia,serif; font-weight:400; }
 @media(max-width:380px) { .header-actions { gap:8px; }.wordmark { font-size:17px; }.wordmark .brand-asterisk { font-size:19px; }.hero-copy { padding-top:135px; }.compound-image { height:235px; }.compound-image .vial { transform:scale(.8) rotate(-5deg); }.compound-image .vial-shadow { top:calc(50% + 91px); }.compound-dose { top:auto; bottom:12px; right:12px; }.principles-strip { gap:12px; }.principles-strip span:nth-child(5) { display:none; }.research-note>.tiny-cross { display:none; }.research-note>.text-link { margin-left:0; } }
 @media(prefers-reduced-motion:reduce) { html { scroll-behavior:auto; } *,*::before,*::after { transition:none!important; animation:none!important; } }
 
+@media(max-width:768px) {
+	.hero { width:100vw; height:100svh; min-height:100svh; }
+	.hero-backdrop img { object-fit:cover; object-position:center center; }
+	.hero-action { display:flex; left:50%; right:auto; top:auto; bottom:calc(env(safe-area-inset-bottom) + 26px); transform:translateX(-50%); align-items:center; }
+	.hero-action-link { justify-content:center; gap:20px; padding:15px 22px; color:#fffdf7; background:#24231f75; border-color:#f5f2ecb8; white-space:nowrap; font-size:11px; letter-spacing:.1em; }
+	body:has(.hero) .delivery-banner { display:flex; position:absolute; top:calc(env(safe-area-inset-top) + 68px); left:0; right:0; z-index:51; flex-direction:row; justify-content:center; gap:12px; padding:0 12px; background:transparent; color:#f5f2ec; opacity:.88; }
+	body:has(.hero) .delivery-banner p { color:#f5f2ec; font-size:8px; line-height:1.4; letter-spacing:.12em; white-space:nowrap; }
+	body:has(.hero) .delivery-banner svg { color:#f5f2ec; width:12px; height:12px; }
+	body:has(.hero) .delivery-banner .divider { height:10px; background:#f5f2ec99; }
+	body:has(.hero) .site-header { top:max(12px,env(safe-area-inset-top)); height:54px; padding-left:max(18px,env(safe-area-inset-left)); padding-right:max(18px,env(safe-area-inset-right)); }
+	body:has(.hero) .site-header .wordmark { visibility:visible; font-size:16px; gap:4px; }
+	body:has(.hero) .site-header .wordmark .brand-asterisk { font-size:18px; margin-left:2px; }
+	.desktop-nav { display:none; }
+	.menu-button { display:block; }
+	.header-actions { gap:14px; }
+	body:has(.hero) .site-header .bag-button { font-size:11px; }
+	body:has(.hero) .site-header .bag-count { min-width:23px; height:23px; }
+	body:has(.hero) .site-header .bag-count { border-color:#d6c6aa80; }
+}
+
 @media(max-width:760px) {
-	body:has(.hero) .site-header { top:40px; height:54px; }
+	body:has(.hero) .site-header { top:max(12px,env(safe-area-inset-top)); height:54px; }
 	.hero-copy { top:118px; padding:0 7% 56px; }
 	.hero h1 { font-size:clamp(31px,8.5vw,52px); }
 	.hero-footnote { padding-top:0; }
-	.hero-backdrop img { object-fit:cover; object-position:70% center; }
+	.hero-backdrop img { object-fit:cover; object-position:center center; }
 	.image-note { bottom:20px; left:7%; }
 }
 

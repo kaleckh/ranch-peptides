@@ -6,11 +6,11 @@ export default function Home() {
   return <>
     <section className="hero">
       <picture className="hero-backdrop">
-        <source media="(max-width: 760px)" srcSet="/images/header%20phone.png" />
+        <source media="(max-width: 768px)" srcSet="/images/header%20mobile.png" />
         <Image src="/images/header%20desktop.png" alt="" fill priority sizes="100vw" />
       </picture>
       <div className="hero-action">
-        <Link className="hero-action-link" href="/products">Explore the Collection <span aria-hidden="true">→</span></Link>
+        <Link className="hero-action-link" href="/products">EXPLORE THE COLLECTION <span aria-hidden="true">→</span></Link>
       </div>
     </section>
     <section className="collection section-wrap">

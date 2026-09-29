@@ -1,5 +1,17 @@
 # Worklog
 
+## 2026-09-28 - Mobile hero UI restoration
+
+- Restored the existing logo and transparent bag/menu navigation on mobile, plus the delivery/research utility labels beneath navigation.
+- Restored the collection CTA as an outlined button above the mobile bottom safe area; kept the desktop hero unchanged and retained the unmodified mobile background image.
+- Verified `npm run lint` and `npm run build`.
+
+## 2026-09-28 - Mobile hero image swap
+
+- Switched the hero source to `header mobile.png` at the requested 768px breakpoint, keeping the desktop asset unchanged and using centered `object-fit: cover` in an exact `100vw` by `100svh` mobile hero.
+- On mobile, hid the image-duplicating CTA and delivery strip while retaining the transparent functional header controls with safe-area spacing.
+- Verified `npm run lint` and `npm run build`.
+
 ## 2026-09-28 - Homepage hero hierarchy cleanup
 
 - Removed the redundant homepage header wordmark, hero disclaimer under the CTA, and principles/tagline strip; retained the single top research notice.

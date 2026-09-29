@@ -1,5 +1,16 @@
 # Worklog
 
+## 2026-09-28 - Resources image overlay containment
+
+- Made `resources new.png` an absolute full-section image layer in a native-aspect-ratio container, with the CTA and research disclaimer overlaid inside it.
+- Verified overlay containment and no horizontal overflow at desktop and mobile sizes; `npm run lint`, `npm run build`, and `git diff --check` pass.
+
+## 2026-09-28 - Resources section disclaimer hierarchy
+
+- Added the exact research-only disclaimer below the existing VIEW RESEARCH CTA on the Resources artwork and removed the separate Purpose/research-only section.
+- Kept baked-in image copy untouched and retained the image's natural aspect ratio and existing CTA styling.
+- Verified `npm run lint`, `npm run build`, and desktop/mobile section bounds.
+
 ## 2026-09-28 - Resources section image refresh
 
 - Replaced the Resources section image with `resources new.png`; its native dimensions match the prior asset, so existing natural-ratio sizing and CTA placement remain unchanged.

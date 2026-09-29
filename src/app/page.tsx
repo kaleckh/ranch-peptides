@@ -22,8 +22,10 @@ export default function Home() {
     </section>
     <section className="research-feature">
       <Image src="/images/resources%20new.png" alt="" width={1905} height={825} sizes="100vw" />
-      <Link className="hero-action-link research-feature-cta" href="/science">VIEW RESEARCH <ArrowIcon direction="right" /></Link>
+      <div className="research-feature-action">
+        <Link className="hero-action-link" href="/science">VIEW RESEARCH <ArrowIcon direction="right" /></Link>
+        <p>Our collection is intended exclusively for laboratory research. Products are not for human consumption.</p>
+      </div>
     </section>
-    <section className="research-note section-wrap"><span className="tiny-cross" aria-hidden="true">✳</span><div><p className="eyebrow">Purpose, clearly defined.</p><h2>For research.<br /><em>And research only.</em></h2><p>Our collection is intended exclusively for laboratory research. Products are not for human consumption.</p></div><Link href="/faq" className="text-link">A few things to know <ArrowIcon /></Link></section>
   </>;
 }

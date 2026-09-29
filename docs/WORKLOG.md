@@ -1,5 +1,10 @@
 # Worklog
 
+## 2026-09-28 - Collection card numbering removed
+
+- Removed the `SNP / 01`-style labels from shared product cards and kept dosage badges aligned at the upper-right.
+- Verified `npm run lint`.
+
 ## 2026-09-28 - Mobile hero image refresh
 
 - Swapped only the mobile hero source to the uploaded `salty mobile offical.png` asset; retained the existing 100svh cover behavior and left desktop/content unchanged.

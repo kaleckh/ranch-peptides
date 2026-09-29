@@ -1,5 +1,11 @@
 # Worklog
 
+## 2026-09-28 - Product bundle quantity selector
+
+- Replaced the product-page bulk-pricing display and separate quantity stepper with one responsive 1/3/5/10-vial selector driven by each product's existing `bulkPricing` data.
+- Selected tier controls its displayed total/per-vial amount and passes the matching vial quantity to the shared cart, whose existing tier pricing keeps line totals and subtotal synchronized.
+- Kept a 2x2 layout through tablet widths and four columns at large desktop; verified four tiers and matching totals on all eight exported product pages. `npm run lint` and `npm run build` pass.
+
 ## 2026-09-28 - Site-wide link and purchase hierarchy cleanup
 
 - Replaced text arrow glyphs across hero, cards, nav, footer, catalog, research, reviews, and lab-report links with a shared directional SVG icon; underlined the product-card “View compound” action.

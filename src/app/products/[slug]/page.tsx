@@ -3,7 +3,7 @@ import { ProductVial } from "@/components/product-vial";
 import { ProductReviews } from "@/components/product-reviews";
 import { ProductTesting } from "@/components/product-testing";
 import Link from "next/link";
-import { products, getProduct, formatPrice } from "@/lib/products";
+import { products, getProduct } from "@/lib/products";
 import type { Metadata } from "next";
 import { AddToCartButton } from "./add-to-cart";
 
@@ -51,24 +51,6 @@ export default async function ProductPage({ params }: Props) {
             <p className="text-muted mt-1 text-sm sm:text-base">{product.tagline}</p>
             <p className="mt-3 text-sm font-semibold">{product.dosage} / {product.format}</p>
 
-            {/* Pricing */}
-            <div className="mt-6 sm:mt-8 p-3 sm:p-4 metal-panel rounded-sm">
-              <h3 className="text-sm font-black uppercase tracking-[0.12em] mb-2 sm:mb-3">Bulk Pricing</h3>
-              <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
-                {product.bulkPricing.map((tier) => (
-                  <div
-                    key={tier.qty}
-                    className="text-center p-2 rounded-sm border border-border bg-background"
-                  >
-                    <p className="text-[10px] sm:text-xs text-muted">{tier.qty} {tier.qty === 1 ? "vial" : "vials"}</p>
-                    <p className="text-base sm:text-lg font-black">{formatPrice(tier.price)}</p>
-                    <p className="text-[10px] text-muted">each</p>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            {/* Add to cart */}
             <AddToCartButton product={product} />
 
             <div className="flex items-center gap-2 sm:gap-3 mt-3 sm:mt-4">

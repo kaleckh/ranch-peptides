@@ -1,12 +1,13 @@
 import { researchEntries } from "@/lib/research";
 import styles from "./product-reviews.module.css";
+import { ArrowIcon } from "./arrow-icon";
 
 export function ProductReviews({ slug, name }: { slug: string; name: string }) {
   const research = researchEntries.find((entry) => entry.slug === slug);
   return <div className={styles.reviews}>
     <nav className={styles.jumpLinks} aria-label={`${name} reviews`}>
       <a href="#customer-reviews">Customer reviews <span>0</span></a>
-      <a href="#scientific-review">Scientific review <span aria-hidden="true">↘</span></a>
+      <a href="#scientific-review">Scientific review <ArrowIcon direction="down" /></a>
     </nav>
     <section id="customer-reviews" className={styles.customers} aria-labelledby="customer-reviews-heading">
       <div><p className={styles.eyebrow}>From the community</p><h2 id="customer-reviews-heading">Customer reviews.</h2><p className={styles.intro}>Feedback on {name}.</p></div>
@@ -18,9 +19,9 @@ export function ProductReviews({ slug, name }: { slug: string; name: string }) {
         <div className={styles.tags}><span>{research.evidence === "human" ? "Human study" : "Preclinical study"}</span>{research.related && <span>Related-compound evidence</span>}<span>{research.year}</span></div>
         <h3>{research.focus}</h3><p className={styles.model}>{research.model}</p>
         <div className={styles.findings}><div><h4>What the researchers observed</h4><p>{research.finding}</p></div><div><h4>What this does not establish</h4><p>{research.limitation}</p></div></div>
-        <div className={styles.source}><p>{research.authors} · <cite>{research.journal}</cite> · {research.year}</p><a href={research.source}>Read the primary paper <span aria-hidden="true">↗</span><small>{research.sourceId}</small></a></div>
+        <div className={styles.source}><p>{research.authors} · <cite>{research.journal}</cite> · {research.year}</p><a href={research.source}>Read the primary paper <ArrowIcon /><small>{research.sourceId}</small></a></div>
       </article>
-      <a href="/science" className={styles.libraryLink}>Explore the research library <span aria-hidden="true">↗</span></a>
+      <a href="/science" className={styles.libraryLink}>Explore the research library <ArrowIcon /></a>
     </section>}
   </div>;
 }

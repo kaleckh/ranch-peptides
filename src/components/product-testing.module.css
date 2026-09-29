@@ -7,11 +7,13 @@
 .evidence h2 { font-size: clamp(27px, 3vw, 38px); line-height: 1.08; letter-spacing: -.04em; font-weight: 650; }
 .evidence h2 em { font-family: Georgia, serif; font-weight: 400; }
 .evidence p { margin: 15px 0 20px; font-size: 13px; line-height: 1.6; color: #ddd8cb; }
-.cta { display: inline-flex; gap: 32px; justify-content: space-between; align-items: center; background: #f7f3e9; color: #24261f; padding: 14px 20px; font-size: 13px; font-weight: 800; }
-.cta:hover { background: #ded6bf; }
+.cta { display: inline-flex; gap: 8px; align-items: center; color: #f7f3e9; font-size: 12px; font-weight: 600; text-decoration: underline; text-underline-offset: 4px; }
+.cta svg { width: 13px; height: 13px; }
+.cta:hover { color: #ded6bf; }
 .banner a:focus-visible { outline: 3px solid #d3bc7c; outline-offset: 5px; }
 .footer { border-top: 1px solid #53554b; padding: 24px 40px; display: grid; grid-template-columns: 1.15fr 1fr; gap: 36px; font-size: 12px; line-height: 1.6; }
-.batch { display: inline-block; margin: 6px 0; color: #fff; font-size: 15px; font-weight: 750; text-decoration: underline; text-underline-offset: 4px; overflow-wrap: anywhere; }
+.batch { display: inline-flex; align-items:center; gap:5px; margin: 6px 0; color: #fff; font-size: 15px; font-weight: 750; text-decoration: underline; text-underline-offset: 4px; overflow-wrap: anywhere; }
+.batch svg { width: 13px; height: 13px; flex:0 0 auto; }
 .scope { color: #d9d6cb; }
 .scope p + p { margin-top: 8px; }
 .notice { color: #f1d9a5; font-weight: 650; }
@@ -19,6 +21,5 @@
   .status { padding: 12px 20px; font-size: 10px; }
   .body, .footer { grid-template-columns: 1fr; padding: 24px 20px; gap: 24px; }
   .purity { font-size: clamp(60px, 18vw, 100px); }
-  .cta { width: 100%; gap: 12px; }
   .banner { margin-bottom: 28px; }
 }

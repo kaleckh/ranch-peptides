@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import ResearchLibrary from "./research-library";
 import styles from "./research.module.css";
+import { ArrowIcon } from "@/components/arrow-icon";
 
 export const metadata: Metadata = {
   title: "Research Library | SALT N’ PEP",
@@ -15,7 +16,7 @@ export default function SciencePage() {
           <p className={styles.eyebrow}>SALT N’ PEP / Research notes</p>
           <h1>Curiosity,<br /><em>with context.</em></h1>
           <p className={styles.intro}>Good research starts with better questions. Explore the papers, understand the models, and see where the evidence ends.</p>
-          <a className={styles.primaryLink} href="#study-library">Explore the library <span aria-hidden="true">↘</span></a>
+          <a className={styles.primaryLink} href="#study-library">Explore the library <ArrowIcon direction="down" /></a>
         </div>
         <aside className={styles.heroNote} aria-label="About this reading list">
           <span className={styles.star} aria-hidden="true">✳</span>

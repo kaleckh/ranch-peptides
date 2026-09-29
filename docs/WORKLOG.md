@@ -1,5 +1,12 @@
 # Worklog
 
+## 2026-09-28 - Site-wide link and purchase hierarchy cleanup
+
+- Replaced text arrow glyphs across hero, cards, nav, footer, catalog, research, reviews, and lab-report links with a shared directional SVG icon; underlined the product-card “View compound” action.
+- Removed the decorative asterisk from header/footer wordmarks.
+- Reordered product details so bulk pricing and Add to Cart precede descriptions, technical details, and the lab-report section; restyled report/registry links as secondary text links.
+- Verified `npm run lint` and `npm run build` (16 static routes).
+
 ## 2026-09-28 - Mobile status block moved into header row
 
 - Moved the mobile delivery/research block into the header itself at the top-left; kept Bag and menu on the top-right and removed the mobile wordmark/icon.

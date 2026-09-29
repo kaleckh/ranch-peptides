@@ -24,7 +24,6 @@ body:has(.hero) .delivery-banner p,body:has(.hero) .delivery-banner svg { color:
 body:has(.hero) .wordmark { font-size:22px; }
 .wordmark { font-size:25px; letter-spacing:.13em; font-weight:800; white-space:nowrap; display:inline-flex; align-items:center; gap:8px; }
 .wordmark>span:first-child { font-size:14px; letter-spacing:0; }
-.wordmark .brand-asterisk { font-size:27px; margin-left:4px; font-weight:normal; }
 .desktop-nav { display:flex; gap:28px; font-size:11px; }
 .desktop-nav a { padding:10px 0; border-bottom:1px solid transparent; }
 .desktop-nav a:hover,.desktop-nav a[aria-current] { border-color:currentColor; }
@@ -34,7 +33,8 @@ body:has(.hero) .wordmark { font-size:22px; }
 .menu-button { display:none; padding:8px; }
 .mobile-nav { position:absolute; top:100%; left:0; right:0; padding:10px 6% 24px; background:var(--background); border-bottom:1px solid var(--border); box-shadow:0 12px 20px #0001; }
 body:has(.hero) .mobile-nav { background:#f5f2ece8; }
-.mobile-nav a { display:flex; justify-content:space-between; padding:18px 0; border-bottom:1px solid var(--border); }
+.mobile-nav a { display:flex; align-items:center; justify-content:space-between; padding:18px 0; border-bottom:1px solid var(--border); }
+.mobile-nav a svg { width:14px; height:14px; flex:0 0 auto; }
 body:has(.hero) .site-header .mobile-header-delivery { display:none; }
 .hero { position:relative; isolation:isolate; width:100%; min-height:100svh; overflow:hidden; border-bottom:1px solid var(--border); }
 .hero-backdrop { position:absolute; inset:0; z-index:-2; display:block; width:100%; height:100%; background:#b8afa2; }
@@ -42,9 +42,9 @@ body:has(.hero) .site-header .mobile-header-delivery { display:none; }
 .hero-backdrop img { object-fit:cover; object-position:center center; }
 .hero-action { position:absolute; left:auto; right:6vw; top:auto; bottom:12vh; z-index:4; display:flex; flex-direction:column; align-items:flex-start; }
 .hero-action-link { display:inline-flex; align-items:center; gap:30px; background:#24231f; color:#fffdf7; padding:17px 22px; font-size:12px; letter-spacing:.08em; border:1px solid #24231f; }
-.hero-action-link span { font-size:18px; line-height:1; transition:transform .2s ease; }
+.hero-action-link svg { width:16px; height:16px; flex:0 0 auto; transition:transform .2s ease; }
 .hero-action-link:hover { background:#4c4941; border-color:#4c4941; }
-.hero-action-link:hover span { transform:translate(2px,-2px); }
+.hero-action-link:hover svg { transform:translateX(2px); }
 .hero-action p { margin:0; color:#24231f; font-size:9px; letter-spacing:.13em; text-transform:uppercase; }
 .hero-copy { position:absolute; top:18vh; left:4vw; width:62%; padding:0; display:flex; flex-direction:column; align-items:flex-start; }
 .eyebrow { text-transform:uppercase; font-size:10px; font-weight:500; letter-spacing:.17em; line-height:1.8; }
@@ -68,8 +68,10 @@ h2 { letter-spacing:-.045em; }
 .section-heading h2,.research-note h2 { font-size:42px; font-weight:400; line-height:1.1; margin-top:18px; }
 h2 em { font-family:Georgia,serif; font-weight:400; }
 .text-link { display:inline-flex; align-items:center; gap:30px; font-size:11px; padding:10px 0; border-bottom:1px solid #8b8478; }
-.text-link span { font-size:21px; }
+.text-link svg { width:14px; height:14px; flex:0 0 auto; }
 .text-link:hover { color:#86785d; }
+.footer-top nav a { display:inline-flex; align-items:center; gap:8px; }
+.footer-top nav svg { width:13px; height:13px; flex:0 0 auto; }
 .collection-grid { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:20px; }
 .compound-card { display:block; min-width:0; }
 .compound-image { position:relative; overflow:hidden; background:#e8e3db; height:330px; border:1px solid #ded8ce; }

@@ -40,8 +40,6 @@ export default async function ProductPage({ params }: Props) {
           <span className="text-foreground font-medium">{product.shortName}</span>
         </nav>
 
-        <ProductTesting slug={product.slug} name={product.shortName} dosage={product.dosage} />
-
         {/* Product hero */}
         <div className="grid lg:grid-cols-2 gap-6 sm:gap-8 lg:gap-12">
           <div className="product-detail-visual"><ProductVial product={product} featured /><p className="visual-caption">SALT N’ PEP / BRAND VIAL PHOTO</p></div>
@@ -52,16 +50,6 @@ export default async function ProductPage({ params }: Props) {
             <h1 className="text-3xl sm:text-4xl lg:text-6xl font-black uppercase tracking-tight mt-2 leading-none">{product.name}</h1>
             <p className="text-muted mt-1 text-sm sm:text-base">{product.tagline}</p>
             <p className="mt-3 text-sm font-semibold">{product.dosage} / {product.format}</p>
-            <p className="text-muted mt-2 text-xs leading-relaxed">Brand vial shown. Refer to the product details for compound and quantity.</p>
-
-            <div className="flex items-center gap-2 sm:gap-3 mt-3 sm:mt-4">
-              <span className="inline-block w-2 h-2 bg-emerald-500 rounded-full" />
-              <span className="text-xs sm:text-sm text-muted font-bold">In Stock</span>
-              <span className="text-xs sm:text-sm text-muted">&middot;</span>
-              <a href="#batch-report" className="text-xs sm:text-sm font-bold underline underline-offset-4">Lumira / View example lab report</a>
-            </div>
-
-            <p className="mt-4 sm:mt-6 text-sm sm:text-base text-muted leading-relaxed">{product.description}</p>
 
             {/* Pricing */}
             <div className="mt-6 sm:mt-8 p-3 sm:p-4 metal-panel rounded-sm">
@@ -83,6 +71,15 @@ export default async function ProductPage({ params }: Props) {
             {/* Add to cart */}
             <AddToCartButton product={product} />
 
+            <div className="flex items-center gap-2 sm:gap-3 mt-3 sm:mt-4">
+              <span className="inline-block w-2 h-2 bg-emerald-500 rounded-full" />
+              <span className="text-xs sm:text-sm text-muted font-bold">In Stock</span>
+              <span className="text-xs sm:text-sm text-muted">&middot;</span>
+              <a href="#batch-report" className="text-xs sm:text-sm font-bold underline underline-offset-4">Lumira / View example lab report</a>
+            </div>
+            <p className="text-muted mt-3 text-xs leading-relaxed">Brand vial shown. Refer to the product details for compound and quantity.</p>
+            <p className="mt-4 sm:mt-6 text-sm sm:text-base text-muted leading-relaxed">{product.description}</p>
+
             {/* Quick specs */}
             <div className="mt-4 sm:mt-6 grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-3 text-sm">
               <div className="p-2.5 sm:p-3 dark-panel rounded-sm">
@@ -102,6 +99,8 @@ export default async function ProductPage({ params }: Props) {
             )}
           </div>
         </div>
+
+        <ProductTesting slug={product.slug} name={product.shortName} dosage={product.dosage} />
 
         {/* Info cards */}
         <div className="mt-10 sm:mt-16 grid sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8">

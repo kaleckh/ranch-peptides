@@ -4,6 +4,7 @@ import { usePathname } from "next/navigation";
 import { useCallback, useState } from "react";
 import { CartDrawer } from "./cart-drawer";
 import { DeliveryBanner } from "./delivery-banner";
+import { ArrowIcon } from "./arrow-icon";
 import { useCart } from "@/lib/cart-context";
 const navigation = [["/products", "The collection"], ["/science", "The research"], ["/faq", "Good to know"]];
 export function Header() {
@@ -17,10 +18,10 @@ export function Header() {
     {pathname !== "/" && <DeliveryBanner />}
     <header className="site-header">
       {pathname === "/" && <DeliveryBanner className="mobile-header-delivery" />}
-      <Link href="/" className="wordmark" aria-label="SALT N’ PEP home">SALT <span>N’</span> PEP<span className="brand-asterisk" aria-hidden="true">✳</span></Link>
+      <Link href="/" className="wordmark" aria-label="SALT N’ PEP home">SALT <span>N’</span> PEP</Link>
       <nav className="desktop-nav" aria-label="Main navigation">{navigation.map(([href, label]) => <Link key={href} href={href} aria-current={pathname.startsWith(href) ? "page" : undefined}>{label}</Link>)}</nav>
       <div className="header-actions"><button className="bag-button" onClick={() => { setMobileMenuOpen(false); setCartOpen(true); }} aria-label={`Open cart, ${totalItems} items`}>Bag <span className="bag-count">{totalItems}</span></button><button className="menu-button" aria-expanded={mobileMenuOpen} aria-controls="mobile-navigation" aria-label={mobileMenuOpen ? "Close menu" : "Open menu"} onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>{mobileMenuOpen ? "✕" : "☰"}</button></div>
-      {mobileMenuOpen && <nav id="mobile-navigation" className="mobile-nav" aria-label="Mobile navigation">{navigation.map(([href, label]) => <Link href={href} key={href} onClick={() => setMobileMenuOpen(false)}>{label}<span aria-hidden="true">↗</span></Link>)}</nav>}
+      {mobileMenuOpen && <nav id="mobile-navigation" className="mobile-nav" aria-label="Mobile navigation">{navigation.map(([href, label]) => <Link href={href} key={href} onClick={() => setMobileMenuOpen(false)}>{label}<ArrowIcon /></Link>)}</nav>}
     </header>
     <CartDrawer open={cartOpen} onClose={closeCart} />
   </>;

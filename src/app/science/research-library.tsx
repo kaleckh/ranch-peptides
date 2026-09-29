@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { researchEntries } from "@/lib/research";
 import styles from "./research.module.css";
+import { ArrowIcon } from "@/components/arrow-icon";
 
 const filters = [
   { value: "all", label: "All papers" },
@@ -54,10 +55,10 @@ export default function ResearchLibrary() {
           <div className={styles.limit}><span className={styles.eyebrow}>Keep in mind</span><p>{entry.limitation}</p></div>
           <div className={styles.citation}>
             <p>{entry.authors} · {entry.year}<br /><cite>{entry.journal}</cite></p>
-            <a href={entry.source} aria-label={`Read the ${entry.compound} source paper on ${entry.sourceId.startsWith("PMCID") ? "PubMed Central" : "PubMed"}`}>Read source paper <span aria-hidden="true">↗</span><small>{entry.sourceId}</small></a>
+            <a href={entry.source} aria-label={`Read the ${entry.compound} source paper on ${entry.sourceId.startsWith("PMCID") ? "PubMed Central" : "PubMed"}`}>Read source paper <ArrowIcon /><small>{entry.sourceId}</small></a>
           </div>
         </article>)}
-      </div> : <div className={styles.empty}><h3>No papers match this search.</h3><p>Try a compound such as BPC-157, a topic such as tendon, or clear the filters.</p><button className={styles.primaryLink} type="button" onClick={reset}>Show all papers <span aria-hidden="true">↗</span></button></div>}
+      </div> : <div className={styles.empty}><h3>No papers match this search.</h3><p>Try a compound such as BPC-157, a topic such as tendon, or clear the filters.</p><button className={styles.primaryLink} type="button" onClick={reset}>Show all papers <ArrowIcon /></button></div>}
     </section>
   );
 }

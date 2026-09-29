@@ -1,5 +1,11 @@
 # Worklog
 
+## 2026-09-28 - Mobile hero artwork swap
+
+- Switched the mobile-only hero source to `mobile official.png` and kept centered `cover` rendering in the full `100svh` hero; desktop source and layout are unchanged.
+- Verified the mobile source/fit at 375x667, 390x844, 393x852, 414x896, 430x932, and 430x740; confirmed desktop still selects `header desk.png`.
+- Verified `npm run lint` and `npm run build`.
+
 ## 2026-09-28 - Mobile hero poster fit
 
 - Changed only the mobile hero image fit from `cover` to centered `contain` at both mobile breakpoints, preserving the full dedicated poster composition over the existing hero background color.

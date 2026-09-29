@@ -9,7 +9,7 @@ export default function Home() {
     <section className="hero">
       <picture className="hero-backdrop">
         <source media="(max-width: 768px)" srcSet="/images/header%20mobile.png" />
-        <Image src="/images/header%20desktop.png" alt="" fill priority sizes="100vw" />
+        <Image src="/images/header%20desk.png" alt="" fill priority sizes="100vw" />
       </picture>
       <DeliveryBanner className="desktop-hero-delivery" />
       <div className="hero-action">

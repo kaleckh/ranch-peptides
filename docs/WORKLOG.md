@@ -1,5 +1,27 @@
 # Worklog
 
+## 2026-09-28 - Collection vial caption removed
+
+- Removed the “THE SALT N’ PEP STANDARD / BRAND PHOTOGRAPH” caption from the collection intro image; no image, crop, sizing, or surrounding layout changed.
+- Confirmed no vial-caption component or matching caption text remains in source. Verified `npm run lint` and `git diff --check`.
+
+## 2026-09-28 - Desktop hero CTA centered
+
+- Moved the desktop collection CTA to the horizontal center at 68% hero height; preserved its styling and the mobile positioning override.
+- Verified `npm run lint` and `npm run build`.
+
+## 2026-09-28 - Desktop hero image and CTA position
+
+- Switched only the desktop hero fallback image to `header desk.png`; retained the mobile source and `object-fit: cover` behavior.
+- Moved the desktop CTA to the lower-left near the PEP artwork while keeping the existing CTA styling and mobile position unchanged.
+- Verified `npm run lint`, `npm run build`, and generated responsive image sources.
+
+## 2026-09-28 - Vial caption and CTA consistency
+
+- Removed the product-detail vial caption and its unused CSS rule.
+- Unified the hero collection CTA with the existing mobile outlined treatment across all breakpoints, including removing the short-height padding variant.
+- Verified `npm run lint`, `npm run build`, and `git diff --check`.
+
 ## 2026-09-28 - Product bundle quantity selector
 
 - Replaced the product-page bulk-pricing display and separate quantity stepper with one responsive 1/3/5/10-vial selector driven by each product's existing `bulkPricing` data.

@@ -42,7 +42,7 @@ export default async function ProductPage({ params }: Props) {
 
         {/* Product hero */}
         <div className="grid lg:grid-cols-2 gap-6 sm:gap-8 lg:gap-12">
-          <div className="product-detail-visual"><ProductVial product={product} featured /><p className="visual-caption">SALT N’ PEP / BRAND VIAL PHOTO</p></div>
+          <div className="product-detail-visual"><ProductVial product={product} featured /></div>
 
           {/* Product info */}
           <div>

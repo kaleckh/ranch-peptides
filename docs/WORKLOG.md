@@ -1,5 +1,13 @@
 # Worklog
 
+## 2026-10-03 - Reviewed checkout and payment foundation
+
+- Pulled master through 1ec2a6d. Added checkout/research review, persistent cart and per-order access, hosted Stripe payment, verified manual Venmo business payment, and private status/recovery pages in the existing ivory/charcoal design.
+- Preserved static export; added a separate Node 24 SQLite API and local staff CLI with immutable catalog pricing, idempotent requests, hashed order tokens, audit records, matching signed webhook verification, and unique Venmo transaction tracking. Live checkout remains disabled by default. Setup, single-instance deployment, and operational limits are in CHECKOUT.md with example environments.
+- Independent payment review identified duplicate Venmo confirmation, lost browser access, and proxy rate limiting; addressed all three with regression checks. Updated Next.js/ESLint config to 16.3.8 and applied compatible dependency fixes. Production dependency audit is clean; five high development-only findings remain in the ESLint glob dependency chain (audit proposes a breaking downgrade).
+- Validation: lint, five pricing/access/review/payment/proxy tests, production build (18 static routes), staff CLI help, and diff whitespace checks passed. No connected browser was available for visual QA, no real provider test checkout was performed, and no live payment/deployment occurred.
+- Pending owner setup: merchant approval/credentials, authorized Venmo handle, shipping price/states, support email and tax policy; pending launch checks include inventory-matched batch evidence, research verification, stock/shipping/refunds, provider test-mode payment and desktop/mobile visual review.
+
 ## 2026-09-28 - Resources image overlay containment
 
 - Made `resources new.png` an absolute full-section image layer in a native-aspect-ratio container, with the CTA and research disclaimer overlaid inside it.

@@ -1,7 +1,7 @@
 "use client";
 
-import { createContext, useContext, useState, useCallback, type ReactNode } from "react";
-import type { Product } from "./products";
+import { createContext, useContext, useState, useCallback, useEffect, type ReactNode } from "react";
+import { getProduct, type Product } from "./products";
 
 export interface CartItem {
   product: Product;
@@ -31,12 +31,33 @@ function getBulkPrice(product: Product, quantity: number): number {
 
 export function CartProvider({ children }: { children: ReactNode }) {
   const [items, setItems] = useState<CartItem[]>([]);
+  const [hydrated, setHydrated] = useState(false);
+  useEffect(() => {
+    let restored: CartItem[] = [];
+    try {
+      const stored = JSON.parse(localStorage.getItem("snp-cart") || "[]");
+      if (Array.isArray(stored)) restored = stored.slice(0, 8).flatMap(item => {
+        const product = getProduct(item?.slug);
+        return product && Number.isInteger(item.quantity) && item.quantity >= 1 && item.quantity <= 100
+          ? [{ product, quantity: item.quantity, pricePerUnit: getBulkPrice(product, item.quantity) }] : [];
+      }).filter((item, index, all) => all.findIndex(other => other.product.slug === item.product.slug) === index);
+    } catch { /* Storage can be unavailable; the in-memory cart still works. */ }
+    // Hydrate browser storage after the static export's initial render.
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+    setItems(restored);
+    setHydrated(true);
+  }, []);
+  useEffect(() => {
+    if (!hydrated) return;
+    try { localStorage.setItem("snp-cart", JSON.stringify(items.map(i => ({ slug: i.product.slug, quantity: i.quantity })))); } catch { /* Keep cart usable without storage. */ }
+  }, [items, hydrated]);
 
   const addItem = useCallback((product: Product, quantity: number) => {
+    if (!Number.isInteger(quantity) || quantity < 1 || quantity > 100) return;
     setItems((prev) => {
       const existing = prev.find((i) => i.product.slug === product.slug);
       if (existing) {
-        const newQty = existing.quantity + quantity;
+        const newQty = Math.min(100, existing.quantity + quantity);
         return prev.map((i) =>
           i.product.slug === product.slug
             ? { ...i, quantity: newQty, pricePerUnit: getBulkPrice(product, newQty) }
@@ -52,6 +73,7 @@ export function CartProvider({ children }: { children: ReactNode }) {
   }, []);
 
   const updateQuantity = useCallback((slug: string, quantity: number) => {
+    if (!Number.isInteger(quantity) || quantity > 100) return;
     if (quantity <= 0) {
       setItems((prev) => prev.filter((i) => i.product.slug !== slug));
       return;

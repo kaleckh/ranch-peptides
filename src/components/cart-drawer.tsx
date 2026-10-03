@@ -3,6 +3,7 @@
 import { useCart } from "@/lib/cart-context";
 import { formatPrice } from "@/lib/products";
 import { useEffect, useRef } from "react";
+import Link from "next/link";
 
 interface CartDrawerProps {
   open: boolean;
@@ -126,12 +127,13 @@ export function CartDrawer({ open, onClose }: CartDrawerProps) {
               <span className="text-muted">Subtotal</span>
               <span className="font-semibold">{formatPrice(totalPrice)}</span>
             </div>
-            <button
-              disabled
-              className="w-full py-3 btn-primary font-black rounded-sm opacity-50 cursor-not-allowed text-sm"
+            <Link
+              href="/checkout"
+              onClick={onClose}
+              className="w-full py-3 btn-primary font-black rounded-sm text-sm block text-center"
             >
-              Checkout Coming Soon
-            </button>
+              Continue to Checkout
+            </Link>
             <button
               onClick={clearCart}
               className="w-full py-2 text-sm text-muted hover:text-primary transition-colors"

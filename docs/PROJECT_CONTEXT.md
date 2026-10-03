@@ -4,7 +4,7 @@ SALT N’ PEP is a Next.js 16 App Router storefront-style site for research pept
 
 ## Stack
 
-- Next.js 16.2.1 with React 19
+- Next.js 16.3.8 with React 19; Node 24 for the separate checkout API
 - TypeScript
 - Tailwind CSS v4
 - `next/image` with the locally bundled owner-supplied vial photo across hero, catalog, and product pages
@@ -25,7 +25,7 @@ Use `--webpack` for local development because the default Turbopack dev server h
 ## Current functionality
 
 - Search and category filtering across eight compounds; bold typography-led compound cards in charcoal, olive, and stone tones. One shared vial photograph anchors the catalog intro; full vial photos remain on detail pages.
-- Cart supports quantity pricing, removal, focus trapping, Escape, and focus return. Checkout remains a disabled placeholder.
+- Cart supports quantity pricing, removal, focus trapping, Escape, focus return, and browser persistence. Checkout submits orders for staff research review; approved requests offer hosted Stripe card checkout or manual Venmo business payment. A separate Node API prices from the catalog and stores immutable order snapshots in SQLite. Signed matching webhooks confirm cards; staff verify unique Venmo transactions. Live checkout is disabled by default. Setup and limitations: `docs/CHECKOUT.md`.
 - Research hub has eight selected primary papers, live search, human/preclinical filters, evidence-reading guide, and explicit study limitations. Shared research data powers each product scientific-review section.
 - Every product has a customer-review section with an honest zero-review empty state. Review collection, persistence, and publication are not connected.
 - Site-wide Local Utah delivery banner is owner-authorized; no delivery pricing or timing is asserted.

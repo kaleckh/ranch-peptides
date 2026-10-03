@@ -21,3 +21,7 @@ Reason: Render Static Site publishing needs a directory of static files. `next b
 ## 2026-09-21: SALT N’ PEP visual identity
 
 The owner requested a full revamp using their black/ivory vial reference and explicitly confirmed SALT N’ PEP as the brand. This supersedes the graphite/brass direction. Use the supplied local hero image, neutral CSS packaging illustrations, warm ivory surfaces, charcoal controls, and editorial serif accents. Preserve static export and research-only product scope.
+
+## 2026-10-03: Reviewed checkout with separate payment API
+
+Preserve the Render static export and run payments in a separate Node 24 service with a persistent SQLite disk. Use hosted Stripe Checkout for approved research orders and authorized Venmo business payments with manual transaction verification. The server owns catalog pricing; provider verification owns paid status. Orders require institution/purpose review before payment. Browser access is stored per order, with audited staff recovery. Live checkout stays disabled until shipping, support, tax treatment, and merchant configuration are supplied. See CHECKOUT.md for operational limits.

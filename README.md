@@ -16,6 +16,7 @@ Next.js storefront-style site for a research peptide catalog. The site presents 
 npm run dev -- --webpack
 npm run lint
 npm run build
+npm test
 ```
 
 Use `npm run dev -- --webpack` on this Windows machine. The default Turbopack dev server previously panicked while serving this project locally.
@@ -35,6 +36,8 @@ The active visual system follows the owner-provided SALT N’ PEP vial reference
 ## Deployment
 
 The project is configured for static export. `npm run build` emits `out/`; use that directory as the Render Static Site publish directory.
+
+Checkout uses a separate Node 24 API and persistent SQLite database. See [Checkout setup and operations](docs/CHECKOUT.md) for environments, Stripe webhooks, staff review, Venmo reconciliation, and production deployment. Live payments are disabled until configured; do not deploy secrets with the static site.
 
 ## Content Boundary
 

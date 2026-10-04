@@ -13,28 +13,34 @@ const filters = [
 
 export default function ResearchLibrary() {
   const [query, setQuery] = useState("");
+  const [compound, setCompound] = useState("all");
   const [filter, setFilter] = useState<(typeof filters)[number]["value"]>("all");
   const normalizedQuery = query.trim().toLowerCase();
   const entries = researchEntries.filter((entry) =>
     (filter === "all" || entry.evidence === filter) &&
-    `${entry.compound} ${entry.area} ${entry.focus} ${entry.model}`.toLowerCase().includes(normalizedQuery)
+    (compound === "all" || entry.slug === compound) &&
+    `${entry.compound} ${entry.area} ${entry.focus} ${entry.model} ${entry.authors} ${entry.journal} ${entry.year}`.toLowerCase().includes(normalizedQuery)
   );
 
   function reset() {
     setQuery("");
     setFilter("all");
+    setCompound("all");
   }
 
   return (
-    <section id="study-library" className={styles.library} aria-labelledby="library-heading">
-      <div className={styles.libraryHeading}>
-        <div><p className={styles.eyebrow}>Follow the evidence</p><h2 id="library-heading">The study library.</h2></div>
-        <p>One starting paper per compound.<br />Original sources. Clear boundaries.</p>
-      </div>
+    <section id="study-library" className={styles.library} aria-label="Selected research papers">
       <div className={styles.toolbar}>
         <label className={styles.search}>
           <span>Search the library</span>
           <input type="search" value={query} onChange={(event) => setQuery(event.target.value)} placeholder="Compound, topic, or model" />
+        </label>
+        <label className={styles.compoundFilter}>
+          <span>Compound</span>
+          <select value={compound} onChange={(event) => setCompound(event.target.value)}>
+            <option value="all">All compounds</option>
+            {researchEntries.map((entry) => <option key={entry.slug} value={entry.slug}>{entry.compound}</option>)}
+          </select>
         </label>
         <div className={styles.filters} role="group" aria-label="Filter papers by evidence type">
           {filters.map((item) => <button key={item.value} type="button" aria-pressed={filter === item.value} onClick={() => setFilter(item.value)}>{item.label}</button>)}
@@ -42,15 +48,15 @@ export default function ResearchLibrary() {
       </div>
       <div className={styles.resultsMeta}>
         <p role="status">{entries.length} of {researchEntries.length} papers{filter !== "all" ? ` · ${filter === "human" ? "Human" : "Preclinical"} studies` : ""}</p>
-        {(query || filter !== "all") && <button type="button" onClick={reset}>Reset filters</button>}
+        {(query || filter !== "all" || compound !== "all") && <button type="button" onClick={reset}>Reset filters</button>}
       </div>
       {entries.length ? <div className={styles.studyGrid}>
         {entries.map((entry) => <article key={entry.slug} className={styles.study} id={`research-${entry.slug}`} aria-labelledby={`title-${entry.slug}`}>
           <div className={styles.cardTop}><span className={styles.eyebrow}>{entry.area}</span><span className={styles.year}>{entry.year}</span></div>
-          <h3 id={`title-${entry.slug}`}>{entry.compound}</h3>
+          <h2 id={`title-${entry.slug}`}>{entry.compound}</h2>
           <div className={styles.badges}><span className={entry.evidence === "human" ? styles.humanBadge : styles.badge}>{entry.evidence === "human" ? "Human study" : "Preclinical"}</span>{entry.related && <span className={styles.badge}>Related compound</span>}</div>
           <p className={styles.model}>{entry.model}</p>
-          <h4>{entry.focus}</h4>
+          <h3>{entry.focus}</h3>
           <p className={styles.finding}>{entry.finding}</p>
           <div className={styles.limit}><span className={styles.eyebrow}>Keep in mind</span><p>{entry.limitation}</p></div>
           <div className={styles.citation}>

@@ -29,3 +29,7 @@ Preserve the Render static export and run payments in a separate Node 24 service
 ## 2026-10-03: Lighter collection browsing
 
 The owner approved removing the collection banner/photo and dense dark product panels. Use a compact heading followed by filters, preserve product photography, and place concise names, prices, dosage, and category on the ivory page. The whole card links to product details with visible hover/focus feedback; avoid duplicate arrows and View compound links. Shared homepage cards follow the same treatment.
+
+## 2026-10-03: Research library first
+
+The owner approved replacing the editorial research hero and reading-room panel with a compact Research library heading, search and compound/evidence filters, and immediately visible papers. Keep study limitations alongside findings; move the evidence-reading guide into a compact disclosure below results. Use the collection's ivory palette and restrained sans-serif hierarchy.

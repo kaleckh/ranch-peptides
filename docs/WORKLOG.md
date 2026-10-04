@@ -1,5 +1,11 @@
 # Worklog
 
+## 2026-10-03 - Research library browsing cleanup
+
+- Pulled master with fast-forward only; already up to date. Replaced the large editorial hero, reading-room panel, and repeated library heading with a compact heading and immediate search/compound/evidence filters. Simplified paper typography and ivory cards while preserving every finding, limitation, model, citation, and source link.
+- Moved the evidence-reading guide into a keyboard-accessible disclosure below the papers and reduced the scope section to readable footer notes. Search also matches author, journal, and year; reset clears all three filters.
+- Validation: lint, production build (18 static routes), and diff whitespace checks passed. Browser verified human (2), preclinical (6), compound (1), tendon search (1), empty/reset (0 then 8), and keyboard guide expansion. Desktop, 390px, and 320px layouts checked with no horizontal overflow. Screenshot: data/research-library.jpg. Preview remains open on /science; not deployed.
+
 ## 2026-10-03 - Lighter collection browsing
 
 - Removed the catalog banner/photo in favor of a compact heading above existing search and category filters. Simplified shared catalog/homepage cards to product photography with concise name, price, dosage, and category on ivory; removed dark panels, duplicate arrows, and View compound links.

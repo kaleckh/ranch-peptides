@@ -1,6 +1,7 @@
 import { readFileSync } from 'node:fs';
 import assert from 'node:assert/strict';
 import { researchEntries, researchIndex, researchSlugs, evidenceLabel } from '../src/lib/research.ts';
+import { evidenceContext, studyReadingDetails } from '../src/lib/research-reading.ts';
 
 // Run after npm run build: node --import tsx scripts/check-research.mjs
 // Audits the curated dataset and its actual static exports, without live fetching.
@@ -28,7 +29,17 @@ for (const entry of researchEntries) {
     assert.ok(page.includes(escape(entry[field])), `${key}: exported ${field}`);
   }
   assert.ok(page.includes(escape(evidenceLabel(entry))), `${key}: exported classification`);
+  assert.ok(page.includes(escape(evidenceContext(entry))), `${key}: evidence explanation`);
   assert.ok(page.includes(`href="${entry.source}"`), `${key}: source link`);
+}
+for (const [sourceId, notes] of Object.entries(studyReadingDetails)) {
+  const entry = researchEntries.find((paper) => paper.sourceId === sourceId);
+  assert.ok(entry, `${sourceId}: reading notes need a matching citation`);
+  const page = readFileSync(`out/science/${entry.slug}.html`, 'utf8');
+  for (const [field, value] of Object.entries(notes)) {
+    assert.ok(typeof value === 'string' && value.trim(), `${sourceId}: empty ${field}`);
+    assert.ok(page.includes(escape(value)), `${sourceId}: exported ${field}`);
+  }
 }
 for (const slug of researchSlugs) {
   const papers = researchEntries.filter((entry) => entry.slug === slug);
@@ -42,3 +53,4 @@ for (const slug of researchSlugs) {
 }
 assert.ok(researchIndex.every((entry) => !('finding' in entry) && !('limitation' in entry)), 'Full notes must stay off the client index');
 console.log(`Verified ${researchEntries.length} citations across ${researchSlugs.length} exported compound pages.`);
+console.log(`Verified expanded methods and measurement notes for ${Object.keys(studyReadingDetails).length} papers.`);

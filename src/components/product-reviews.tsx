@@ -1,4 +1,5 @@
 import { researchEntries } from "@/lib/research";
+import Link from "next/link";
 import styles from "./product-reviews.module.css";
 import { ArrowIcon } from "./arrow-icon";
 
@@ -21,7 +22,7 @@ export function ProductReviews({ slug, name }: { slug: string; name: string }) {
         <div className={styles.findings}><div><h4>What the researchers observed</h4><p>{research.finding}</p></div><div><h4>What this does not establish</h4><p>{research.limitation}</p></div></div>
         <div className={styles.source}><p>{research.authors} · <cite>{research.journal}</cite> · {research.year}</p><a href={research.source}>Read the primary paper <ArrowIcon /><small>{research.sourceId}</small></a></div>
       </article>
-      <a href="/science" className={styles.libraryLink}>Explore the research library <ArrowIcon /></a>
+      <Link href={`/science/${slug}`} className={styles.libraryLink}>Explore {name} studies <ArrowIcon /></Link>
     </section>}
   </div>;
 }

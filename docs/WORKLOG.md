@@ -1,5 +1,10 @@
 # Worklog
 
+## 2026-10-03 - Clickable compound study pages
+
+- Made each research-library card open its compound study page and linked product scientific-review sections directly to the matching page. Added all eight static routes with the existing model, findings, limitations, citation, original publication link, and library return navigation.
+- Kept the library concise with topic/model/publication summaries and preserved search and evidence/compound filters. Each compound currently has one selected primary paper; no new scientific claims or papers were added.
+- Validation: lint, production build (26 static routes), exported-content checks for all eight pages and library/product/source/return links, and diff whitespace checks passed. Browser connection became unavailable before visual QA; desktop/mobile review remains pending. No deployment.
 ## 2026-10-03 - Research library browsing cleanup
 
 - Pulled master with fast-forward only; already up to date. Replaced the large editorial hero, reading-room panel, and repeated library heading with a compact heading and immediate search/compound/evidence filters. Simplified paper typography and ivory cards while preserving every finding, limitation, model, citation, and source link.

@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
 import { researchEntries } from "@/lib/research";
 import styles from "./research.module.css";
 import { ArrowIcon } from "@/components/arrow-icon";
@@ -51,19 +52,17 @@ export default function ResearchLibrary() {
         {(query || filter !== "all" || compound !== "all") && <button type="button" onClick={reset}>Reset filters</button>}
       </div>
       {entries.length ? <div className={styles.studyGrid}>
-        {entries.map((entry) => <article key={entry.slug} className={styles.study} id={`research-${entry.slug}`} aria-labelledby={`title-${entry.slug}`}>
+        {entries.map((entry) => <Link key={entry.slug} href={`/science/${entry.slug}`} className={`${styles.study} ${styles.studyLink}`} aria-label={`View ${entry.compound} studies`}>
           <div className={styles.cardTop}><span className={styles.eyebrow}>{entry.area}</span><span className={styles.year}>{entry.year}</span></div>
-          <h2 id={`title-${entry.slug}`}>{entry.compound}</h2>
+          <h2>{entry.compound}</h2>
           <div className={styles.badges}><span className={entry.evidence === "human" ? styles.humanBadge : styles.badge}>{entry.evidence === "human" ? "Human study" : "Preclinical"}</span>{entry.related && <span className={styles.badge}>Related compound</span>}</div>
           <p className={styles.model}>{entry.model}</p>
           <h3>{entry.focus}</h3>
-          <p className={styles.finding}>{entry.finding}</p>
-          <div className={styles.limit}><span className={styles.eyebrow}>Keep in mind</span><p>{entry.limitation}</p></div>
           <div className={styles.citation}>
-            <p>{entry.authors} · {entry.year}<br /><cite>{entry.journal}</cite></p>
-            <a href={entry.source} aria-label={`Read the ${entry.compound} source paper on ${entry.sourceId.startsWith("PMCID") ? "PubMed Central" : "PubMed"}`}>Read source paper <ArrowIcon /><small>{entry.sourceId}</small></a>
+            <p>1 selected paper · {entry.year}<br /><cite>{entry.journal}</cite></p>
+            <span className={styles.cardAction}>View studies <ArrowIcon /></span>
           </div>
-        </article>)}
+        </Link>)}
       </div> : <div className={styles.empty}><h3>No papers match this search.</h3><p>Try a compound such as BPC-157, a topic such as tendon, or clear the filters.</p><button className={styles.primaryLink} type="button" onClick={reset}>Show all papers <ArrowIcon /></button></div>}
     </section>
   );

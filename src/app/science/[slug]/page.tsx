@@ -36,14 +36,14 @@ export default async function CompoundResearchPage({ params }: Props) {
         <h1>{compound} studies</h1>
         <p>{papers.length} selected primary papers. A starting point for reading, not a complete assessment of the evidence.</p>
       </header>
-      <nav className={styles.paperNav} aria-label="Jump to a study">
-        <p className={styles.eyebrow}>In this reading list</p>
-        <ol>{papers.map((entry) => <li key={entry.sourceId}><a href={`#study-${entry.sourceId.replace(/\W+/g, "-").toLowerCase()}`}><span>{entry.year}</span>{entry.title ?? entry.focus}</a></li>)}</ol>
-      </nav>
+      <p className={styles.readingHint}>Select a study to read its findings, limitations, and original source. Newest papers first.</p>
       <section className={styles.detailStudies} aria-label={`${compound} selected studies`}>
-        {papers.map((entry) => <article key={entry.sourceId} id={`study-${entry.sourceId.replace(/\W+/g, "-").toLowerCase()}`} className={styles.detailStudy}>
-          <div className={styles.cardTop}><span className={styles.eyebrow}>{entry.area}</span><span className={styles.year}>{entry.year}</span></div>
-          <h2>{entry.title ?? entry.focus}</h2>
+        {papers.map((entry) => <details key={entry.sourceId} id={`study-${entry.sourceId.replace(/\W+/g, "-").toLowerCase()}`} className={styles.detailStudy}>
+          <summary className={styles.studySummary}>
+            <span className={styles.year}>{entry.year}</span>
+            <span className={styles.summaryText}><h2>{entry.title ?? entry.focus}</h2><span className={styles.summaryMeta}>{evidenceLabel(entry)}{entry.related ? " · Related thymosin beta4 evidence" : ""}</span></span>
+          </summary>
+          <div className={styles.studyBody}>
           <div className={styles.badges}><span className={entry.evidence === "human" ? styles.humanBadge : styles.badge}>{evidenceLabel(entry)}</span>{entry.related && <span className={styles.badge}>Related-compound evidence</span>}</div>
           <dl className={styles.studyFacts}>
             <div><dt>Study model</dt><dd>{entry.model}</dd></div>
@@ -54,10 +54,11 @@ export default async function CompoundResearchPage({ params }: Props) {
             <section className={styles.detailLimit}><h3>What this does not establish</h3><p>{entry.limitation}</p></section>
           </div>
           <a className={styles.sourceLink} href={entry.source}>Read the original study <ArrowIcon /><small>{entry.sourceId} · {entry.sourceId.startsWith("PMCID") ? "PubMed Central" : "PubMed"}</small></a>
-        </article>)}
+          </div>
+        </details>)}
       </section>
       <aside className={styles.boundary} aria-label="Research scope">
-        <p>Evidence labels describe the selected paper, not all research on {compound}. Read the original publication for full methods, adverse events, and limitations. This curated list does not claim to include the latest evidence; expanded October 3, 2026, with citations checked September 21–October 3, 2026.</p>
+        <p>Evidence labels describe the selected paper, not all research on {compound}. Trial analyses can draw on the same participants; paper counts are not counts of independent trials. Read the original publication for full methods, adverse events, and limitations. Coverage is not comprehensive; expanded October 4, 2026, with citations checked September 21–October 4, 2026.</p>
         <p>Educational information only; no dosing or treatment guidance. Products are for laboratory research and not for human consumption. Published findings do not verify the identity, quality, or safety of products sold here.</p>
       </aside>
       <Link className={styles.backLink} href="/science">Back to research library</Link>

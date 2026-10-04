@@ -23,7 +23,8 @@ test("built preview serves exported routes and rejects unsafe requests", async (
       const page = await get(`/science/${slug}?review=1`);
       assert.equal(page.status, 200);
       assert.match(page.headers["content-type"], /text\/html/);
-      assert.match(page.body, /In this reading list/);
+      assert.match(page.body, /<details id="study-/);
+      assert.match(page.body, /Read the original study/);
       const payload = await get(`/science/${slug}.txt`);
       assert.equal(payload.status, 200);
       assert.match(payload.headers["content-type"], /text\/x-component/);

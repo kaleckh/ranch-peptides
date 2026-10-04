@@ -1,3 +1,5 @@
+import { additionalResearchEntries } from "./research-additions";
+
 export type EvidenceType = "human" | "preclinical";
 
 export interface ResearchEntry {
@@ -17,11 +19,12 @@ export interface ResearchEntry {
   related?: boolean;
   title?: string;
   humanObservation?: boolean;
+  studyType?: "observational" | "case-report" | "secondary-analysis" | "laboratory";
 }
 
 // Original eight citations checked 2026-09-21; additions checked 2026-10-03.
 // Labels describe these selected papers, not a comprehensive evidence assessment.
-export const researchEntries: ResearchEntry[] = [
+const originalResearchEntries: ResearchEntry[] = [
   {
     slug: "bpc-157", compound: "BPC-157", area: "Tendon cell biology",
     evidence: "preclinical", model: "Rat tendon explants & cultured cells",
@@ -387,13 +390,19 @@ export const researchEntries: ResearchEntry[] = [
   },
 ];
 
-export function evidenceLabel(entry: Pick<ResearchEntry, "evidence" | "humanObservation">) {
+export const researchEntries: ResearchEntry[] = [...originalResearchEntries, ...additionalResearchEntries];
+
+export function evidenceLabel(entry: Pick<ResearchEntry, "evidence" | "humanObservation" | "studyType">) {
+  if (entry.studyType === "observational") return "Human observational report";
+  if (entry.studyType === "case-report") return "Human case report";
+  if (entry.studyType === "secondary-analysis") return "Human trial analysis";
+  if (entry.studyType === "laboratory") return "Laboratory study";
   return entry.humanObservation ? "Human observation + preclinical" : entry.evidence === "human" ? "Human study" : "Preclinical study";
 }
 
 export const researchSlugs = [...new Set(researchEntries.map((entry) => entry.slug))];
 
 // Send only searchable index metadata to the client, keeping detailed notes on static pages.
-export const researchIndex = researchEntries.map(({ slug, compound, area, evidence, humanObservation, related, model, focus, title, authors, journal, year }) => ({
-  slug, compound, area, evidence, humanObservation, related, model, focus, title, authors, journal, year,
+export const researchIndex = researchEntries.map(({ slug, compound, area, evidence, humanObservation, studyType, related, model, focus, title, authors, journal, year }) => ({
+  slug, compound, area, evidence, humanObservation, studyType, related, model, focus, title, authors, journal, year,
 }));

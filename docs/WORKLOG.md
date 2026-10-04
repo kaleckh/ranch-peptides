@@ -272,3 +272,11 @@
 - Added npm run preview for the loopback-only built export on port 3016, avoiding first-route development compilation. Kept the credential-free checkout demo on port 3015 and its development-only guard intact.
 - Full lint and production build passed. Export audit verified all 26 paper records across eight pages; preview-server test checked HTML/RSC/assets, HEAD, 404, malformed paths, traversal rejection, and method restrictions. Local HTML fetches took 3–78 ms (server response measurements, not full browser paint). Desktop Chrome verified search, human evidence filtering, compound navigation, and rendering without observed console errors. Mobile visual review remains pending.
 - Built UX preview running at http://127.0.0.1:3016/science. Further curation is possible; this is not comprehensive coverage. No deployment, push, or live payment configuration.
+
+
+## 2026-10-04 - Research library expanded to 106 papers
+
+- Pulled master with --ff-only; already up to date. Added 80 primary papers (10 per compound), verified against PubMed metadata and abstracts, bringing the library to 106: 14 each for BPC-157 and retatrutide, 13 each for TB-500, MT-2, MOTS-c, Pinealon, Epitalon, and GHK-Cu. Included negative findings and adverse-event reports alongside positive results; summaries preserve model and study limitations.
+- Replaced long duplicated jump lists and full notes with compact newest-first native disclosures. All findings, limitations, and source links are statically rendered, so opening a study needs no fetch. Distinct labels identify observational reports, case reports, trial analyses, laboratory studies, and related full-length thymosin beta4 evidence. Paper counts can include analyses of the same trial.
+- Validation: lint, production build (26 routes), all 106 exported citations/notes/source links and eight library/product/return paths, static preview server tests, and diff whitespace checks passed. Desktop Chrome verified compound navigation and immediate disclosure expansion/collapse by mouse and keyboard; 320px and 390px notes and 320px library showed no horizontal overflow.
+- Local built preview: http://127.0.0.1:3016/science. Coverage remains curated rather than comprehensive. No deployment, push, or payment configuration.

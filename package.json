@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
+    "checkout:preview": "node scripts/preview-checkout.mjs",
     "build": "next build",
     "start": "next start",
     "lint": "eslint",

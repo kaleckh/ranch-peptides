@@ -2,7 +2,7 @@
 import { useCallback, useEffect, useState, type FormEvent } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { checkoutApi, orderStorageKey, historyStorageKey } from "@/lib/checkout-client";
+import { checkoutApi, isCheckoutPreview, orderStorageKey, historyStorageKey } from "@/lib/checkout-client";
 import type { CheckoutConfig, OrderView } from "@/lib/checkout-contract";
 import { formatPrice } from "@/lib/products";
 import styles from "../checkout.module.css";
@@ -13,6 +13,7 @@ export function OrderStatus() {
   const [error, setError] = useState(""); const [busy, setBusy] = useState(false);
   const [support, setSupport] = useState("");
   const [savedIds, setSavedIds] = useState<string[]>([]);
+  const [preview, setPreview] = useState(false);
   const credentials = () => {
     const history: Record<string, { id: string; token: string }> = JSON.parse(localStorage.getItem(historyStorageKey) || "{}");
     const requested = new URLSearchParams(window.location.search).get("order");
@@ -26,7 +27,13 @@ export function OrderStatus() {
     try { setSavedIds(Object.keys(JSON.parse(localStorage.getItem(historyStorageKey) || "{}"))); const c = credentials(); setOrder(await checkoutApi<OrderView>(`/orders/${c.id}`, { headers: { Authorization: `Bearer ${c.token}` } })); }
     catch (e) { setError(e instanceof Error ? e.message : "Unable to load order."); } finally { setBusy(false); }
   }, []);
-  useEffect(() => { void refresh(); checkoutApi<CheckoutConfig>("/config").then(c => setSupport(c.supportEmail)).catch(() => {}); }, [refresh]);
+  useEffect(() => { void refresh(); checkoutApi<CheckoutConfig>("/config").then(c => { setSupport(c.supportEmail); setPreview(isCheckoutPreview()); }).catch(() => {}); }, [refresh]);
+  async function simulate(action: "approve" | "reject" | "paid" | "fail") {
+    setBusy(true); setError("");
+    try { const c = credentials(); setOrder(await checkoutApi<OrderView>(`/orders/${c.id}/demo/${action}`, { method: "POST", headers: { Authorization: `Bearer ${c.token}` } })); }
+    catch (e) { setError(e instanceof Error ? e.message : "Unable to simulate this state."); }
+    finally { setBusy(false); }
+  }
   async function pay() {
     setBusy(true); setError("");
     try { const c = credentials(); const result = await checkoutApi<{ url: string }>(`/orders/${c.id}/pay`, { method: "POST", headers: { Authorization: `Bearer ${c.token}` } });
@@ -45,6 +52,10 @@ export function OrderStatus() {
     } catch (e) { setError(e instanceof Error ? e.message : "Unable to recover access."); setBusy(false); }
   }
   return <div className={`${styles.shell} ${styles.result}`}><p className="eyebrow">SALT N’ PEP / YOUR REQUEST</p><h1>{order?.status === "paid" ? "Payment confirmed." : "Research comes first."}</h1>
+    {preview && <div className={styles.summary}><strong>Local UX demo — no charges or real orders</strong><p className={styles.note}>These controls simulate staff review and payment verification. No card details are collected and no payment service is contacted.</p>
+      {order?.status === "awaiting_review" && <><button className={styles.action} disabled={busy} onClick={() => simulate("approve")}>Demo: approve research request</button><button className={styles.secondary} disabled={busy} onClick={() => simulate("reject")}>Demo: reject research request</button></>}
+      {order?.status === "approved" && <><button className={styles.action} disabled={busy} onClick={() => simulate("paid")}>Demo: confirm {order.method === "card" ? "card" : "Venmo"} payment</button><button className={styles.secondary} disabled={busy} onClick={() => simulate("fail")}>Demo: simulate failed payment</button></>}
+    </div>}
     {error && <p className={styles.error} role="alert">{error}</p>}
     {order && <><p className={styles.reference}>Order reference: {order.id}</p>
       <div aria-live="polite">
@@ -54,7 +65,8 @@ export function OrderStatus() {
         {order.status === "approved" && <><h2>Approved for payment</h2><p className={styles.intro}>Your research request is approved. Payment is still pending.</p></>}
       </div>
       <div className={styles.summary}><h2>Order summary</h2><ul>{order.items.map(item => <li key={item.slug}><span>{item.name} × {item.quantity}</span><span>{formatPrice(item.unitCents * item.quantity / 100)}</span></li>)}</ul><div className={styles.row}><span>Shipping</span><span>{formatPrice(order.shippingCents / 100)}</span></div><div className={styles.row}><strong>Total</strong><strong>{formatPrice(order.totalCents / 100)}</strong></div></div>
-      {order.status === "approved" && order.method === "card" && <button className={styles.action} onClick={pay} disabled={busy}>Pay {formatPrice(order.totalCents / 100)} securely by card</button>}
+      {order.status === "approved" && order.method === "card" && (preview ? <p className={styles.note}>In live checkout, this step opens Stripe’s hosted card page for {formatPrice(order.totalCents / 100)}. Use the demo confirmation above to preview the result.</p> : <button className={styles.action} onClick={pay} disabled={busy}>Pay {formatPrice(order.totalCents / 100)} securely by card</button>)}
+      {order.status === "approved" && order.method === "venmo" && preview && <><h2>Pay with Venmo</h2><p className={styles.intro}>The live screen will show your business profile and exact amount ({formatPrice(order.totalCents / 100)}), with this order reference for the payment note. Use the demo confirmation above to preview verification.</p></>}
       {order.status === "approved" && order.method === "venmo" && order.venmoHandle && <><h2>Pay with Venmo</h2><p className={styles.intro}>Send exactly <strong>{formatPrice(order.totalCents / 100)}</strong> to <strong>@{order.venmoHandle}</strong>. Include your full order reference in the payment note.</p><p className={styles.reference}>{order.id}</p><a className={styles.action} href={`https://account.venmo.com/u/${encodeURIComponent(order.venmoHandle)}`} target="_blank" rel="noopener noreferrer">Open Venmo business profile</a><p className={styles.note}>Opening Venmo does not confirm payment. Your order stays pending until our team verifies the transaction.</p></>}
     </>}
     <button className={styles.secondary} onClick={refresh} disabled={busy}>{busy ? "Checking…" : "Refresh order status"}</button><br />

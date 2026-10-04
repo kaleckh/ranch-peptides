@@ -1,5 +1,11 @@
 # Worklog
 
+## 2026-10-03 - Local checkout UX demo
+
+- Pulled master with fast-forward only; already up to date. Added `checkout:preview` on loopback port 3015 with no credentials or payment API required.
+- Added labeled demo submission, sample details, approval/rejection and successful/failed payment controls. Demo data uses separate browser storage and discards contact/address/research details; development and localhost guards prevent production activation.
+- Validation: lint, production build (18 routes), five payment API tests, and demo card/Venmo state/retry/privacy/localhost checks passed. Chrome verified bag -> sample submission -> review -> approval -> payment failure -> confirmation; checkout screenshot saved locally and 390px layout showed no horizontal overflow. Next dev refreshed its generated AGENTS guidance. Provider test checkout remains deferred until owner supplies credentials after UX review.
+
 ## 2026-10-03 - Reviewed checkout and payment foundation
 
 - Pulled master through 1ec2a6d. Added checkout/research review, persistent cart and per-order access, hosted Stripe payment, verified manual Venmo business payment, and private status/recovery pages in the existing ivory/charcoal design.

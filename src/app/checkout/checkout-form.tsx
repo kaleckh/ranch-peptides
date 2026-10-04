@@ -3,7 +3,7 @@ import { useEffect, useRef, useState, type FormEvent } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useCart } from "@/lib/cart-context";
-import { checkoutApi, orderStorageKey, attemptStorageKey, historyStorageKey } from "@/lib/checkout-client";
+import { checkoutApi, isCheckoutPreview, orderStorageKey, attemptStorageKey, historyStorageKey } from "@/lib/checkout-client";
 import { checkoutRequest, type CheckoutConfig, type OrderView } from "@/lib/checkout-contract";
 import { formatPrice } from "@/lib/products";
 import styles from "./checkout.module.css";
@@ -14,8 +14,9 @@ export function CheckoutForm() {
   const [config, setConfig] = useState<CheckoutConfig | null>(null);
   const [error, setError] = useState("");
   const [busy, setBusy] = useState(false);
+  const [preview, setPreview] = useState(false);
   const attempt = useRef<{ key: string; token: string; body: string } | null>(null);
-  useEffect(() => { let active = true; checkoutApi<CheckoutConfig>("/config").then(c => { if (active) setConfig(c); }).catch(e => { if (active) setError(e.message); }); return () => { active = false; }; }, []);
+  useEffect(() => { let active = true; checkoutApi<CheckoutConfig>("/config").then(c => { if (active) { setConfig(c); setPreview(isCheckoutPreview()); } }).catch(e => { if (active) setError(e.message); }); return () => { active = false; }; }, []);
   async function submit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault(); if (busy) return;
     setError(""); setBusy(true);
@@ -48,10 +49,16 @@ export function CheckoutForm() {
   return <div className={styles.shell}>
     <p className="eyebrow">SALT N’ PEP / CHECKOUT</p><h1>For your research.</h1>
     <p className={styles.intro}>Submit your shipping details and research information. We review research eligibility before opening payment. Products are for laboratory research only.</p>
+    {preview && <div className={styles.summary}><strong>Local UX demo — no charges or real orders</strong><p className={styles.note}>Shipping is a $5 sample; destinations are examples. Use fictional details. Approval and payment can be simulated on the next screen. Hosted Stripe checkout will be tested after credentials are supplied.</p></div>}
     {error && <p role="alert" className={styles.error}>{error}</p>}
     {config && !config.enabled && <p className={styles.error}>Checkout is not open yet. Please check back soon.</p>}
     {items.length === 0 ? <p>Your bag is empty. <Link className="text-link" href="/products">Explore compounds</Link></p> : <div className={styles.grid}>
       <form className={styles.form} onSubmit={submit}>
+        {preview && <button type="button" className={styles.secondary} onClick={event => {
+          const form = event.currentTarget.form;
+          const sample = { name: "Demo Researcher", email: "demo@example.com", address: "123 Example Street", city: "Salt Lake City", state: "UT", zip: "84101", organization: "Example Research Lab", researchPurpose: "In vitro laboratory assay for a fictional research project." };
+          for (const [name, value] of Object.entries(sample)) { const field = form?.elements.namedItem(name); if (field instanceof HTMLInputElement || field instanceof HTMLSelectElement || field instanceof HTMLTextAreaElement) field.value = value; }
+        }}>Fill with sample details</button>}
         <fieldset><legend>01 / Contact & shipping</legend><div className={styles.fields}>
           <label>Full name<input name="name" autoComplete="name" required minLength={2} maxLength={120} /></label>
           <label>Email<input name="email" type="email" autoComplete="email" required maxLength={254} /></label>

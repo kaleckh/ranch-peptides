@@ -4,6 +4,8 @@ The static storefront now links to `/checkout`. A separate Node 24 API stores or
 
 ## Local setup
 
+For UX review without credentials, run `npm run checkout:preview` and open `http://127.0.0.1:3015/products`. Add a compound to the bag and proceed to checkout. The clearly labeled demo supports sample details, card/Venmo selection, simulated approval/rejection, and successful/failed payment states. Shipping ($5) and destination states are examples, not business configuration. Contact/address/research details are discarded; demo order summaries and access are kept separately in browser storage. No payment API or provider is contacted. The simulation requires development mode, the explicit preview flag, and a localhost browser; production builds cannot enable it. Hosted Stripe UI and real webhook verification still require a provider test after credentials arrive.
+
 1. Copy `.env.checkout.example` to `.env.checkout` and `.env.local.example` to `.env.local`.
 2. Set the shipping price in integer cents, allowed US states, support email, and exact storefront origin. Do not invent these business details.
 3. Use Stripe **test** credentials and the webhook signing secret. The installed Stripe SDK uses API version `2026-09-30.endive`; configure the webhook endpoint for that version. Subscribe to `checkout.session.completed` and `checkout.session.async_payment_succeeded` at `/webhooks/stripe` on the API. Stripe must deliver the original raw body and signature.

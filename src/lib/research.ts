@@ -1,4 +1,5 @@
 import { additionalResearchEntries } from "./research-additions";
+import { topicResearchEntries } from "./research-topic-additions";
 
 export type EvidenceType = "human" | "preclinical";
 
@@ -390,7 +391,7 @@ const originalResearchEntries: ResearchEntry[] = [
   },
 ];
 
-export const researchEntries: ResearchEntry[] = [...originalResearchEntries, ...additionalResearchEntries];
+export const researchEntries: ResearchEntry[] = [...originalResearchEntries, ...additionalResearchEntries, ...topicResearchEntries];
 
 export function evidenceLabel(entry: Pick<ResearchEntry, "evidence" | "humanObservation" | "studyType">) {
   if (entry.studyType === "observational") return "Human observational report";

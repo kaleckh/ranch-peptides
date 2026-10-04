@@ -280,3 +280,11 @@
 - Replaced long duplicated jump lists and full notes with compact newest-first native disclosures. All findings, limitations, and source links are statically rendered, so opening a study needs no fetch. Distinct labels identify observational reports, case reports, trial analyses, laboratory studies, and related full-length thymosin beta4 evidence. Paper counts can include analyses of the same trial.
 - Validation: lint, production build (26 routes), all 106 exported citations/notes/source links and eight library/product/return paths, static preview server tests, and diff whitespace checks passed. Desktop Chrome verified compound navigation and immediate disclosure expansion/collapse by mouse and keyboard; 320px and 390px notes and 320px library showed no horizontal overflow.
 - Local built preview: http://127.0.0.1:3016/science. Coverage remains curated rather than comprehensive. No deployment, push, or payment configuration.
+
+
+## 2026-10-04 - More papers and topic-led study cards
+
+- Pulled master with --ff-only; already up to date. Added 18 verified PubMed primary papers: six BPC-157 and two each for retatrutide, TB-500-related thymosin beta4, MT-2, MOTS-c, Epitalon, and GHK-Cu. Total 124: BPC-157 20, retatrutide 16, Pinealon 13, and 15 each for the other compounds. Included case reports and laboratory research with explicit model and evidence labels.
+- Replaced narrow bibliography rows with wider topic-led cards, two columns on desktop and one on mobile. Opening a card shows full-width findings and limitations with original sources immediately, using static native disclosures. Library eyebrows use a stable Selected research label.
+- Validation: lint, production build (26 routes), exported research audit (124 citations across eight pages), preview server test, and diff whitespace check passed. Chrome verified mouse opening, Enter collapse, full-width notes, and 390px/320px mobile layouts without horizontal overflow. Desktop proof saved to ignored data/research-cards-desktop.png.
+- Built review preview remains http://127.0.0.1:3016/science/bpc-157. No push or deployment. Concurrent homepage/header edits preserved and excluded from this package.

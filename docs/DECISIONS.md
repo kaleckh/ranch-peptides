@@ -43,3 +43,8 @@ The owner requested clicking into studies for each compound. Library cards and p
 The owner reported slow page loads and insufficient studies. Expand the curated list to 26 verified primary papers, with one index card per compound and newest-first reading lists with anchor navigation. Distinguish human observations from administration trials and related thymosin beta4 papers from TB-500 equivalence. Keep detailed notes on statically exported pages and send only search metadata to the client. Coverage remains explicitly curated rather than comprehensive.
 
 First visits on the local development server were delayed by route compilation and static parameter generation. Use a loopback-only server for the built out/ export on port 3016 for UX review. Keep the development-only credential-free checkout demo on port 3015; do not enable demo behavior in production builds.
+
+
+## 2026-10-04: Topic-led study cards
+
+The owner rejected the narrow bibliography rows. Compound pages use a wider two-column desktop card grid, leading with a readable research topic, then model, year, evidence type, and original paper title. Native disclosures expand across the grid for findings, limitations, and source links already in static HTML; mobile uses one column. Extend coverage with verified primary papers without adding duplicate citations merely to equalize compound counts.

@@ -59,7 +59,7 @@ export default function ResearchLibrary({ entries: allEntries }: { entries: type
           const matching = entries.filter((paper) => paper.slug === entry.slug);
           const years = papers.map((paper) => Number(paper.year));
           return <Link key={entry.slug} href={`/science/${entry.slug}`} className={`${styles.study} ${styles.studyLink}`} aria-label={`View all ${papers.length} ${entry.compound} studies`}>
-          <div className={styles.cardTop}><span className={styles.eyebrow}>{entry.area}</span><span className={styles.year}>{Math.min(...years)}–{Math.max(...years)}</span></div>
+          <div className={styles.cardTop}><span className={styles.eyebrow}>Selected research</span><span className={styles.year}>{Math.min(...years)}–{Math.max(...years)}</span></div>
           <h2>{entry.compound}</h2>
           <div className={styles.badges}>{papers.some((paper) => paper.evidence === "human") && <span className={styles.humanBadge}>Human evidence</span>}{papers.some((paper) => paper.humanObservation) && <span className={styles.badge}>Human observations</span>}{papers.some((paper) => paper.evidence === "preclinical") && <span className={styles.badge}>Preclinical studies</span>}{entry.related && <span className={styles.badge}>Related compound</span>}</div>
           <ul className={styles.paperTopics}>{matching.slice(0, 3).map((paper) => <li key={`${paper.journal}-${paper.year}-${paper.focus}`}>{paper.focus}</li>)}</ul>

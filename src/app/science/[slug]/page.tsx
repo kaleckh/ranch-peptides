@@ -36,12 +36,15 @@ export default async function CompoundResearchPage({ params }: Props) {
         <h1>{compound} studies</h1>
         <p>{papers.length} selected primary papers. A starting point for reading, not a complete assessment of the evidence.</p>
       </header>
-      <p className={styles.readingHint}>Select a study to read its findings, limitations, and original source. Newest papers first.</p>
+      <p className={styles.readingHint}>Browse by research topic. Open a card for findings and limitations, or follow its original publication. Newest papers first.</p>
       <section className={styles.detailStudies} aria-label={`${compound} selected studies`}>
         {papers.map((entry) => <details key={entry.sourceId} id={`study-${entry.sourceId.replace(/\W+/g, "-").toLowerCase()}`} className={styles.detailStudy}>
           <summary className={styles.studySummary}>
-            <span className={styles.year}>{entry.year}</span>
-            <span className={styles.summaryText}><h2>{entry.title ?? entry.focus}</h2><span className={styles.summaryMeta}>{evidenceLabel(entry)}{entry.related ? " · Related thymosin beta4 evidence" : ""}</span></span>
+            <span className={styles.cardTop}><span className={entry.evidence === "human" ? styles.humanBadge : styles.badge}>{evidenceLabel(entry)}</span><span className={styles.year}>{entry.year}</span></span>
+            <span className={styles.topicTitle} role="heading" aria-level={2}>{entry.focus}</span>
+            <span className={styles.summaryMeta}>{entry.model}{entry.related ? " · Related thymosin beta4 evidence" : ""}</span>
+            <span className={styles.paperTitle}>{entry.title ?? entry.focus}</span>
+            <span className={styles.readAction}><span className={styles.closedAction}>Read study notes</span><span className={styles.openAction}>Close study notes</span><span aria-hidden="true" className={styles.expandIcon}>+</span></span>
           </summary>
           <div className={styles.studyBody}>
           <div className={styles.badges}><span className={entry.evidence === "human" ? styles.humanBadge : styles.badge}>{evidenceLabel(entry)}</span>{entry.related && <span className={styles.badge}>Related-compound evidence</span>}</div>

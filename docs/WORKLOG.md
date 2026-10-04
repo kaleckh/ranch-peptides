@@ -288,3 +288,9 @@
 - Replaced narrow bibliography rows with wider topic-led cards, two columns on desktop and one on mobile. Opening a card shows full-width findings and limitations with original sources immediately, using static native disclosures. Library eyebrows use a stable Selected research label.
 - Validation: lint, production build (26 routes), exported research audit (124 citations across eight pages), preview server test, and diff whitespace check passed. Chrome verified mouse opening, Enter collapse, full-width notes, and 390px/320px mobile layouts without horizontal overflow. Desktop proof saved to ignored data/research-cards-desktop.png.
 - Built review preview remains http://127.0.0.1:3016/science/bpc-157. No push or deployment. Concurrent homepage/header edits preserved and excluded from this package.
+
+## 2026-10-04 - Clean product-photo homepage
+
+- Replaced the rejected chrome-molecule sunset artwork with the existing owner-supplied branded vial, shown at its full portrait ratio. Added a live HTML tagline and collection CTA on ivory; restored the shared wordmark/navigation and one readable delivery banner across desktop and mobile. Owner selected clean product photography.
+- Validation: full lint, production build (26 routes), and scoped diff whitespace check passed. Chromium verified 1440px, 390px and 320px layouts, image loading, no horizontal overflow or page errors, collection navigation, mobile research navigation, and cart open/Escape close. Screenshots are in ignored `.next/home-hero-{1440,390,320}.png`.
+- Built homepage preview: http://127.0.0.1:3016/. Owner aesthetic review pending; no push or deployment. Concurrent research work preserved and excluded from this package.

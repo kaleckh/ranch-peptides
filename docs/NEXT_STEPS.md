@@ -1,6 +1,6 @@
 # Next Steps
 
-- Owner visual review of the SALT N’ PEP revamp, research hub, Utah banner, and product-review sections at http://localhost:3015 (local development preview).
+- Owner visual review of the clean product-photo homepage at http://127.0.0.1:3016/: full branded vial, ivory layout, live tagline, visible navigation and collection CTA. Desktop and 390px/320px mobile layouts, menu, cart and CTA have been checked; aesthetic acceptance remains pending.
 - Owner review of the simplified collection at http://localhost:3015/products: compact heading, product photography, and concise product details on ivory replace the banner and dense dark card panels.
 - Owner review of the expanded research library at http://127.0.0.1:3016/science: 124 selected primary papers, 13–20 per compound, topic-led study cards with instant full-width notes, source links, search, and evidence filters. This built preview avoids first-visit development compilation; rebuild after edits. Desktop Chrome search, evidence filtering, compound navigation, and rendering have been checked; expanded notes and keyboard controls pass on desktop, and 320px/390px layouts have no horizontal overflow. Further literature curation can extend the shared list; coverage is not comprehensive.
 - Connect a review service and moderation/publication workflow if customer review submission is required; current sections contain no fabricated reviews and show zero published reviews.

@@ -15,9 +15,8 @@ export function Header() {
   const closeCart = useCallback(() => setCartOpen(false), []);
   return <>
     <a href="#main-content" className="skip-link">Skip to content</a>
-    {pathname !== "/" && <DeliveryBanner />}
+    <DeliveryBanner />
     <header className="site-header">
-      {pathname === "/" && <DeliveryBanner className="mobile-header-delivery" />}
       <Link href="/" className="wordmark" aria-label="SALT N’ PEP home">SALT <span>N’</span> PEP</Link>
       <nav className="desktop-nav" aria-label="Main navigation">{navigation.map(([href, label]) => <Link key={href} href={href} aria-current={pathname.startsWith(href) ? "page" : undefined}>{label}</Link>)}</nav>
       <div className="header-actions"><button className="bag-button" onClick={() => { setMobileMenuOpen(false); setCartOpen(true); }} aria-label={`Open cart, ${totalItems} items`}>Bag <span className="bag-count">{totalItems}</span></button><button className="menu-button" aria-expanded={mobileMenuOpen} aria-controls="mobile-navigation" aria-label={mobileMenuOpen ? "Close menu" : "Open menu"} onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>{mobileMenuOpen ? "✕" : "☰"}</button></div>

@@ -1,0 +1,137 @@
+.hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1.25fr) minmax(0, 0.9fr);
+  align-items: center;
+  gap: clamp(32px, 5vw, 80px);
+  max-width: 1560px;
+  margin: 0 auto;
+  padding: 40px 5% 56px;
+}
+
+.copy {
+  padding-block: 24px;
+}
+
+.eyebrow {
+  margin: 0 0 28px;
+  color: var(--muted);
+  font-size: 10px;
+  line-height: 1.8;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+
+.heading {
+  margin: 0;
+  font-size: clamp(40px, 5.2vw, 82px);
+  font-weight: 400;
+  line-height: 1.08;
+  letter-spacing: -0.065em;
+}
+
+.heading em {
+  font-family: Georgia, serif;
+  font-weight: 400;
+  letter-spacing: -0.06em;
+}
+
+.description {
+  max-width: 350px;
+  margin: 28px 0 0;
+  color: var(--muted);
+  font-size: 15px;
+  line-height: 1.8;
+}
+
+.action {
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 30px;
+  margin-top: 30px;
+  padding: 17px 22px;
+  background: var(--primary);
+  color: #fffdf7;
+  font-size: 12px;
+}
+
+.action:hover {
+  background: var(--primary-dark);
+}
+
+.action svg {
+  width: 16px;
+  height: 16px;
+  flex: 0 0 auto;
+}
+
+.notice {
+  margin: 42px 0 0;
+  color: var(--muted);
+  font-size: 11px;
+  line-height: 1.7;
+}
+
+.figure {
+  width: 100%;
+  max-width: 480px;
+  justify-self: end;
+  margin: 0;
+}
+
+.photo {
+  position: relative;
+  aspect-ratio: 2 / 3;
+  overflow: hidden;
+  background: #aaa299;
+}
+
+.photo img {
+  object-fit: contain;
+}
+
+.figure figcaption {
+  margin-top: 12px;
+  color: var(--muted);
+  font-size: 10px;
+  line-height: 1.6;
+}
+
+@media (max-width: 760px) {
+  .hero {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 32px;
+    padding: 28px 6% 44px;
+  }
+
+  .copy {
+    padding: 0;
+  }
+
+  .eyebrow {
+    margin-bottom: 18px;
+    font-size: 9px;
+  }
+
+  .heading {
+    font-size: clamp(32px, 8.6vw, 52px);
+  }
+
+  .description {
+    margin-top: 18px;
+    font-size: 14px;
+  }
+
+  .action {
+    margin-top: 22px;
+  }
+
+  .notice {
+    margin-top: 22px;
+  }
+
+  .figure {
+    max-width: 400px;
+    justify-self: center;
+  }
+}

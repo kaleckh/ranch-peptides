@@ -1,5 +1,11 @@
 # Worklog
 
+## 2026-10-03 - Compact collection intro
+
+- Reduced the desktop collection banner from 360px to 190px, narrowed its brand photo, and tightened page/search spacing so products appear sooner.
+- Kept a compact side-by-side heading/photo on mobile with a 132px minimum height and updated responsive image sizes.
+- Validation: lint, production build (18 routes), and diff whitespace checks passed. Chrome desktop and 390px mobile visually checked; 320px and 390px overrides showed no horizontal overflow. Local screenshot: data/catalog-compact.jpg. Preview remains open on /products; not deployed.
+
 ## 2026-10-03 - Local checkout UX demo
 
 - Pulled master with fast-forward only; already up to date. Added `checkout:preview` on loopback port 3015 with no credentials or payment API required.

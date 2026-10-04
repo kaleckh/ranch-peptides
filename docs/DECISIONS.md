@@ -37,3 +37,9 @@ The owner approved replacing the editorial research hero and reading-room panel 
 ## 2026-10-03: Compound study pages
 
 The owner requested clicking into studies for each compound. Library cards and product scientific-review links open a statically exported /science/[slug] page. Keep full findings, limitations, models, and original publication links together on that page; the index uses concise summaries. The existing curated list contains one selected primary paper per compound and does not imply comprehensive coverage.
+
+## 2026-10-03: Expanded reading lists and built UX preview
+
+The owner reported slow page loads and insufficient studies. Expand the curated list to 26 verified primary papers, with one index card per compound and newest-first reading lists with anchor navigation. Distinguish human observations from administration trials and related thymosin beta4 papers from TB-500 equivalence. Keep detailed notes on statically exported pages and send only search metadata to the client. Coverage remains explicitly curated rather than comprehensive.
+
+First visits on the local development server were delayed by route compilation and static parameter generation. Use a loopback-only server for the built out/ export on port 3016 for UX review. Keep the development-only credential-free checkout demo on port 3015; do not enable demo behavior in production builds.

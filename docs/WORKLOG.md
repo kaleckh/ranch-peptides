@@ -265,3 +265,10 @@
 
 - Replaced the oversized landscape crop with a narrow portrait panel, showing the supplied vial cap, label, and base together. Mobile contains the full reference photo; heading and bold compound cards retain visual priority.
 - Desktop and 320px mobile visually checked, with no horizontal overflow. Lint and production build passed (16 static routes). Owner visual acceptance pending at http://localhost:3015/products; not deployed.
+
+## 2026-10-03 - Faster research preview and expanded study lists
+
+- Pulled master with --ff-only; already up to date. Added 18 primary papers verified through PubMed metadata/abstracts and selected full texts, bringing the curated library to 26 across eight compound pages. Lists have newest-first paper navigation, findings, limitations, and source links; index and product links show actual counts. Human observations and related thymosin beta4 evidence remain explicitly labeled.
+- Added npm run preview for the loopback-only built export on port 3016, avoiding first-route development compilation. Kept the credential-free checkout demo on port 3015 and its development-only guard intact.
+- Full lint and production build passed. Export audit verified all 26 paper records across eight pages; preview-server test checked HTML/RSC/assets, HEAD, 404, malformed paths, traversal rejection, and method restrictions. Local HTML fetches took 3–78 ms (server response measurements, not full browser paint). Desktop Chrome verified search, human evidence filtering, compound navigation, and rendering without observed console errors. Mobile visual review remains pending.
+- Built UX preview running at http://127.0.0.1:3016/science. Further curation is possible; this is not comprehensive coverage. No deployment, push, or live payment configuration.

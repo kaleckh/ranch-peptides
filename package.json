@@ -5,6 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "checkout:preview": "node scripts/preview-checkout.mjs",
+    "preview": "npm run build && node scripts/preview-static.mjs",
     "build": "next build",
     "start": "next start",
     "lint": "eslint",

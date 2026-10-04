@@ -21,6 +21,8 @@ npm test
 
 Use `npm run dev -- --webpack` on this Windows machine. The default Turbopack dev server previously panicked while serving this project locally.
 
+For fast UX review, run `npm run preview` and open http://127.0.0.1:3016. This builds and serves the static export, so first visits do not wait for development compilation. Rebuild after editing. Run `node --test scripts/preview-static.test.mjs` after building to verify the preview server. The credential-free checkout demo remains `npm run checkout:preview` at http://127.0.0.1:3015; its development-only guard is preserved.
+
 ## Design Direction
 
 The active visual system follows the owner-provided SALT N’ PEP vial reference: warm ivory, charcoal, stone neutrals, restrained sans-serif typography with editorial serif italics, textured surfaces, and locally bundled brand imagery. Responsive layouts support 320px viewports.

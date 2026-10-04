@@ -24,7 +24,7 @@ Use `--webpack` for local development because the default Turbopack dev server h
 
 ## Current functionality
 
-- Search and category filtering across eight compounds; bold typography-led compound cards in charcoal, olive, and stone tones. One shared vial photograph anchors the catalog intro; full vial photos remain on detail pages.
+- Search and category filtering across eight compounds. The collection opens with a compact heading and filters; shared product cards use square product photography with names, prices, dosage, and category directly on ivory. Entire cards link to details with keyboard focus and hover feedback; duplicate arrows and card CTAs are removed.
 - Cart supports quantity pricing, removal, focus trapping, Escape, focus return, and browser persistence. Checkout submits orders for staff research review; approved requests offer hosted Stripe card checkout or manual Venmo business payment. A separate Node API prices from the catalog and stores immutable order snapshots in SQLite. Signed matching webhooks confirm cards; staff verify unique Venmo transactions. Live checkout is disabled by default. Setup and limitations: `docs/CHECKOUT.md`.
 - Research hub has eight selected primary papers, live search, human/preclinical filters, evidence-reading guide, and explicit study limitations. Shared research data powers each product scientific-review section.
 - Every product has a customer-review section with an honest zero-review empty state. Review collection, persistence, and publication are not connected.

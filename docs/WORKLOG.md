@@ -1,5 +1,11 @@
 # Worklog
 
+## 2026-10-03 - Lighter collection browsing
+
+- Removed the catalog banner/photo in favor of a compact heading above existing search and category filters. Simplified shared catalog/homepage cards to product photography with concise name, price, dosage, and category on ivory; removed dark panels, duplicate arrows, and View compound links.
+- Kept full-card product navigation, accessible names, visible focus/hover feedback, and reduced-motion handling. Updated current project/design docs to supersede the dense dark-card direction.
+- Validation: lint, production build (18 routes), desktop/mobile visual checks, search (1 BPC result), category (2 Recovery & Repair results), and keyboard Enter navigation to BPC-157 passed. 320px and 390px viewport overrides showed no horizontal overflow. Screenshot: data/catalog-light.jpg. Local preview remains open; not deployed.
+
 ## 2026-10-03 - Compact collection intro
 
 - Reduced the desktop collection banner from 360px to 190px, narrowed its brand photo, and tightened page/search spacing so products appear sooner.

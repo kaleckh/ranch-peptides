@@ -2,13 +2,9 @@ import Link from "next/link";
 import { formatPrice, type Product } from "@/lib/products";
 import styles from "./product-card.module.css";
 import { ProductVial } from "./product-vial";
-import { ArrowIcon } from "./arrow-icon";
-export function ProductCard({ product, index = 0 }: { product: Product; index?: number }) {
-  return <Link href={`/products/${product.slug}`} className={styles.card} data-tone={index % 4}>
+export function ProductCard({ product }: { product: Product; index?: number }) {
+  return <Link href={`/products/${product.slug}`} className={styles.card} aria-label={`${product.name}, ${product.dosage} vial, ${formatPrice(product.price)}`}>
     <div className={styles.visual}><ProductVial product={product} /></div>
-    <div className={styles.top}><span className={styles.dose}>{product.dosage}</span></div>
-    <div className={styles.identity}><p className={styles.category}>{product.category}</p><h3>{product.shortName}</h3><p className={styles.tagline}>{product.tagline}</p></div>
-    <div className={styles.bottom}><div><strong>{formatPrice(product.price)}</strong><span>{product.dosage} vial</span></div><span className={styles.arrow}><ArrowIcon /></span></div>
-    <span className={styles.action}>View compound <ArrowIcon direction="right" /></span>
+    <div className={styles.details}><div className={styles.identity}><h3>{product.shortName}</h3><strong>{formatPrice(product.price)}</strong></div><p className={styles.category}>{product.dosage} vial <span aria-hidden="true">·</span> {product.category}</p></div>
   </Link>;
 }

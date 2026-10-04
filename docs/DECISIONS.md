@@ -48,3 +48,7 @@ First visits on the local development server were delayed by route compilation a
 ## 2026-10-04: Topic-led study cards
 
 The owner rejected the narrow bibliography rows. Compound pages use a wider two-column desktop card grid, leading with a readable research topic, then model, year, evidence type, and original paper title. Native disclosures expand across the grid for findings, limitations, and source links already in static HTML; mobile uses one column. Extend coverage with verified primary papers without adding duplicate citations merely to equalize compound counts.
+
+## 2026-10-04: Product carousel as the homepage hero
+
+The owner wants to browse the peptides in the main homepage image, rather than a carousel below the hero, and supplied https://aurumpeptidelabs.com/ as a composition reference. Feature all eight compounds in a centered hero carousel with smaller neighboring product images, manual navigation, and a matching product link. Remove the lower repeated peptide section at the owner's request. Preserve SALT N’ PEP's ivory/charcoal identity, illustrative-photo labeling, and research-only positioning.

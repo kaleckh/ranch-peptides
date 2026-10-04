@@ -1,29 +1,31 @@
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowIcon } from "@/components/arrow-icon";
-import { products } from "@/lib/products";
-import { ProductCard } from "@/components/product-card";
+import { formatPrice, products } from "@/lib/products";
+import { ProductCarousel } from "@/components/product-carousel";
+import { ProductVial } from "@/components/product-vial";
 import styles from "./home.module.css";
+
 export default function Home() {
   return <>
     <section className={styles.hero} aria-labelledby="home-heading">
-      <div className={styles.copy}>
+      <div className={styles.intro}>
         <p className={styles.eyebrow}>SALT N’ PEP / Research peptides</p>
-        <h1 id="home-heading" className={styles.heading}>Small compounds.<br /><em>Big curiosity.</em></h1>
-        <p className={styles.description}>Explore our collection of research peptides and the studies behind each compound.</p>
-        <Link className={styles.action} href="/products">Explore the collection <ArrowIcon direction="right" /></Link>
-        <p className={styles.notice}>For laboratory research only.<br />Not for human consumption.</p>
+        <h1 id="home-heading" className={styles.heading}>Small compounds. <em>Big curiosity.</em></h1>
       </div>
-      <figure className={styles.figure}>
-        <div className={styles.photo}>
-          <Image src="/images/salt-n-pep-reference.png" alt="SALT N’ PEP branded research vial with an ivory and charcoal label" fill preload sizes="(max-width: 760px) 88vw, (max-width: 1100px) 40vw, 480px" />
-        </div>
-        <figcaption>Brand vial shown. See each compound for quantity and format.</figcaption>
-      </figure>
-    </section>
-    <section className="collection section-wrap">
-      <div className="section-heading"><div><p className="eyebrow">The collection / 01</p><h2>Meet your next<br /><em>line of inquiry.</em></h2></div><Link className="text-link" href="/products">View all compounds <ArrowIcon /></Link></div>
-      <div className="collection-grid">{[products[0], products[2], products[4], products[7]].map((product, index) => <ProductCard key={product.slug} product={product} index={index} />)}</div>
+      <ProductCarousel slides={products.map((product, index) => ({
+        name: product.shortName,
+        image: <div className={styles.photo}><ProductVial product={product} featured={index === 0} sizes="(max-width: 600px) 93vw, (max-width: 760px) 83vw, (max-width: 1314px) 43vw, 562px" /></div>,
+        details: <>
+          <h2 className={styles.productName}>{product.shortName}</h2>
+          <p className={styles.productMeta}><span>{product.dosage} vial</span><span>{product.category}</span><strong>{formatPrice(product.price)}</strong></p>
+          <div className={styles.actions}>
+            <Link className={styles.action} href={`/products/${product.slug}`} aria-label={`Explore ${product.shortName}`}>Explore {product.shortName} <ArrowIcon direction="right" /></Link>
+            <Link className={styles.collectionLink} href="/products">View the collection</Link>
+          </div>
+        </>,
+      }))} />
+      <p className={styles.notice}><span>Product photos are illustrative; see each compound for quantity and format.</span><span>For laboratory research only. Not for human consumption.</span></p>
     </section>
     <section className="research-feature">
       <Image src="/images/resources%20new.png" alt="" width={1905} height={825} sizes="100vw" />

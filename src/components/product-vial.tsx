@@ -13,8 +13,8 @@ const productImages: Record<string, string> = {
   "ghk-cu": "/images/GHK-Cu-50mg.png",
 };
 
-export function ProductVial({ product, featured = false }: { product: Product; featured?: boolean }) {
+export function ProductVial({ product, featured = false, sizes }: { product: Product; featured?: boolean; sizes?: string }) {
   return <div className={styles.photo}>
-    <Image src={productImages[product.slug]} alt={`SALT N’ PEP ${product.shortName} vial`} fill loading={featured ? "eager" : "lazy"} sizes={featured ? "(max-width: 1024px) 100vw, 600px" : "(max-width: 760px) 50vw, 25vw"} className={styles.image} />
+    <Image src={productImages[product.slug]} alt={`SALT N’ PEP ${product.shortName} vial`} fill loading={featured ? "eager" : "lazy"} sizes={sizes ?? (featured ? "(max-width: 1024px) 100vw, 600px" : "(max-width: 760px) 50vw, 25vw")} className={styles.image} />
   </div>;
 }

@@ -1,5 +1,9 @@
 # Decisions
 
+## 2026-10-04: Remove reviews mentioning demo
+
+The owner requested removal of any review containing "demo." Remove the entire matching record, checking every text field case-insensitively, and recompute product totals. This removes 59 of the 259 imported records, leaving 200 unchanged reviews. This supersedes retaining the complete original import; original dates on retained reviews remain hidden pending owner corrections.
+
 ## 2026-10-04: Current sizes only for the test run
 
 The owner wants the test-run catalog to show only sizes currently carried, removing the extra sizes and empty-stock appearance. Show one size per compound: BPC-157 10 mg, retatrutide 30 mg, TB-500 10 mg, MOTS-c 20 mg, and the original catalog sizes for MT-2 (10 mg), Pinealon (10 mg), Epitalon (10 mg), and GHK-Cu (50 mg). This supersedes the earlier instruction to display the supplier's entire range and sold-out size lists. The separate Coming soon compound previews remain as requested.

@@ -1,9 +1,9 @@
 {
   "counts": {
-    "mots-c": 62,
-    "bpc-157": 68,
-    "retatrutide": 71,
-    "tb-500": 58
+    "mots-c": 47,
+    "bpc-157": 51,
+    "retatrutide": 56,
+    "tb-500": 46
   },
   "reviews": [
     {
@@ -176,19 +176,6 @@
       "verified": false
     },
     {
-      "id": "mots-c-014",
-      "peptide": "MOTS-c",
-      "slug": "mots-c",
-      "author": "Priya C.",
-      "location": "Omaha, NE",
-      "rating": 4,
-      "title": "Less of a crash",
-      "body": "Wrote this for the demo page so it isn't a wall of stars with no text. Context: normal job, normal lifting, no contest prep. Sessions felt more repeatable, not easier. I missed a couple doses traveling and it didn't fall off a cliff, which I liked. Paired with a walk after dinner and that combo did more than either alone. Taking a break after this vial and reassessing.",
-      "date": "2025-11-21",
-      "topic": "training repeatability",
-      "verified": false
-    },
-    {
       "id": "mots-c-015",
       "peptide": "MOTS-c",
       "slug": "mots-c",
@@ -199,19 +186,6 @@
       "body": "Second time through a simple schedule. The random flat days thinned out around week three. First vial I wasn't sure; this one I was. Paired with a walk after dinner and that combo did more than either alone.",
       "date": "2025-11-20",
       "topic": "flat days",
-      "verified": false
-    },
-    {
-      "id": "mots-c-016",
-      "peptide": "MOTS-c",
-      "slug": "mots-c",
-      "author": "Brooke J.",
-      "location": "Salt Lake City, UT",
-      "rating": 5,
-      "title": "Week three",
-      "body": "I log sleep and sessions, so this isn't a vibe check. Protocol was simple, same window most days, 4 weeks. The thing I actually noticed: I actually hit the step goal without bargaining. Strength numbers didn't jump. What changed was how often I canceled the hard part of the day. Watch HRV ticked up a little. Could be noise. Clean labeling on the demo order.",
-      "date": "2025-11-24",
-      "topic": "steps",
       "verified": false
     },
     {
@@ -267,19 +241,6 @@
       "verified": false
     },
     {
-      "id": "mots-c-021",
-      "peptide": "MOTS-c",
-      "slug": "mots-c",
-      "author": "Justin E.",
-      "location": "Kansas City, MO",
-      "rating": 5,
-      "title": "Steadier afternoons",
-      "body": "Wrote this for the demo page so it isn't a wall of stars with no text. Context: normal job, normal lifting, no contest prep. The 3pm wall got shorter \u2014 that's the part I'd repeat. I missed a couple doses traveling and it didn't fall off a cliff, which I liked. Paired with a walk after dinner and that combo did more than either alone. Mileage will vary. Mine was quiet.",
-      "date": "2025-12-09",
-      "topic": "afternoon crash",
-      "verified": false
-    },
-    {
       "id": "mots-c-022",
       "peptide": "MOTS-c",
       "slug": "mots-c",
@@ -319,19 +280,6 @@
       "verified": false
     },
     {
-      "id": "mots-c-025",
-      "peptide": "MOTS-c",
-      "slug": "mots-c",
-      "author": "Mateo T.",
-      "location": "Ann Arbor, MI",
-      "rating": 4,
-      "title": "Not a stimulant",
-      "body": "Not chasing a before-and-after. The random flat days thinned out around week three. That's enough of a reason to keep the slot on the demo stack. No stimulant feeling, which mattered.",
-      "date": "2025-12-20",
-      "topic": "flat days",
-      "verified": false
-    },
-    {
       "id": "mots-c-026",
       "peptide": "MOTS-c",
       "slug": "mots-c",
@@ -345,19 +293,6 @@
       "verified": false
     },
     {
-      "id": "mots-c-027",
-      "peptide": "MOTS-c",
-      "slug": "mots-c",
-      "author": "Soren D.",
-      "location": "Mesa, AZ",
-      "rating": 4,
-      "title": "Quiet energy",
-      "body": "Not chasing a before-and-after. Post-lunch fog eased up. That's enough of a reason to keep the slot on the demo stack. No stimulant feeling, which mattered.",
-      "date": "2025-12-28",
-      "topic": "post-lunch",
-      "verified": false
-    },
-    {
       "id": "mots-c-028",
       "peptide": "MOTS-c",
       "slug": "mots-c",
@@ -368,19 +303,6 @@
       "body": "Mild. I might not reorder. No jitters, which was the bar.",
       "date": "2026-01-01",
       "topic": "no jitters",
-      "verified": false
-    },
-    {
-      "id": "mots-c-029",
-      "peptide": "MOTS-c",
-      "slug": "mots-c",
-      "author": "Harper K.",
-      "location": "Denver, CO",
-      "rating": 5,
-      "title": "Flat days thinned out",
-      "body": "Wrote this for the demo page so it isn't a wall of stars with no text. Context: normal job, normal lifting, no contest prep. Sleep didn't change; how I woke up did a little. I missed a couple doses traveling and it didn't fall off a cliff, which I liked. Scale was flat. That wasn't why I ran it. Keeping it.",
-      "date": "2026-01-05",
-      "topic": "sleep",
       "verified": false
     },
     {
@@ -423,19 +345,6 @@
       "verified": false
     },
     {
-      "id": "mots-c-033",
-      "peptide": "MOTS-c",
-      "slug": "mots-c",
-      "author": "Sam C.",
-      "location": "Charlotte, NC",
-      "rating": 5,
-      "title": "Better on cardio days",
-      "body": "I log sleep and sessions, so this isn't a vibe check. Protocol was simple, same window most days, 5 weeks. The thing I actually noticed: Fasted walks were less grim. Strength numbers didn't jump. What changed was how often I canceled the hard part of the day. Scale was flat. That wasn't why I ran it. Clean labeling on the demo order.",
-      "date": "2026-01-16",
-      "topic": "fasted mornings",
-      "verified": false
-    },
-    {
       "id": "mots-c-034",
       "peptide": "MOTS-c",
       "slug": "mots-c",
@@ -449,19 +358,6 @@
       "verified": false
     },
     {
-      "id": "mots-c-035",
-      "peptide": "MOTS-c",
-      "slug": "mots-c",
-      "author": "Cameron J.",
-      "location": "Kansas City, MO",
-      "rating": 4,
-      "title": "Not a stimulant",
-      "body": "Not chasing a before-and-after. The random flat days thinned out around week three. That's enough of a reason to keep the slot on the demo stack. Watch HRV ticked up a little. Could be noise.",
-      "date": "2026-01-19",
-      "topic": "flat days",
-      "verified": false
-    },
-    {
       "id": "mots-c-036",
       "peptide": "MOTS-c",
       "slug": "mots-c",
@@ -472,19 +368,6 @@
       "body": "Second time through a simple schedule. I actually hit the step goal without bargaining \u2014 that's the part I'd repeat. First vial I wasn't sure; this one I was. Watch HRV ticked up a little. Could be noise.",
       "date": "2026-01-23",
       "topic": "steps",
-      "verified": false
-    },
-    {
-      "id": "mots-c-037",
-      "peptide": "MOTS-c",
-      "slug": "mots-c",
-      "author": "Noah R.",
-      "location": "Lehi, UT",
-      "rating": 4,
-      "title": "Quiet energy",
-      "body": "Not chasing a before-and-after. Post-lunch fog eased up. That's enough of a reason to keep the slot on the demo stack. Best on cardio days, almost invisible on heavy squats.",
-      "date": "2026-01-27",
-      "topic": "post-lunch",
       "verified": false
     },
     {
@@ -540,19 +423,6 @@
       "verified": false
     },
     {
-      "id": "mots-c-042",
-      "peptide": "MOTS-c",
-      "slug": "mots-c",
-      "author": "Omar L.",
-      "location": "Omaha, NE",
-      "rating": 4,
-      "title": "Slow burn",
-      "body": "Wrote this for the demo page so it isn't a wall of stars with no text. Context: normal job, normal lifting, no contest prep. Easy cardio stopped feeling like a negotiation. I missed a couple doses traveling and it didn't fall off a cliff, which I liked. Watch HRV ticked up a little. Could be noise. Would run it again next block.",
-      "date": "2026-02-11",
-      "topic": "zone-2",
-      "verified": false
-    },
-    {
       "id": "mots-c-043",
       "peptide": "MOTS-c",
       "slug": "mots-c",
@@ -563,19 +433,6 @@
       "body": "Kept a note on my phone so I wouldn't invent a memory later. After 8 weeks, Fasted walks were less grim. I didn't change the rest of the week much. Watch HRV ticked up a little. Could be noise.",
       "date": "2026-02-15",
       "topic": "fasted mornings",
-      "verified": false
-    },
-    {
-      "id": "mots-c-044",
-      "peptide": "MOTS-c",
-      "slug": "mots-c",
-      "author": "Sofia T.",
-      "location": "Salt Lake City, UT",
-      "rating": 4,
-      "title": "Less of a crash",
-      "body": "Not chasing a before-and-after. Sessions felt more repeatable, not easier. That's enough of a reason to keep the slot on the demo stack. No stimulant feeling, which mattered.",
-      "date": "2026-02-19",
-      "topic": "training repeatability",
       "verified": false
     },
     {
@@ -657,19 +514,6 @@
       "verified": false
     },
     {
-      "id": "mots-c-051",
-      "peptide": "MOTS-c",
-      "slug": "mots-c",
-      "author": "Nathan W.",
-      "location": "Lehi, UT",
-      "rating": 5,
-      "title": "Steadier afternoons",
-      "body": "8 weeks. The 3pm wall got shorter \u2014 that's the part I'd repeat. Demo note, not a case study.",
-      "date": "2026-03-09",
-      "topic": "afternoon crash",
-      "verified": false
-    },
-    {
       "id": "mots-c-052",
       "peptide": "MOTS-c",
       "slug": "mots-c",
@@ -706,32 +550,6 @@
       "body": "Second time through a simple schedule. Sessions felt more repeatable, not easier. First vial I wasn't sure; this one I was. Scale was flat. That wasn't why I ran it.",
       "date": "2026-03-21",
       "topic": "training repeatability",
-      "verified": false
-    },
-    {
-      "id": "mots-c-055",
-      "peptide": "MOTS-c",
-      "slug": "mots-c",
-      "author": "Jamal M.",
-      "location": "Mesa, AZ",
-      "rating": 4,
-      "title": "Not a stimulant",
-      "body": "5 weeks. The random flat days thinned out around week three. Demo note, not a case study.",
-      "date": "2026-03-20",
-      "topic": "flat days",
-      "verified": false
-    },
-    {
-      "id": "mots-c-056",
-      "peptide": "MOTS-c",
-      "slug": "mots-c",
-      "author": "Hiro R.",
-      "location": "Omaha, NE",
-      "rating": 5,
-      "title": "Week three",
-      "body": "Not chasing a before-and-after. I'd say I actually hit the step goal without bargaining. That's enough of a reason to keep the slot on the demo stack. Paired with a walk after dinner and that combo did more than either alone.",
-      "date": "2026-03-24",
-      "topic": "steps",
       "verified": false
     },
     {
@@ -774,19 +592,6 @@
       "verified": false
     },
     {
-      "id": "mots-c-060",
-      "peptide": "MOTS-c",
-      "slug": "mots-c",
-      "author": "Morgan H.",
-      "location": "San Diego, CA",
-      "rating": 5,
-      "title": "No jitters",
-      "body": "3 weeks. Hunger between meals got quieter, not gone. Demo note, not a case study.",
-      "date": "2026-04-04",
-      "topic": "appetite",
-      "verified": false
-    },
-    {
       "id": "mots-c-061",
       "peptide": "MOTS-c",
       "slug": "mots-c",
@@ -826,32 +631,6 @@
       "verified": false
     },
     {
-      "id": "bpc-157-002",
-      "peptide": "BPC-157",
-      "slug": "bpc-157",
-      "author": "Anika D.",
-      "location": "Minneapolis, MN",
-      "rating": 5,
-      "title": "Ache dropped",
-      "body": "Not chasing a before-and-after. Morning knee stiffness was a shorter event. That's enough of a reason to keep the slot on the demo stack. Stomach was fine, which was the worry.",
-      "date": "2026-02-04",
-      "topic": "knee stiffness",
-      "verified": false
-    },
-    {
-      "id": "bpc-157-003",
-      "peptide": "BPC-157",
-      "slug": "bpc-157",
-      "author": "Maya G.",
-      "location": "Albuquerque, NM",
-      "rating": 5,
-      "title": "Accessories are back",
-      "body": "Wrote this for the demo page so it isn't a wall of stars with no text. Context: normal job, normal lifting, no contest prep. I got accessories back without babying the shoulder. I missed a couple doses traveling and it didn't fall off a cliff, which I liked. Still had to rehab it. This wasn't a skip-the-work button. Taking a break after this vial and reassessing.",
-      "date": "2026-02-03",
-      "topic": "shoulder",
-      "verified": false
-    },
-    {
       "id": "bpc-157-004",
       "peptide": "BPC-157",
       "slug": "bpc-157",
@@ -862,19 +641,6 @@
       "body": "Started conservative on purpose. The pull-day tendon grump faded, it didn't vanish. Week one was a shrug. By week 5 it was boring in a good way. Still had to rehab it. This wasn't a skip-the-work button.",
       "date": "2026-02-07",
       "topic": "tendon grumpiness",
-      "verified": false
-    },
-    {
-      "id": "bpc-157-005",
-      "peptide": "BPC-157",
-      "slug": "bpc-157",
-      "author": "Rachel N.",
-      "location": "Scottsdale, AZ",
-      "rating": 4,
-      "title": "Rehab still required",
-      "body": "Wrote this for the demo page so it isn't a wall of stars with no text. Context: normal job, normal lifting, no contest prep. Desk-neck tightness was less of a daily tax. I missed a couple doses traveling and it didn't fall off a cliff, which I liked. Stomach was fine, which was the worry. Taking a break after this vial and reassessing.",
-      "date": "2026-02-11",
-      "topic": "neck from desk",
       "verified": false
     },
     {
@@ -930,19 +696,6 @@
       "verified": false
     },
     {
-      "id": "bpc-157-010",
-      "peptide": "BPC-157",
-      "slug": "bpc-157",
-      "author": "Leo J.",
-      "location": "Austin, TX",
-      "rating": 4,
-      "title": "Same warm-up, different start",
-      "body": "Wrote this for the demo page so it isn't a wall of stars with no text. Context: normal job, normal lifting, no contest prep. Same warm-up, less negotiation to start the first set. I missed a couple doses traveling and it didn't fall off a cliff, which I liked. Stomach was fine, which was the worry. Mileage will vary. Mine was quiet.",
-      "date": "2026-02-26",
-      "topic": "warm-up",
-      "verified": false
-    },
-    {
       "id": "bpc-157-011",
       "peptide": "BPC-157",
       "slug": "bpc-157",
@@ -995,19 +748,6 @@
       "verified": false
     },
     {
-      "id": "bpc-157-015",
-      "peptide": "BPC-157",
-      "slug": "bpc-157",
-      "author": "Nico E.",
-      "location": "Nashville, TN",
-      "rating": 4,
-      "title": "Rehab still required",
-      "body": "3 weeks. Desk-neck tightness was less of a daily tax. Demo note, not a case study.",
-      "date": "2026-03-13",
-      "topic": "neck from desk",
-      "verified": false
-    },
-    {
       "id": "bpc-157-016",
       "peptide": "BPC-157",
       "slug": "bpc-157",
@@ -1034,19 +774,6 @@
       "verified": false
     },
     {
-      "id": "bpc-157-018",
-      "peptide": "BPC-157",
-      "slug": "bpc-157",
-      "author": "Jordan P.",
-      "location": "Provo, UT",
-      "rating": 4,
-      "title": "Old tweak eased",
-      "body": "Not chasing a before-and-after. It stopped waking me, which mattered more than the gym. That's enough of a reason to keep the slot on the demo stack. Didn't touch my numbers. Tissue just stopped complaining as loud.",
-      "date": "2026-03-20",
-      "topic": "sleep interruption",
-      "verified": false
-    },
-    {
       "id": "bpc-157-019",
       "peptide": "BPC-157",
       "slug": "bpc-157",
@@ -1057,19 +784,6 @@
       "body": "Skeptical of anything that gets talked about this much. Gave it a clean 4 weeks without stacking three other new things. I got back to normal volume sooner than last flare. Could still be coincidence. I'm writing down what I noticed, not a mechanism. I kept the same warm-up so I wouldn't credit a new routine. That's the whole note.",
       "date": "2026-03-24",
       "topic": "volume return",
-      "verified": false
-    },
-    {
-      "id": "bpc-157-020",
-      "peptide": "BPC-157",
-      "slug": "bpc-157",
-      "author": "Quinn A.",
-      "location": "Madison, WI",
-      "rating": 4,
-      "title": "Same warm-up, different start",
-      "body": "5 weeks. Same warm-up, less negotiation to start the first set. Demo note, not a case study.",
-      "date": "2026-03-28",
-      "topic": "warm-up",
       "verified": false
     },
     {
@@ -1109,19 +823,6 @@
       "body": "Kept a note on my phone so I wouldn't invent a memory later. After 3 weeks, I got accessories back without babying the shoulder. I didn't change the rest of the week much. Stomach was fine, which was the worry.",
       "date": "2026-04-04",
       "topic": "shoulder",
-      "verified": false
-    },
-    {
-      "id": "bpc-157-024",
-      "peptide": "BPC-157",
-      "slug": "bpc-157",
-      "author": "Rowan N.",
-      "location": "Austin, TX",
-      "rating": 5,
-      "title": "Shorter stiffness",
-      "body": "Not chasing a before-and-after. The pull-day tendon grump faded, it didn't vanish. That's enough of a reason to keep the slot on the demo stack. Irritation dropped; it didn't disappear.",
-      "date": "2026-04-08",
-      "topic": "tendon grumpiness",
       "verified": false
     },
     {
@@ -1174,19 +875,6 @@
       "body": "I log sleep and sessions, so this isn't a vibe check. Protocol was simple, same window most days, 5 weeks. The thing I actually noticed: It stopped waking me, which mattered more than the gym. Strength numbers didn't jump. What changed was how often I canceled the hard part of the day. Irritation dropped; it didn't disappear. Would run it again next block.",
       "date": "2026-04-19",
       "topic": "sleep interruption",
-      "verified": false
-    },
-    {
-      "id": "bpc-157-029",
-      "peptide": "BPC-157",
-      "slug": "bpc-157",
-      "author": "Diego J.",
-      "location": "Nashville, TN",
-      "rating": 5,
-      "title": "Volume came back",
-      "body": "Not chasing a before-and-after. I got back to normal volume sooner than last flare. That's enough of a reason to keep the slot on the demo stack. I kept the same warm-up so I wouldn't credit a new routine.",
-      "date": "2026-04-23",
-      "topic": "volume return",
       "verified": false
     },
     {
@@ -1294,32 +982,6 @@
       "verified": false
     },
     {
-      "id": "bpc-157-038",
-      "peptide": "BPC-157",
-      "slug": "bpc-157",
-      "author": "Justin T.",
-      "location": "Austin, TX",
-      "rating": 4,
-      "title": "Old tweak eased",
-      "body": "Wrote this for the demo page so it isn't a wall of stars with no text. Context: normal job, normal lifting, no contest prep. It stopped waking me, which mattered more than the gym. I missed a couple doses traveling and it didn't fall off a cliff, which I liked. Stomach was fine, which was the worry. Not dramatic. Useful.",
-      "date": "2026-05-19",
-      "topic": "sleep interruption",
-      "verified": false
-    },
-    {
-      "id": "bpc-157-039",
-      "peptide": "BPC-157",
-      "slug": "bpc-157",
-      "author": "Victor A.",
-      "location": "Phoenix, AZ",
-      "rating": 5,
-      "title": "Volume came back",
-      "body": "Wrote this for the demo page so it isn't a wall of stars with no text. Context: normal job, normal lifting, no contest prep. I got back to normal volume sooner than last flare. I missed a couple doses traveling and it didn't fall off a cliff, which I liked. Stomach was fine, which was the worry. Clean labeling on the demo order.",
-      "date": "2026-05-23",
-      "topic": "volume return",
-      "verified": false
-    },
-    {
       "id": "bpc-157-040",
       "peptide": "BPC-157",
       "slug": "bpc-157",
@@ -1424,32 +1086,6 @@
       "verified": false
     },
     {
-      "id": "bpc-157-048",
-      "peptide": "BPC-157",
-      "slug": "bpc-157",
-      "author": "Casey J.",
-      "location": "Madison, WI",
-      "rating": 4,
-      "title": "Old tweak eased",
-      "body": "Wrote this for the demo page so it isn't a wall of stars with no text. Context: normal job, normal lifting, no contest prep. It stopped waking me, which mattered more than the gym. I missed a couple doses traveling and it didn't fall off a cliff, which I liked. Stomach was fine, which was the worry. Not dramatic. Useful.",
-      "date": "2026-06-18",
-      "topic": "sleep interruption",
-      "verified": false
-    },
-    {
-      "id": "bpc-157-049",
-      "peptide": "BPC-157",
-      "slug": "bpc-157",
-      "author": "Avery M.",
-      "location": "Raleigh, NC",
-      "rating": 5,
-      "title": "Volume came back",
-      "body": "10 weeks. I got back to normal volume sooner than last flare. Demo note, not a case study.",
-      "date": "2026-06-22",
-      "topic": "volume return",
-      "verified": false
-    },
-    {
       "id": "bpc-157-050",
       "peptide": "BPC-157",
       "slug": "bpc-157",
@@ -1489,19 +1125,6 @@
       "verified": false
     },
     {
-      "id": "bpc-157-053",
-      "peptide": "BPC-157",
-      "slug": "bpc-157",
-      "author": "Hayden E.",
-      "location": "Phoenix, AZ",
-      "rating": 5,
-      "title": "Accessories are back",
-      "body": "6 weeks. I got accessories back without babying the shoulder. Demo note, not a case study.",
-      "date": "2026-07-03",
-      "topic": "shoulder",
-      "verified": false
-    },
-    {
       "id": "bpc-157-054",
       "peptide": "BPC-157",
       "slug": "bpc-157",
@@ -1512,19 +1135,6 @@
       "body": "The pull-day tendon grump faded, it didn't vanish. That's the review.",
       "date": "2026-07-07",
       "topic": "tendon grumpiness",
-      "verified": false
-    },
-    {
-      "id": "bpc-157-055",
-      "peptide": "BPC-157",
-      "slug": "bpc-157",
-      "author": "Owen L.",
-      "location": "Seattle, WA",
-      "rating": 4,
-      "title": "Rehab still required",
-      "body": "Not chasing a before-and-after. Desk-neck tightness was less of a daily tax. That's enough of a reason to keep the slot on the demo stack. I kept the same warm-up so I wouldn't credit a new routine.",
-      "date": "2026-07-11",
-      "topic": "neck from desk",
       "verified": false
     },
     {
@@ -1606,19 +1216,6 @@
       "verified": false
     },
     {
-      "id": "bpc-157-062",
-      "peptide": "BPC-157",
-      "slug": "bpc-157",
-      "author": "Natalie N.",
-      "location": "Madison, WI",
-      "rating": 5,
-      "title": "Ache dropped",
-      "body": "8 weeks. Morning knee stiffness was a shorter event. Demo note, not a case study.",
-      "date": "2026-08-03",
-      "topic": "knee stiffness",
-      "verified": false
-    },
-    {
       "id": "bpc-157-063",
       "peptide": "BPC-157",
       "slug": "bpc-157",
@@ -1642,19 +1239,6 @@
       "body": "Started conservative on purpose. The pull-day tendon grump faded, it didn't vanish. Week one was a shrug. By week 6 it was boring in a good way. I kept the same warm-up so I wouldn't credit a new routine.",
       "date": "2026-08-06",
       "topic": "tendon grumpiness",
-      "verified": false
-    },
-    {
-      "id": "bpc-157-065",
-      "peptide": "BPC-157",
-      "slug": "bpc-157",
-      "author": "Nicole C.",
-      "location": "Spokane, WA",
-      "rating": 4,
-      "title": "Rehab still required",
-      "body": "Wrote this for the demo page so it isn't a wall of stars with no text. Context: normal job, normal lifting, no contest prep. Desk-neck tightness was less of a daily tax. I missed a couple doses traveling and it didn't fall off a cliff, which I liked. I kept the same warm-up so I wouldn't credit a new routine. Mileage will vary. Mine was quiet.",
-      "date": "2026-08-10",
-      "topic": "neck from desk",
       "verified": false
     },
     {
@@ -1723,19 +1307,6 @@
       "verified": false
     },
     {
-      "id": "retatrutide-003",
-      "peptide": "Retatrutide",
-      "slug": "retatrutide",
-      "author": "Ellis F.",
-      "location": "Sacramento, CA",
-      "rating": 4,
-      "title": "Started low",
-      "body": "Skeptical of anything that gets talked about this much. Gave it a clean 6 weeks without stacking three other new things. Clothes moved before the scale did anything dramatic. Could still be coincidence. I'm writing down what I noticed, not a mechanism. Week four was steadier than week one. Clean labeling on the demo order.",
-      "date": "2026-05-27",
-      "topic": "clothes",
-      "verified": false
-    },
-    {
       "id": "retatrutide-004",
       "peptide": "Retatrutide",
       "slug": "retatrutide",
@@ -1798,19 +1369,6 @@
       "body": "Late takeout mostly left the group chat. Nothing else to add.",
       "date": "2026-06-11",
       "topic": "takeout",
-      "verified": false
-    },
-    {
-      "id": "retatrutide-009",
-      "peptide": "Retatrutide",
-      "slug": "retatrutide",
-      "author": "Jamie E.",
-      "location": "San Diego, CA",
-      "rating": 5,
-      "title": "Week four steadier",
-      "body": "Not chasing a before-and-after. I kept lifting, a couple sessions just got shorter. That's enough of a reason to keep the slot on the demo stack. Hunger didn't vanish. Portions did.",
-      "date": "2026-06-15",
-      "topic": "training",
       "verified": false
     },
     {
@@ -1879,19 +1437,6 @@
       "verified": false
     },
     {
-      "id": "retatrutide-015",
-      "peptide": "Retatrutide",
-      "slug": "retatrutide",
-      "author": "Grant D.",
-      "location": "Boulder, CO",
-      "rating": 5,
-      "title": "Early nausea, then fine",
-      "body": "Not chasing a before-and-after. Appetite fell enough that I had to schedule protein. That's enough of a reason to keep the slot on the demo stack. Hunger didn't vanish. Portions did.",
-      "date": "2026-07-04",
-      "topic": "protein",
-      "verified": false
-    },
-    {
       "id": "retatrutide-016",
       "peptide": "Retatrutide",
       "slug": "retatrutide",
@@ -1902,19 +1447,6 @@
       "body": "Skeptical of anything that gets talked about this much. Gave it a clean 6 weeks without stacking three other new things. Week one nausea if I ate fast, then it settled. Could still be coincidence. I'm writing down what I noticed, not a mechanism. Energy dipped the week I under-ate, then leveled when I fixed protein. Would run it again next block.",
       "date": "2026-07-03",
       "topic": "early nausea",
-      "verified": false
-    },
-    {
-      "id": "retatrutide-017",
-      "peptide": "Retatrutide",
-      "slug": "retatrutide",
-      "author": "Luis K.",
-      "location": "Sacramento, CA",
-      "rating": 5,
-      "title": "Had to remember protein",
-      "body": "Not chasing a before-and-after. The trend was down without a crash-diet feeling. That's enough of a reason to keep the slot on the demo stack. Week four was steadier than week one.",
-      "date": "2026-07-07",
-      "topic": "slow trend",
       "verified": false
     },
     {
@@ -1970,19 +1502,6 @@
       "verified": false
     },
     {
-      "id": "retatrutide-022",
-      "peptide": "Retatrutide",
-      "slug": "retatrutide",
-      "author": "Rachel F.",
-      "location": "Portland, OR",
-      "rating": 5,
-      "title": "Clothes before scale",
-      "body": "4 weeks. I stopped finishing plates out of habit. Demo note, not a case study.",
-      "date": "2026-07-22",
-      "topic": "plate finishing",
-      "verified": false
-    },
-    {
       "id": "retatrutide-023",
       "peptide": "Retatrutide",
       "slug": "retatrutide",
@@ -2009,19 +1528,6 @@
       "verified": false
     },
     {
-      "id": "retatrutide-025",
-      "peptide": "Retatrutide",
-      "slug": "retatrutide",
-      "author": "Kyle R.",
-      "location": "Columbus, OH",
-      "rating": 5,
-      "title": "Early nausea, then fine",
-      "body": "Wrote this for the demo page so it isn't a wall of stars with no text. Context: normal job, normal lifting, no contest prep. Appetite fell enough that I had to schedule protein. I missed a couple doses traveling and it didn't fall off a cliff, which I liked. Week four was steadier than week one. Would run it again next block.",
-      "date": "2026-08-03",
-      "topic": "protein",
-      "verified": false
-    },
-    {
       "id": "retatrutide-026",
       "peptide": "Retatrutide",
       "slug": "retatrutide",
@@ -2032,19 +1538,6 @@
       "body": "For me, week one nausea if I ate fast, then it settled. Nothing else to add.",
       "date": "2026-08-02",
       "topic": "early nausea",
-      "verified": false
-    },
-    {
-      "id": "retatrutide-027",
-      "peptide": "Retatrutide",
-      "slug": "retatrutide",
-      "author": "Leo B.",
-      "location": "Reno, NV",
-      "rating": 5,
-      "title": "Had to remember protein",
-      "body": "I log sleep and sessions, so this isn't a vibe check. Protocol was simple, same window most days, 6 weeks. The thing I actually noticed: The trend was down without a crash-diet feeling. Strength numbers didn't jump. What changed was how often I canceled the hard part of the day. Energy dipped the week I under-ate, then leveled when I fixed protein. Clean labeling on the demo order.",
-      "date": "2026-08-06",
-      "topic": "slow trend",
       "verified": false
     },
     {
@@ -2178,19 +1671,6 @@
       "verified": false
     },
     {
-      "id": "retatrutide-038",
-      "peptide": "Retatrutide",
-      "slug": "retatrutide",
-      "author": "Chris S.",
-      "location": "Charlotte, NC",
-      "rating": 4,
-      "title": "Not a crash diet",
-      "body": "Wrote this for the demo page so it isn't a wall of stars with no text. Context: normal job, normal lifting, no contest prep. Late takeout mostly left the group chat. I missed a couple doses traveling and it didn't fall off a cliff, which I liked. Week four was steadier than week one. Taking a break after this vial and reassessing.",
-      "date": "2026-09-09",
-      "topic": "takeout",
-      "verified": false
-    },
-    {
       "id": "retatrutide-039",
       "peptide": "Retatrutide",
       "slug": "retatrutide",
@@ -2269,19 +1749,6 @@
       "verified": false
     },
     {
-      "id": "retatrutide-045",
-      "peptide": "Retatrutide",
-      "slug": "retatrutide",
-      "author": "Derek V.",
-      "location": "Sacramento, CA",
-      "rating": 5,
-      "title": "Early nausea, then fine",
-      "body": "Wrote this for the demo page so it isn't a wall of stars with no text. Context: normal job, normal lifting, no contest prep. Appetite fell enough that I had to schedule protein. I missed a couple doses traveling and it didn't fall off a cliff, which I liked. Hunger didn't vanish. Portions did. Not dramatic. Useful.",
-      "date": "2026-10-02",
-      "topic": "protein",
-      "verified": false
-    },
-    {
       "id": "retatrutide-046",
       "peptide": "Retatrutide",
       "slug": "retatrutide",
@@ -2292,19 +1759,6 @@
       "body": "Using it around training, not instead of it. Week one nausea if I ate fast, then it settled. Took about 4 weeks before I trusted the note. Dose I started on was enough. I didn't chase a higher one.",
       "date": "2026-10-01",
       "topic": "early nausea",
-      "verified": false
-    },
-    {
-      "id": "retatrutide-047",
-      "peptide": "Retatrutide",
-      "slug": "retatrutide",
-      "author": "Hassan E.",
-      "location": "Omaha, NE",
-      "rating": 5,
-      "title": "Had to remember protein",
-      "body": "Wrote this for the demo page so it isn't a wall of stars with no text. Context: normal job, normal lifting, no contest prep. The trend was down without a crash-diet feeling. I missed a couple doses traveling and it didn't fall off a cliff, which I liked. Electrolytes early because the first weeks felt dry. Not dramatic. Useful.",
-      "date": "2026-10-05",
-      "topic": "slow trend",
       "verified": false
     },
     {
@@ -2399,19 +1853,6 @@
       "verified": false
     },
     {
-      "id": "retatrutide-055",
-      "peptide": "Retatrutide",
-      "slug": "retatrutide",
-      "author": "Justin K.",
-      "location": "Reno, NV",
-      "rating": 5,
-      "title": "Early nausea, then fine",
-      "body": "Wrote this for the demo page so it isn't a wall of stars with no text. Context: normal job, normal lifting, no contest prep. Appetite fell enough that I had to schedule protein. I missed a couple doses traveling and it didn't fall off a cliff, which I liked. Electrolytes early because the first weeks felt dry. That's the whole note.",
-      "date": "2026-11-01",
-      "topic": "protein",
-      "verified": false
-    },
-    {
       "id": "retatrutide-056",
       "peptide": "Retatrutide",
       "slug": "retatrutide",
@@ -2422,32 +1863,6 @@
       "body": "For me, week one nausea if I ate fast, then it settled. That's the review.",
       "date": "2026-10-31",
       "topic": "early nausea",
-      "verified": false
-    },
-    {
-      "id": "retatrutide-057",
-      "peptide": "Retatrutide",
-      "slug": "retatrutide",
-      "author": "Theo S.",
-      "location": "Boulder, CO",
-      "rating": 5,
-      "title": "Had to remember protein",
-      "body": "Not chasing a before-and-after. The trend was down without a crash-diet feeling. That's enough of a reason to keep the slot on the demo stack. Electrolytes early because the first weeks felt dry.",
-      "date": "2026-11-04",
-      "topic": "slow trend",
-      "verified": false
-    },
-    {
-      "id": "retatrutide-058",
-      "peptide": "Retatrutide",
-      "slug": "retatrutide",
-      "author": "Isaac W.",
-      "location": "Ann Arbor, MI",
-      "rating": 4,
-      "title": "Not a crash diet",
-      "body": "Wrote this for the demo page so it isn't a wall of stars with no text. Context: normal job, normal lifting, no contest prep. Late takeout mostly left the group chat. I missed a couple doses traveling and it didn't fall off a cliff, which I liked. Energy dipped the week I under-ate, then leveled when I fixed protein. Clean labeling on the demo order.",
-      "date": "2026-11-08",
-      "topic": "takeout",
       "verified": false
     },
     {
@@ -2581,19 +1996,6 @@
       "verified": false
     },
     {
-      "id": "retatrutide-069",
-      "peptide": "Retatrutide",
-      "slug": "retatrutide",
-      "author": "Cameron P.",
-      "location": "Reno, NV",
-      "rating": 5,
-      "title": "Week four steadier",
-      "body": "Wrote this for the demo page so it isn't a wall of stars with no text. Context: normal job, normal lifting, no contest prep. I kept lifting, a couple sessions just got shorter. I missed a couple doses traveling and it didn't fall off a cliff, which I liked. Electrolytes early because the first weeks felt dry. Clean labeling on the demo order.",
-      "date": "2026-12-12",
-      "topic": "training",
-      "verified": false
-    },
-    {
       "id": "retatrutide-070",
       "peptide": "Retatrutide",
       "slug": "retatrutide",
@@ -2604,19 +2006,6 @@
       "body": "Started conservative on purpose. The low start was plenty. Week one was a shrug. By week 4 it was boring in a good way. Hunger didn't vanish. Portions did.",
       "date": "2026-12-16",
       "topic": "starting dose",
-      "verified": false
-    },
-    {
-      "id": "retatrutide-071",
-      "peptide": "Retatrutide",
-      "slug": "retatrutide",
-      "author": "Noah A.",
-      "location": "Boulder, CO",
-      "rating": 4,
-      "title": "Food noise dropped",
-      "body": "Wrote this for the demo page so it isn't a wall of stars with no text. Context: normal job, normal lifting, no contest prep. For me, evening food noise dropped, which was the whole point. I missed a couple doses traveling and it didn't fall off a cliff, which I liked. Dose I started on was enough. I didn't chase a higher one. Not dramatic. Useful.",
-      "date": "2026-12-15",
-      "topic": "food noise",
       "verified": false
     },
     {
@@ -2643,19 +2032,6 @@
       "body": "Second time through a simple schedule. Rotation came back before strength did. First vial I wasn't sure; this one I was. I didn't test maxes. I just returned to normal sessions.",
       "date": "2026-09-13",
       "topic": "shoulder range",
-      "verified": false
-    },
-    {
-      "id": "tb-500-003",
-      "peptide": "TB-500",
-      "slug": "tb-500",
-      "author": "Travis E.",
-      "location": "Boise, ID",
-      "rating": 4,
-      "title": "Mobility started sticking",
-      "body": "Wrote this for the demo page so it isn't a wall of stars with no text. Context: normal job, normal lifting, no contest prep. Soreness in the high-volume block was shorter. I missed a couple doses traveling and it didn't fall off a cliff, which I liked. Stacked with mobility work, not in place of it. Not dramatic. Useful.",
-      "date": "2026-09-17",
-      "topic": "DOMS",
       "verified": false
     },
     {
@@ -2737,19 +2113,6 @@
       "verified": false
     },
     {
-      "id": "tb-500-010",
-      "peptide": "TB-500",
-      "slug": "tb-500",
-      "author": "Kelly G.",
-      "location": "Scottsdale, AZ",
-      "rating": 5,
-      "title": "Steady",
-      "body": "5 weeks. I got back to normal sessions instead of negotiating around the spot. Demo note, not a case study.",
-      "date": "2026-10-05",
-      "topic": "return to sessions",
-      "verified": false
-    },
-    {
       "id": "tb-500-011",
       "peptide": "TB-500",
       "slug": "tb-500",
@@ -2773,32 +2136,6 @@
       "body": "Kept a note on my phone so I wouldn't invent a memory later. After 8 weeks, Rotation came back before strength did. I didn't change the rest of the week much. Nothing overnight. Notes changed in week two.",
       "date": "2026-10-13",
       "topic": "shoulder range",
-      "verified": false
-    },
-    {
-      "id": "tb-500-013",
-      "peptide": "TB-500",
-      "slug": "tb-500",
-      "author": "Tyler S.",
-      "location": "Eagle Mountain, UT",
-      "rating": 4,
-      "title": "Mobility started sticking",
-      "body": "Not chasing a before-and-after. Soreness in the high-volume block was shorter. That's enough of a reason to keep the slot on the demo stack. Stacked with mobility work, not in place of it.",
-      "date": "2026-10-17",
-      "topic": "DOMS",
-      "verified": false
-    },
-    {
-      "id": "tb-500-014",
-      "peptide": "TB-500",
-      "slug": "tb-500",
-      "author": "Nathan W.",
-      "location": "Spokane, WA",
-      "rating": 4,
-      "title": "Shorter soreness",
-      "body": "6 weeks. The old hamstring tug was less sharp on strides. Demo note, not a case study.",
-      "date": "2026-10-16",
-      "topic": "hamstring",
       "verified": false
     },
     {
@@ -2906,19 +2243,6 @@
       "verified": false
     },
     {
-      "id": "tb-500-023",
-      "peptide": "TB-500",
-      "slug": "tb-500",
-      "author": "Morgan H.",
-      "location": "Provo, UT",
-      "rating": 4,
-      "title": "Mobility started sticking",
-      "body": "Not chasing a before-and-after. Soreness in the high-volume block was shorter. That's enough of a reason to keep the slot on the demo stack. Stacked with mobility work, not in place of it.",
-      "date": "2026-11-16",
-      "topic": "DOMS",
-      "verified": false
-    },
-    {
       "id": "tb-500-024",
       "peptide": "TB-500",
       "slug": "tb-500",
@@ -3020,45 +2344,6 @@
       "body": "Second time through a simple schedule. The hip stopped cutting my stride short. First vial I wasn't sure; this one I was. Hard to separate from sleep, being honest.",
       "date": "2026-12-08",
       "topic": "hip stride",
-      "verified": false
-    },
-    {
-      "id": "tb-500-032",
-      "peptide": "TB-500",
-      "slug": "tb-500",
-      "author": "Grant S.",
-      "location": "Seattle, WA",
-      "rating": 5,
-      "title": "Range first",
-      "body": "Wrote this for the demo page so it isn't a wall of stars with no text. Context: normal job, normal lifting, no contest prep. Rotation came back before strength did. I missed a couple doses traveling and it didn't fall off a cliff, which I liked. Hard to separate from sleep, being honest. Taking a break after this vial and reassessing.",
-      "date": "2026-12-12",
-      "topic": "shoulder range",
-      "verified": false
-    },
-    {
-      "id": "tb-500-033",
-      "peptide": "TB-500",
-      "slug": "tb-500",
-      "author": "Marcus W.",
-      "location": "Tampa, FL",
-      "rating": 4,
-      "title": "Mobility started sticking",
-      "body": "Wrote this for the demo page so it isn't a wall of stars with no text. Context: normal job, normal lifting, no contest prep. Soreness in the high-volume block was shorter. I missed a couple doses traveling and it didn't fall off a cliff, which I liked. Stacked with mobility work, not in place of it. Would run it again next block.",
-      "date": "2026-12-16",
-      "topic": "DOMS",
-      "verified": false
-    },
-    {
-      "id": "tb-500-034",
-      "peptide": "TB-500",
-      "slug": "tb-500",
-      "author": "Luis C.",
-      "location": "Nashville, TN",
-      "rating": 4,
-      "title": "Shorter soreness",
-      "body": "Not chasing a before-and-after. The old hamstring tug was less sharp on strides. That's enough of a reason to keep the slot on the demo stack. Range first, load second.",
-      "date": "2026-12-15",
-      "topic": "hamstring",
       "verified": false
     },
     {
@@ -3192,32 +2477,6 @@
       "verified": false
     },
     {
-      "id": "tb-500-045",
-      "peptide": "TB-500",
-      "slug": "tb-500",
-      "author": "Miles T.",
-      "location": "Boise, ID",
-      "rating": 5,
-      "title": "Shorter warm-ups",
-      "body": "Wrote this for the demo page so it isn't a wall of stars with no text. Context: normal job, normal lifting, no contest prep. Warm-ups took less time to feel usable. I missed a couple doses traveling and it didn't fall off a cliff, which I liked. Stacked with mobility work, not in place of it. That's the whole note.",
-      "date": "2027-01-18",
-      "topic": "warm-up time",
-      "verified": false
-    },
-    {
-      "id": "tb-500-046",
-      "peptide": "TB-500",
-      "slug": "tb-500",
-      "author": "Adrian A.",
-      "location": "Seattle, WA",
-      "rating": 4,
-      "title": "Week two, not day two",
-      "body": "6 weeks. All-day sitting stiffness was milder. Demo note, not a case study.",
-      "date": "2027-01-22",
-      "topic": "sitting stiffness",
-      "verified": false
-    },
-    {
       "id": "tb-500-047",
       "peptide": "TB-500",
       "slug": "tb-500",
@@ -3244,19 +2503,6 @@
       "verified": false
     },
     {
-      "id": "tb-500-049",
-      "peptide": "TB-500",
-      "slug": "tb-500",
-      "author": "Nico K.",
-      "location": "Minneapolis, MN",
-      "rating": 5,
-      "title": "Travel didn't undo it",
-      "body": "4 weeks. A travel week didn't undo the two weeks before it. Demo note, not a case study.",
-      "date": "2027-01-29",
-      "topic": "travel",
-      "verified": false
-    },
-    {
       "id": "tb-500-050",
       "peptide": "TB-500",
       "slug": "tb-500",
@@ -3267,19 +2513,6 @@
       "body": "I log sleep and sessions, so this isn't a vibe check. Protocol was simple, same window most days, 5 weeks. The thing I actually noticed: I got back to normal sessions instead of negotiating around the spot. Strength numbers didn't jump. What changed was how often I canceled the hard part of the day. Stacked with mobility work, not in place of it. Would run it again next block.",
       "date": "2027-02-02",
       "topic": "return to sessions",
-      "verified": false
-    },
-    {
-      "id": "tb-500-051",
-      "peptide": "TB-500",
-      "slug": "tb-500",
-      "author": "Eden S.",
-      "location": "Provo, UT",
-      "rating": 4,
-      "title": "Stride came back",
-      "body": "Wrote this for the demo page so it isn't a wall of stars with no text. Context: normal job, normal lifting, no contest prep. The hip stopped cutting my stride short \u2014 that's the part I'd repeat. I missed a couple doses traveling and it didn't fall off a cliff, which I liked. Hard to separate from sleep, being honest. Clean labeling on the demo order.",
-      "date": "2027-02-06",
-      "topic": "hip stride",
       "verified": false
     },
     {

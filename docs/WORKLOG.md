@@ -1,5 +1,11 @@
 # Worklog
 
+## 2026-10-04 - Removed reviews mentioning demo
+
+- Removed all 59 complete review records containing "demo" in any text field, case-insensitively, and recomputed product counts. The 200 retained records remain unchanged: BPC-157 51, retatrutide 56, TB-500 46, and MOTS-c 47. Original dates remain hidden pending owner corrections.
+- Validation: lint and production build (1,474 static routes) passed. Six Chromium check groups verified all 200 retained reviews across every page, rating filters/totals, averages, absence of removed records from exported HTML and client payloads, and 390px/320px layouts without overflow or page errors. The 320px review layout was visually checked. Evidence is in ignored `data/demo-review-*` and `data/check-demo-review-removal.mjs`.
+- Local preview: http://127.0.0.1:3016/products/bpc-157#customer-reviews. Concurrent limited-size changes were preserved and excluded from this commit; no push or deployment for this package.
+
 ## 2026-10-04 - Required age and research entry confirmation
 
 - Added a sitewide entry form requiring both I am over the age of 21 and I understand that these are research compounds. Both start unchecked, and Enter site is disabled until both are checked. Confirmation is retained for the current tab session, with an in-memory fallback when storage is unavailable.

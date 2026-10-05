@@ -18,6 +18,7 @@ export default function Home() {
         const variant = getDefaultProductVariant(product);
         return {
           name: product.shortName,
+          href: `/products/${product.slug}`,
           image: <div className={styles.photo}><ProductVial product={product} featured={index === 0} sizes="(max-width: 600px) 93vw, (max-width: 760px) 83vw, (max-width: 1314px) 43vw, 562px" /></div>,
           details: <>
             <h2 className={styles.productName}>{product.shortName}</h2>

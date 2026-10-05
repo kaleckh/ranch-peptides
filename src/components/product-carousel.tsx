@@ -1,15 +1,17 @@
 "use client";
 
 import { useId, useRef, useState, type KeyboardEvent, type PointerEvent, type ReactNode } from "react";
+import Link from "next/link";
 import { ArrowIcon } from "./arrow-icon";
 import styles from "./product-carousel.module.css";
 
-type Slide = { name: string; image: ReactNode; details: ReactNode };
+type Slide = { name: string; href: string; image: ReactNode; details: ReactNode };
 
 export function ProductCarousel({ slides }: { slides: Slide[] }) {
   const id = useId();
   const [active, setActive] = useState(0);
-  const gesture = useRef<{ x: number; y: number; pointerId: number } | null>(null);
+  const gesture = useRef<{ x: number; y: number; pointerId: number; dragged: boolean } | null>(null);
+  const suppressClick = useRef(false);
   const count = slides.length;
 
   function move(direction: -1 | 1) {
@@ -28,8 +30,18 @@ export function ProductCarousel({ slides }: { slides: Slide[] }) {
 
   function startGesture(event: PointerEvent<HTMLDivElement>) {
     if (!event.isPrimary || event.button !== 0 || event.target instanceof Element && event.target.closest("button")) return;
-    gesture.current = { x: event.clientX, y: event.clientY, pointerId: event.pointerId };
-    event.currentTarget.setPointerCapture(event.pointerId);
+    suppressClick.current = false;
+    gesture.current = { x: event.clientX, y: event.clientY, pointerId: event.pointerId, dragged: false };
+  }
+
+  function dragGesture(event: PointerEvent<HTMLDivElement>) {
+    const start = gesture.current;
+    if (!start || start.pointerId !== event.pointerId || start.dragged) return;
+    const distance = event.clientX - start.x;
+    if (Math.abs(distance) > 40 && Math.abs(distance) > Math.abs(event.clientY - start.y)) {
+      start.dragged = true;
+      event.currentTarget.setPointerCapture(event.pointerId);
+    }
   }
 
   function endGesture(event: PointerEvent<HTMLDivElement>) {
@@ -37,7 +49,9 @@ export function ProductCarousel({ slides }: { slides: Slide[] }) {
     gesture.current = null;
     if (!start || start.pointerId !== event.pointerId) return;
     const distance = event.clientX - start.x;
+    suppressClick.current = start.dragged;
     if (Math.abs(distance) > 40 && Math.abs(distance) > Math.abs(event.clientY - start.y)) {
+      suppressClick.current = true;
       move(distance < 0 ? 1 : -1);
     }
   }
@@ -52,24 +66,34 @@ export function ProductCarousel({ slides }: { slides: Slide[] }) {
         aria-describedby={`${id}-hint`}
         onKeyDown={handleKeyDown}
         onPointerDown={startGesture}
+        onPointerMove={dragGesture}
         onPointerUp={endGesture}
         onPointerCancel={() => { gesture.current = null; }}
+        onClickCapture={(event) => {
+          if (!suppressClick.current) return;
+          suppressClick.current = false;
+          event.preventDefault();
+          event.stopPropagation();
+        }}
       >
         {slides.map((slide, index) => {
           let offset = (index - active + count) % count;
           if (offset > count / 2) offset -= count;
+          const visible = Math.abs(offset) <= 2;
           return (
             <div
               key={slide.name}
               className={styles.slide}
-              data-position={Math.abs(offset) <= 2 ? offset : "hidden"}
+              data-position={visible ? offset : "hidden"}
               role="group"
               aria-roledescription="slide"
               aria-label={`${slide.name}, ${index + 1} of ${count}`}
-              aria-hidden={index !== active}
-              inert={index !== active}
+              aria-hidden={!visible}
+              inert={!visible}
             >
-              {slide.image}
+              <Link className={styles.imageLink} href={slide.href} aria-label={`View ${slide.name} product`} tabIndex={index === active ? 0 : -1} draggable={false}>
+                {slide.image}
+              </Link>
             </div>
           );
         })}

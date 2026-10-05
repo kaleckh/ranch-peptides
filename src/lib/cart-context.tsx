@@ -1,34 +1,22 @@
 "use client";
 
 import { createContext, useContext, useState, useCallback, useEffect, type ReactNode } from "react";
-import { getProduct, type Product } from "./products";
-
-export interface CartItem {
-  product: Product;
-  quantity: number;
-  pricePerUnit: number;
-}
+import type { Product } from "./products";
+import { createCartItem, restoreCartItems, MAX_CART_LINES, type CartItem } from "./cart-items";
+export type { CartItem } from "./cart-items";
 
 interface CartContextType {
   items: CartItem[];
   totalItems: number;
   totalPrice: number;
   additionId: number;
-  addItem: (product: Product, quantity: number) => void;
-  removeItem: (slug: string) => void;
-  updateQuantity: (slug: string, quantity: number) => void;
+  addItem: (product: Product, quantity: number, variantId?: string) => void;
+  removeItem: (id: string) => void;
+  updateQuantity: (id: string, quantity: number) => void;
   clearCart: () => void;
 }
 
 const CartContext = createContext<CartContextType | null>(null);
-
-function getBulkPrice(product: Product, quantity: number): number {
-  const tiers = [...product.bulkPricing].sort((a, b) => b.qty - a.qty);
-  for (const tier of tiers) {
-    if (quantity >= tier.qty) return tier.price;
-  }
-  return product.price;
-}
 
 export function CartProvider({ children }: { children: ReactNode }) {
   const [items, setItems] = useState<CartItem[]>([]);
@@ -37,12 +25,7 @@ export function CartProvider({ children }: { children: ReactNode }) {
   useEffect(() => {
     let restored: CartItem[] = [];
     try {
-      const stored = JSON.parse(localStorage.getItem("snp-cart") || "[]");
-      if (Array.isArray(stored)) restored = stored.slice(0, 8).flatMap(item => {
-        const product = getProduct(item?.slug);
-        return product && Number.isInteger(item.quantity) && item.quantity >= 1 && item.quantity <= 100
-          ? [{ product, quantity: item.quantity, pricePerUnit: getBulkPrice(product, item.quantity) }] : [];
-      }).filter((item, index, all) => all.findIndex(other => other.product.slug === item.product.slug) === index);
+      restored = restoreCartItems(JSON.parse(localStorage.getItem("snp-cart") || "[]"));
     } catch { /* Storage can be unavailable; the in-memory cart still works. */ }
     // Hydrate browser storage after the static export's initial render.
     // eslint-disable-next-line react-hooks/set-state-in-effect
@@ -51,40 +34,41 @@ export function CartProvider({ children }: { children: ReactNode }) {
   }, []);
   useEffect(() => {
     if (!hydrated) return;
-    try { localStorage.setItem("snp-cart", JSON.stringify(items.map(i => ({ slug: i.product.slug, quantity: i.quantity })))); } catch { /* Keep cart usable without storage. */ }
+    try { localStorage.setItem("snp-cart", JSON.stringify(items.map(i => ({ slug: i.product.slug, variantId: i.variant.id, quantity: i.quantity })))); } catch { /* Keep cart usable without storage. */ }
   }, [items, hydrated]);
 
-  const addItem = useCallback((product: Product, quantity: number) => {
-    if (!Number.isInteger(quantity) || quantity < 1 || quantity > 100) return;
+  const addItem = useCallback((product: Product, quantity: number, variantId?: string) => {
+    const item = createCartItem(product.slug, quantity, variantId);
+    if (!item) return;
     setAdditionId((previous) => previous + 1);
     setItems((prev) => {
-      const existing = prev.find((i) => i.product.slug === product.slug);
+      const existing = prev.find((i) => i.id === item.id);
       if (existing) {
         const newQty = Math.min(100, existing.quantity + quantity);
         return prev.map((i) =>
-          i.product.slug === product.slug
-            ? { ...i, quantity: newQty, pricePerUnit: getBulkPrice(product, newQty) }
+          i.id === item.id
+            ? createCartItem(product.slug, newQty, item.variant.id)!
             : i
         );
       }
-      return [...prev, { product, quantity, pricePerUnit: getBulkPrice(product, quantity) }];
+      return prev.length < MAX_CART_LINES ? [...prev, item] : prev;
     });
   }, []);
 
-  const removeItem = useCallback((slug: string) => {
-    setItems((prev) => prev.filter((i) => i.product.slug !== slug));
+  const removeItem = useCallback((id: string) => {
+    setItems((prev) => prev.filter((i) => i.id !== id));
   }, []);
 
-  const updateQuantity = useCallback((slug: string, quantity: number) => {
+  const updateQuantity = useCallback((id: string, quantity: number) => {
     if (!Number.isInteger(quantity) || quantity > 100) return;
     if (quantity <= 0) {
-      setItems((prev) => prev.filter((i) => i.product.slug !== slug));
+      setItems((prev) => prev.filter((i) => i.id !== id));
       return;
     }
     setItems((prev) =>
       prev.map((i) =>
-        i.product.slug === slug
-          ? { ...i, quantity, pricePerUnit: getBulkPrice(i.product, quantity) }
+        i.id === id
+          ? createCartItem(i.product.slug, quantity, i.variant.id)!
           : i
       )
     );

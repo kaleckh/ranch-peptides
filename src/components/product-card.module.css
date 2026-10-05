@@ -7,6 +7,8 @@
 .identity strong { font-size:14px; font-weight:500; white-space:nowrap; }
 .category { margin-top:8px; font-size:11px; color:var(--muted); line-height:1.6; }
 .category span { margin-inline:4px; }
+.sizes { margin-top:8px; font-size:11px; line-height:1.7; }
+.pending { margin-top:4px; font-size:10px; line-height:1.6; color:var(--muted); }
 .card:hover .identity h3,.card:focus-visible .identity h3 { text-decoration:underline; text-underline-offset:5px; text-decoration-thickness:1px; }
 .card:hover .visual img { transform:scale(1.025); }
 @media(max-width:600px) { .identity h3 { font-size:24px; }.identity strong { font-size:15px; } }

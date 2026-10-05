@@ -1,5 +1,11 @@
 # Decisions
 
+## 2026-10-04: Peptaura size ranges with owner pricing
+
+The owner requested the Peptaura size range for each of the eight currently sold compounds and will provide new-size prices later. Keep the original size prices and bulk tiers, and display all 23 additional sizes as Pricing pending. Pending sizes are selectable for inspection, with quantity prices hidden and purchase disabled. Never infer prices from milligrams or import marketplace prices. Source links and the October 4 snapshot of 31 sizes are in `PRODUCT_SIZES.md`; Peptaura's multi-vendor listing does not establish owner inventory or batch coverage.
+
+Use compound-and-size identity in cart lines, storage, checkout requests, order snapshots, and payment descriptions. Omitted size IDs in old carts/requests resolve to the original catalog size; explicit invalid IDs never fall back to that price. Reject unpriced, unknown, and duplicate compound/size requests at the API with actionable client errors. Keep the 20 upcoming compound previews separate. Existing lab reports remain scoped to their tested samples rather than all sizes.
+
 ## 2026-10-04: Coming soon collection previews
 
 The owner requested more collection options using Aurum Peptide Labs' catalog. Add the 20 missing entries as Coming soon previews with search/category/availability filtering. Keep upcoming records separate from the purchasable catalog so they do not enter the cart, checkout pricing, homepage carousel, or product routes. Show neutral placeholders until owner images are supplied; leave pricing and specifications unset. Source names, overlap mapping, and launch requirements are recorded in `UPCOMING_COLLECTION.md`.

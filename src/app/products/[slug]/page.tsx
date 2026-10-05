@@ -49,14 +49,10 @@ export default async function ProductPage({ params }: Props) {
             <span className="text-xs font-black text-primary uppercase tracking-[0.18em]">{product.category}</span>
             <h1 className="text-3xl sm:text-4xl lg:text-6xl font-black uppercase tracking-tight mt-2 leading-none">{product.name}</h1>
             <p className="text-muted mt-1 text-sm sm:text-base">{product.tagline}</p>
-            <p className="mt-3 text-sm font-semibold">{product.dosage} / {product.format}</p>
 
-            <AddToCartButton product={product} />
+            <AddToCartButton key={product.slug} product={product} />
 
             <div className="flex items-center gap-2 sm:gap-3 mt-3 sm:mt-4">
-              <span className="inline-block w-2 h-2 bg-emerald-500 rounded-full" />
-              <span className="text-xs sm:text-sm text-muted font-bold">In Stock</span>
-              <span className="text-xs sm:text-sm text-muted">&middot;</span>
               <a href="#batch-report" className="text-xs sm:text-sm font-bold underline underline-offset-4">Lumira / View example lab report</a>
             </div>
             <p className="text-muted mt-3 text-xs leading-relaxed">Brand vial shown. Refer to the product details for compound and quantity.</p>
@@ -82,7 +78,7 @@ export default async function ProductPage({ params }: Props) {
           </div>
         </div>
 
-        <ProductTesting slug={product.slug} name={product.shortName} dosage={product.dosage} />
+        <ProductTesting slug={product.slug} name={product.shortName} />
 
         {/* Info cards */}
         <div className="mt-10 sm:mt-16 grid sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8">

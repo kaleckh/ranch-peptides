@@ -6,6 +6,7 @@ import { useCart } from "@/lib/cart-context";
 import { checkoutApi, isCheckoutPreview, orderStorageKey, attemptStorageKey, historyStorageKey } from "@/lib/checkout-client";
 import { checkoutRequest, type CheckoutConfig, type OrderView } from "@/lib/checkout-contract";
 import { formatPrice } from "@/lib/products";
+import { formatDosage } from "@/lib/product-variants";
 import styles from "./checkout.module.css";
 
 export function CheckoutForm() {
@@ -23,7 +24,7 @@ export function CheckoutForm() {
     try {
       const form = new FormData(event.currentTarget);
       const customer = Object.fromEntries(["name", "email", "organization", "researchPurpose", "address", "address2", "city", "state", "zip"].map(key => [key, form.get(key) || ""]));
-      const parsed = checkoutRequest.safeParse({ customer, items: items.map(i => ({ slug: i.product.slug, quantity: i.quantity })), method: form.get("method"), researchOnly: form.get("researchOnly") === "on" });
+      const parsed = checkoutRequest.safeParse({ customer, items: items.map(i => ({ slug: i.product.slug, variantId: i.variant.id, quantity: i.quantity })), method: form.get("method"), researchOnly: form.get("researchOnly") === "on" });
       if (!parsed.success) throw new Error("Check your details, research purpose (at least 20 characters), and research-use confirmation.");
       const body = JSON.stringify(parsed.data);
       const fingerprint = Array.from(new Uint8Array(await crypto.subtle.digest("SHA-256", new TextEncoder().encode(body))), byte => byte.toString(16).padStart(2, "0")).join("");
@@ -77,7 +78,7 @@ export function CheckoutForm() {
         <label className={styles.check}><input type="checkbox" name="researchOnly" required /><span>I confirm these compounds are for legitimate laboratory research only and will not be used in humans or animals.</span></label>
         <button className={styles.action} disabled={busy || !config?.enabled}>{busy ? "Submitting…" : "Submit for research review"}</button>
       </form>
-      <aside className={styles.summary}><h2>Your research bag</h2><ul>{items.map(item => <li key={item.product.slug}><span>{item.product.shortName}<br /><span className="text-muted">{item.product.dosage} × {item.quantity}</span></span><span>{formatPrice(item.pricePerUnit * item.quantity)}</span></li>)}</ul>
+      <aside className={styles.summary}><h2>Your research bag</h2><ul>{items.map(item => <li key={item.id}><span>{item.product.shortName}<br /><span className="text-muted">{formatDosage(item.variant.dosage)} × {item.quantity}</span></span><span>{formatPrice(item.pricePerUnit * item.quantity)}</span></li>)}</ul>
         <div className={styles.row}><span>Subtotal</span><span>{formatPrice(totalPrice)}</span></div>
         <div className={styles.row}><span>Shipping</span><span>{config?.enabled ? formatPrice(config.shippingCents / 100) : "Unavailable"}</span></div>
         <div className={styles.row}><strong>Total</strong><strong>{config?.enabled ? formatPrice(totalPrice + config.shippingCents / 100) : "—"}</strong></div>

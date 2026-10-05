@@ -2,6 +2,7 @@
 
 import { useCart } from "@/lib/cart-context";
 import { formatPrice } from "@/lib/products";
+import { formatDosage } from "@/lib/product-variants";
 import { useEffect, useRef } from "react";
 import Link from "next/link";
 
@@ -77,9 +78,9 @@ export function CartDrawer({ open, onClose }: CartDrawerProps) {
           ) : (
             <ul className="space-y-3 sm:space-y-4">
               {items.map((item) => (
-                <li key={item.product.slug} className="flex gap-3 sm:gap-4 p-3 metal-panel rounded-sm">
+                <li key={item.id} className="flex gap-3 sm:gap-4 p-3 metal-panel rounded-sm">
                   <div className="w-14 h-14 sm:w-16 sm:h-16 bg-card border border-primary/20 rounded-sm flex items-center justify-center flex-shrink-0">
-                    <span className="text-[10px] sm:text-xs font-bold text-primary">{item.product.dosage}</span>
+                    <span className="text-[10px] sm:text-xs font-bold text-primary">{formatDosage(item.variant.dosage)}</span>
                   </div>
 
                   <div className="flex-1 min-w-0">
@@ -88,22 +89,23 @@ export function CartDrawer({ open, onClose }: CartDrawerProps) {
 
                     <div className="flex items-center gap-2 mt-2">
                       <button
-                        aria-label={`Decrease ${item.product.shortName} quantity`}
-                        onClick={() => updateQuantity(item.product.slug, item.quantity - 1)}
+                        aria-label={`Decrease ${item.product.shortName} ${formatDosage(item.variant.dosage)} quantity`}
+                        onClick={() => updateQuantity(item.id, item.quantity - 1)}
                         className="w-6 h-6 sm:w-7 sm:h-7 rounded-md border border-border text-xs sm:text-sm flex items-center justify-center hover:bg-primary/10"
                       >
                         -
                       </button>
                       <span className="text-xs sm:text-sm font-medium w-5 sm:w-6 text-center">{item.quantity}</span>
                       <button
-                        aria-label={`Increase ${item.product.shortName} quantity`}
-                        onClick={() => updateQuantity(item.product.slug, item.quantity + 1)}
+                        aria-label={`Increase ${item.product.shortName} ${formatDosage(item.variant.dosage)} quantity`}
+                        onClick={() => updateQuantity(item.id, item.quantity + 1)}
                         className="w-6 h-6 sm:w-7 sm:h-7 rounded-md border border-border text-xs sm:text-sm flex items-center justify-center hover:bg-primary/10"
                       >
                         +
                       </button>
                       <button
-                        onClick={() => removeItem(item.product.slug)}
+                        aria-label={`Remove ${item.product.shortName} ${formatDosage(item.variant.dosage)}`}
+                        onClick={() => removeItem(item.id)}
                         className="ml-auto text-[10px] sm:text-xs text-muted hover:text-muted"
                       >
                         Remove

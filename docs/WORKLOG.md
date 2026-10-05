@@ -1,5 +1,12 @@
 # Worklog
 
+## 2026-10-04 - Peptaura size options with pending pricing
+
+- Added 31 size options across the eight currently sold compounds using Peptaura's catalog dose filters; the 23 new sizes show Pricing pending. Preserved original prices and every bulk tier. Collection cards list ranges; product selectors separate milligrams per vial from vial quantity, reset quantity after size changes, and disable ordering for pending sizes. Lab-report copy scopes results to tested samples. Sources and future pricing instructions are in `docs/PRODUCT_SIZES.md`.
+- Added compound-and-size cart identity, persisted size IDs, legacy-cart migration, checkout size labels, canonical server pricing, and size-bearing order/payment descriptions. Browser cart creation, restoration, demo checkout, and API pricing reject unpriced or invalid sizes. Independent review found new validation messages were returning HTTP 500; changed them to actionable HTTP 400 responses and covered all three cases with zero stored orders.
+- Validation: seven checkout/pricing tests, full lint, production build, and Chromium checks passed. Verified all 31 options and 23 pending states, existing quantity prices, keyboard selection, quantity reset, cart updates/removal, checkout labels/totals, persistence, legacy-cart migration, tampered storage, and 1440px/768px/390px/320px layouts without overflow or page errors. Visually inspected desktop pending, mobile priced, and collection screenshots. All ten Retatrutide dose filters also had vial listings. Evidence is in ignored `data/product-size-checks.json`, `data/check-product-sizes.mjs`, `data/sizes-*`, and `data/peptaura-reta-formats.json`.
+- Local preview: http://127.0.0.1:3016/products. No push or deployment. Concurrent research and site-entry work is preserved and excluded from this package; owner prices remain pending.
+
 ## 2026-10-04 - Persistent filled-bag highlight
 
 - Highlighted the header Bag with a warm-gold pill and charcoal count whenever it contains items. The highlight follows the persisted cart across navigation and reloads, and clears when the last item is removed or the cart is cleared. Existing add-to-cart sparks and count pulses remain; reduced motion keeps the static highlight.

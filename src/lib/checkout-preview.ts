@@ -1,5 +1,6 @@
 import { checkoutRequest, type CheckoutConfig, type OrderView } from "./checkout-contract";
-import { getProduct } from "./products";
+import { createCartItem } from "./cart-items";
+import { formatDosage } from "./product-variants";
 
 // A development-only browser simulation. It never contacts the payment API.
 export const previewBuild = process.env.NODE_ENV === "development" && process.env.NEXT_PUBLIC_CHECKOUT_PREVIEW === "true";
@@ -22,11 +23,12 @@ export async function previewRequest<T>(path: string, init: RequestInit): Promis
     const key = headers.get("Idempotency-Key") || "";
     const existing = saved.find(entry => entry.key === key && entry.token === token);
     if (existing) return existing.order as T;
+    const seen = new Set<string>();
     const items = request.items.map(item => {
-      const product = getProduct(item.slug);
-      if (!product) throw new Error("Unknown demo compound.");
-      const tier = [...product.bulkPricing].sort((a, b) => b.qty - a.qty).find(tier => item.quantity >= tier.qty);
-      return { ...item, name: product.shortName, unitCents: Math.round((tier?.price ?? product.price) * 100) };
+      const line = createCartItem(item.slug, item.quantity, item.variantId);
+      if (!line || seen.has(line.id)) throw new Error("Unknown, unpriced, or duplicate demo compound and size.");
+      seen.add(line.id);
+      return { slug: line.product.slug, variantId: line.variant.id, quantity: line.quantity, name: `${line.product.shortName} · ${formatDosage(line.variant.dosage)}`, unitCents: Math.round(line.pricePerUnit * 100) };
     });
     const subtotalCents = items.reduce((sum, item) => sum + item.unitCents * item.quantity, 0);
     result = { id: `SNP-${crypto.randomUUID()}`, status: "awaiting_review", method: request.method, items, subtotalCents, shippingCents: config.shippingCents, totalCents: subtotalCents + config.shippingCents };

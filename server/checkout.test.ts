@@ -5,6 +5,9 @@ import Stripe from "stripe";
 import { loadConfig } from "./config";
 import { newToken, openStore, priceOrder } from "./store";
 import { createCheckoutServer } from "./api";
+import { products } from "../src/lib/products";
+import { getProductVariants } from "../src/lib/product-variants";
+import { createCartItem, restoreCartItems } from "../src/lib/cart-items";
 
 const request = { items: [{ slug: "bpc-157", quantity: 3 }], method: "card", customer: { name: "Research Buyer", email: "buyer@example.com", organization: "Example Laboratory", researchPurpose: "In vitro laboratory assay development", address: "123 Example St", address2: "", city: "Salt Lake City", state: "UT", zip: "84101" }, researchOnly: true };
 const config = () => loadConfig({ CHECKOUT_ENABLED: "true", STOREFRONT_ORIGIN: "http://localhost:3015", SHIPPING_CENTS: "500", SHIPPING_STATES: "UT", SUPPORT_EMAIL: "orders@example.com", TAX_POLICY_APPROVED: "true", STRIPE_SECRET_KEY: "sk_test_example", STRIPE_WEBHOOK_SECRET: "whsec_example" });
@@ -15,6 +18,67 @@ test("server prices canonical catalog tiers and rejects invalid carts and states
   assert.throws(() => priceOrder({ ...request, items: [...request.items, ...request.items] }, 500, ["UT"]));
   assert.throws(() => priceOrder(request, 500, ["CO"]));
   assert.throws(() => priceOrder({ ...request, items: [{ slug: "bpc-157", quantity: -1 }] }, 500, ["UT"]));
+});
+
+test("every pending size is visible but rejected by cart and authoritative checkout", () => {
+  const expected: Record<string, string[]> = {
+    "bpc-157": ["2mg", "5mg", "10mg", "20mg"],
+    retatrutide: ["5mg", "10mg", "15mg", "20mg", "30mg", "40mg", "50mg", "60mg", "100mg", "120mg"],
+    "tb-500": ["2mg", "5mg", "10mg", "20mg"],
+    "mt-2": ["10mg"], "mots-c": ["10mg", "15mg", "20mg", "30mg", "40mg"],
+    pinealon: ["5mg", "10mg", "20mg"], epitalon: ["10mg", "50mg"], "ghk-cu": ["50mg", "100mg"],
+  };
+  let pendingCount = 0;
+  for (const product of products) {
+    const variants = getProductVariants(product);
+    assert.deepEqual(variants.map(variant => variant.id), expected[product.slug]);
+    for (const variant of variants) {
+      if (variant.id === product.dosage) {
+        assert.equal(variant.price, product.price);
+        for (const tier of product.bulkPricing) {
+          const priced = priceOrder({ ...request, items: [{ slug: product.slug, variantId: variant.id, quantity: tier.qty, unitCents: 1 }] }, 500, ["UT"]);
+          assert.equal(priced.items[0].variantId, variant.id);
+          assert.equal(priced.items[0].unitCents, Math.round(tier.price * 100));
+          assert.equal(createCartItem(product.slug, tier.qty, variant.id)?.pricePerUnit, tier.price);
+        }
+      } else {
+        pendingCount++;
+        assert.equal(variant.price, null);
+        assert.deepEqual(variant.bulkPricing, []);
+        assert.equal(createCartItem(product.slug, 1, variant.id), undefined);
+        assert.throws(() => priceOrder({ ...request, items: [{ slug: product.slug, variantId: variant.id, quantity: 1, price: product.price }] }, 500, ["UT"]), /Pricing is pending/);
+      }
+    }
+    assert.equal(createCartItem(product.slug, 1, "unknown"), undefined);
+    assert.throws(() => priceOrder({ ...request, items: [{ slug: product.slug, variantId: "unknown", quantity: 1 }] }, 500, ["UT"]), /Invalid compound or size/);
+    for (const invalidId of [null, "", 5]) assert.throws(() => priceOrder({ ...request, items: [{ slug: product.slug, variantId: invalidId, quantity: 1 }] }, 500, ["UT"]));
+  }
+  assert.equal(pendingCount, 23);
+});
+
+test("legacy carts and requests retain their original sizes; explicit sizes are persisted in order snapshots", () => {
+  const restored = restoreCartItems(products.map(product => ({ slug: product.slug, quantity: 3, pricePerUnit: 0.01 })));
+  assert.equal(restored.length, 8);
+  for (const item of restored) {
+    assert.equal(item.variant.id, item.product.dosage);
+    assert.equal(item.id, `${item.product.slug}:${item.product.dosage}`);
+    assert.equal(item.pricePerUnit, item.product.bulkPricing.find(tier => tier.qty === 3)?.price);
+  }
+  assert.deepEqual(restoreCartItems([
+    { slug: "bpc-157", quantity: 3 }, { slug: "bpc-157", variantId: "5mg", quantity: 1 },
+    { slug: "bpc-157", variantId: "20mg", quantity: 1, price: 39.99 },
+    { slug: "bpc-157", variantId: null, quantity: 1 }, { slug: "bpc-157", variantId: "unknown", quantity: 1 },
+    { slug: "bpc-157", quantity: 101 }, { slug: "bpc-157", quantity: 1.5 }, null,
+  ]).map(item => ({ id: item.id, quantity: item.quantity })), [{ id: "bpc-157:5mg", quantity: 3 }]);
+  const explicit = { ...request, items: [{ slug: "bpc-157", variantId: "5mg", quantity: 3 }] };
+  assert.deepEqual(priceOrder(explicit, 500, ["UT"]).items, priceOrder(request, 500, ["UT"]).items);
+  assert.throws(() => priceOrder({ ...request, items: [...request.items, ...explicit.items] }, 500, ["UT"]), /Duplicate compound and size/);
+  const store = openStore(":memory:");
+  try {
+    const order = store.create(explicit, 500, ["UT"], randomUUID(), newToken());
+    assert.equal(store.get(order.id)?.items[0].variantId, "5mg");
+    assert.equal(store.get(order.id)?.items[0].name, "BPC-157 · 5 mg");
+  } finally { store.close(); }
 });
 
 test("idempotency, private order access, review and payment invariants", () => {
@@ -66,6 +130,7 @@ test("HTTP checkout requires review; signed exact-amount webhook alone confirms 
     creations++;
     assert.equal(params.line_items?.[0].price_data?.unit_amount, 3599);
     assert.equal(params.line_items?.[0].quantity, 3);
+    assert.equal(params.line_items?.[0].price_data?.product_data?.name, "BPC-157 · 5 mg");
     assert.equal(params.allowed_payment_method_types?.[0], "card");
     assert.equal(params.adaptive_pricing?.enabled, false);
     assert.ok(params.success_url?.includes("?order=SNP-"));
@@ -79,6 +144,16 @@ test("HTTP checkout requires review; signed exact-amount webhook alone confirms 
   const token = newToken(), headers = { Origin: settings.origin, Authorization: `Bearer ${token}`, "Content-Type": "application/json", "Idempotency-Key": randomUUID() };
   try {
     assert.equal((await fetch(`${base}/orders`, { method: "POST", headers: { ...headers, Origin: "https://wrong.example" }, body: JSON.stringify(request) })).status, 403);
+    for (const invalid of [
+      { items: [{ slug: "bpc-157", variantId: "20mg", quantity: 1 }], error: "Pricing is pending for this size. Choose a priced size to order." },
+      { items: [{ slug: "bpc-157", variantId: "unknown", quantity: 1 }], error: "Invalid compound or size." },
+      { items: [...request.items, { slug: "bpc-157", variantId: "5mg", quantity: 1 }], error: "Duplicate compound and size." },
+    ]) {
+      const response = await fetch(`${base}/orders`, { method: "POST", headers: { ...headers, "Idempotency-Key": randomUUID() }, body: JSON.stringify({ ...request, items: invalid.items }) });
+      assert.equal(response.status, 400);
+      assert.deepEqual(await response.json(), { error: invalid.error });
+    }
+    assert.equal(store.db.prepare("SELECT COUNT(*) AS n FROM orders").get()?.n, 0);
     const created = await fetch(`${base}/orders`, { method: "POST", headers, body: JSON.stringify(request) });
     assert.equal(created.status, 201);
     const order = await created.json();

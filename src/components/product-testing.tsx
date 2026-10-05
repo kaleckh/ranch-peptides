@@ -2,7 +2,7 @@ import { batchReports } from "@/lib/batches";
 import { ArrowIcon } from "./arrow-icon";
 import styles from "./product-testing.module.css";
 
-export function ProductTesting({ slug, name, dosage }: { slug: string; name: string; dosage: string }) {
+export function ProductTesting({ slug, name }: { slug: string; name: string }) {
   const report = batchReports[slug];
   if (!report) return null;
   return (
@@ -27,8 +27,7 @@ export function ProductTesting({ slug, name, dosage }: { slug: string; name: str
           {report.reportLot && <p>PDF lot: {report.reportLot}</p>}
         </div>
         <div className={styles.scope}>
-          <p>This is a reference report, not verification of SALT N’ PEP inventory. Results apply only to the tested samples.</p>
-          {report.dosage !== dosage && <p className={styles.notice}>Different vial size: this report covers {report.dosage}; this product is {dosage}.</p>}
+          <p>This is a reference report, not verification of SALT N’ PEP inventory. Results apply only to the tested {report.dosage} samples and do not verify every size offered.</p>
           {report.note && <p className={styles.notice}>{report.note}</p>}
           <p>Purity alone does not establish sterility, safety, or suitability for human use.</p>
         </div>

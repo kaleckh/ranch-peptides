@@ -3,6 +3,7 @@ import { mkdirSync } from "node:fs";
 import { dirname } from "node:path";
 import { createHash, randomBytes, randomUUID } from "node:crypto";
 import { getProduct } from "../src/lib/products";
+import { formatDosage, getProductVariant, getVariantUnitPrice } from "../src/lib/product-variants";
 import { checkoutRequest, type CheckoutRequest, type OrderView } from "../src/lib/checkout-contract";
 
 export type StoredOrder = OrderView & { customer: CheckoutRequest["customer"]; sessionId?: string; createdAt: string };
@@ -12,12 +13,16 @@ export function priceOrder(input: unknown, shippingCents: number, states: string
   const request = checkoutRequest.parse(input);
   if (!states.includes(request.customer.state)) throw new Error("Shipping is unavailable for this state.");
   const seen = new Set<string>();
-  const items = request.items.map(({ slug, quantity }) => {
+  const items = request.items.map(({ slug, variantId, quantity }) => {
     const product = getProduct(slug);
-    if (!product || seen.has(slug)) throw new Error("Invalid or duplicate compound.");
-    seen.add(slug);
-    const tier = [...product.bulkPricing].sort((a, b) => b.qty - a.qty).find(t => quantity >= t.qty);
-    return { slug, name: `${product.shortName} · ${product.dosage}`, quantity, unitCents: Math.round((tier?.price ?? product.price) * 100) };
+    const variant = product && getProductVariant(product, variantId);
+    if (!product || !variant) throw new Error("Invalid compound or size.");
+    const id = `${slug}:${variant.id}`;
+    if (seen.has(id)) throw new Error("Duplicate compound and size.");
+    seen.add(id);
+    const price = getVariantUnitPrice(variant, quantity);
+    if (price === null) throw new Error("Pricing is pending for this size. Choose a priced size to order.");
+    return { slug, variantId: variant.id, name: `${product.shortName} · ${formatDosage(variant.dosage)}`, quantity, unitCents: Math.round(price * 100) };
   });
   const subtotalCents = items.reduce((sum, item) => sum + item.unitCents * item.quantity, 0);
   return { request, items, subtotalCents, shippingCents, totalCents: subtotalCents + shippingCents };

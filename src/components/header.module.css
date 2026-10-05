@@ -1,3 +1,26 @@
+.bag {
+  padding: 7px 9px;
+  border: 1px solid transparent;
+  border-radius: 999px;
+  font-weight: 600;
+}
+
+.bagFilled {
+  background: #e7dcc5;
+  border-color: #c4af86;
+  color: var(--primary);
+}
+
+.bagFilled:hover {
+  background: #ddd0b6;
+}
+
+.bagFilled .count {
+  background: var(--primary);
+  border-color: var(--primary);
+  color: #fffdf7;
+}
+
 .count {
   position: relative;
 }
@@ -21,11 +44,11 @@
 @keyframes count-pop {
   0%, 100% {
     transform: scale(1);
-    background-color: transparent;
+    box-shadow: 0 0 0 0 #a58a5500;
   }
   25% {
     transform: scale(1.16);
-    background-color: #e7dcc5;
+    box-shadow: 0 0 0 3px #a58a5530;
   }
 }
 

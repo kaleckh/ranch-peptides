@@ -1,5 +1,11 @@
 # Worklog
 
+## 2026-10-04 - Persistent filled-bag highlight
+
+- Highlighted the header Bag with a warm-gold pill and charcoal count whenever it contains items. The highlight follows the persisted cart across navigation and reloads, and clears when the last item is removed or the cart is cleared. Existing add-to-cart sparks and count pulses remain; reduced motion keeps the static highlight.
+- Validation: full lint, production build (26 static routes), and Chromium checks at 1440px, 768px, 390px, and 320px passed. Verified empty/full states, navigation, reload, removal, clearing, keyboard focus, reduced motion, no layout shift or overflow, and repeat-add spark behavior. Screenshots and checks are in ignored `data/cart-highlight-*`, `data/check-cart-highlight.mjs`, and `data/check-cart-spark.mjs`.
+- Local preview: http://127.0.0.1:3016/products/bpc-157. No push or deployment.
+
 ## 2026-10-04 - Coming soon collection additions
 
 - Added 20 missing names from the owner's Aurum catalog reference, bringing the collection to eight current products and 20 Coming soon previews. Each preview has a charcoal banner and neutral image placeholder; prices, specifications, launch dates, links, and purchase controls are omitted. Added availability filtering alongside search and categories. Existing products remain first; upcoming data is excluded from cart/checkout lookup and the homepage carousel. Source names and overlap/naming decisions are in `docs/UPCOMING_COLLECTION.md`.

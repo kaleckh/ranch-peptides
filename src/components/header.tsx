@@ -21,7 +21,7 @@ export function Header() {
       <Link href="/" className="wordmark" aria-label="SALT N’ PEP home">SALT <span>N’</span> PEP</Link>
       <nav className="desktop-nav" aria-label="Main navigation">{navigation.map(([href, label]) => <Link key={href} href={href} aria-current={pathname.startsWith(href) ? "page" : undefined}>{label}</Link>)}</nav>
       <div className="header-actions">
-        <button className="bag-button" onClick={() => { setMobileMenuOpen(false); setCartOpen(true); }} aria-label={`Open cart, ${totalItems} items`}>
+        <button className={`bag-button ${styles.bag} ${totalItems > 0 ? styles.bagFilled : ""}`} onClick={() => { setMobileMenuOpen(false); setCartOpen(true); }} aria-label={`Open cart, ${totalItems} items`}>
           Bag
           <span key={additionId} className={`bag-count ${styles.count} ${additionId > 0 ? styles.countAdded : ""}`}>
             {totalItems}

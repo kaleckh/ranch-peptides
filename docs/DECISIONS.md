@@ -1,5 +1,9 @@
 # Decisions
 
+## 2026-10-04: Coming soon collection previews
+
+The owner requested more collection options using Aurum Peptide Labs' catalog. Add the 20 missing entries as Coming soon previews with search/category/availability filtering. Keep upcoming records separate from the purchasable catalog so they do not enter the cart, checkout pricing, homepage carousel, or product routes. Show neutral placeholders until owner images are supplied; leave pricing and specifications unset. Source names, overlap mapping, and launch requirements are recorded in `UPCOMING_COLLECTION.md`.
+
 ## 2026-06-16: Dark Industrial Visual System
 
 The site moved from a light clinical theme to a dark industrial-luxury direction. The design uses graphite/black surfaces, brass primary accents, condensed uppercase typography via Oswald, dark panel utilities, and desaturated product imagery.

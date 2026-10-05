@@ -1,5 +1,11 @@
 # Worklog
 
+## 2026-10-04 - Coming soon collection additions
+
+- Added 20 missing names from the owner's Aurum catalog reference, bringing the collection to eight current products and 20 Coming soon previews. Each preview has a charcoal banner and neutral image placeholder; prices, specifications, launch dates, links, and purchase controls are omitted. Added availability filtering alongside search and categories. Existing products remain first; upcoming data is excluded from cart/checkout lookup and the homepage carousel. Source names and overlap/naming decisions are in `docs/UPCOMING_COLLECTION.md`.
+- Validation: full lint, production build (26 static routes), and Chromium checks at 1440px, 768px, 390px, and 320px passed. Verified all 20 names/banners, DAC variants, search/alias/category/availability filters, empty/reset states, keyboard navigation, current product links/images, unchanged homepage, no overflow or page errors, and exclusion from purchasable lookup. Screenshots and checks are in ignored `data/upcoming-collection-*` and `data/check-upcoming-collection.mjs`.
+- Local preview: http://127.0.0.1:3016/products. Committed locally; no push or deployment. Concurrent research work preserved and excluded from this package.
+
 ## 2026-10-04 - Header cart spark feedback
 
 - Added a brief warm-gold spark and count pulse to the top-right Bag after each Add to Cart click. A session-only addition counter replays the animation for repeated clicks; cart restoration, quantity edits, removal, and clearing do not trigger it. Decorative sparks ignore pointer events and assistive technology; reduced motion disables the animation.

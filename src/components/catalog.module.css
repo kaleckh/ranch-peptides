@@ -1,0 +1,6 @@
+.filter { min-width:0; max-width:100%; }
+.filter select { max-width:100%; padding:10px 22px 10px 10px; }
+@media(max-width:760px) {
+  .filter { flex:1 1 45%; }
+  .filter select { width:100%; }
+}

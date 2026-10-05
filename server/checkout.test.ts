@@ -6,7 +6,7 @@ import { loadConfig } from "./config";
 import { newToken, openStore, priceOrder } from "./store";
 import { createCheckoutServer } from "./api";
 import { products } from "../src/lib/products";
-import { getDefaultProductVariant, getProductVariants } from "../src/lib/product-variants";
+import { getAvailableProductVariants, getDefaultProductVariant, getProductVariants } from "../src/lib/product-variants";
 import { createCartItem, restoreCartItems } from "../src/lib/cart-items";
 
 const request = { items: [{ slug: "mt-2", quantity: 3 }], method: "card", customer: { name: "Research Buyer", email: "buyer@example.com", organization: "Example Laboratory", researchPurpose: "In vitro laboratory assay development", address: "123 Example St", address2: "", city: "Salt Lake City", state: "UT", zip: "84101" }, researchOnly: true };
@@ -20,7 +20,7 @@ test("server prices canonical catalog tiers and rejects invalid carts and states
   assert.throws(() => priceOrder({ ...request, items: [{ slug: "bpc-157", quantity: -1 }] }, 500, ["UT"]));
 });
 
-test("only owner-selected sizes are in stock; sold-out and pending sizes cannot be ordered", () => {
+test("only test-run sizes are offered; hidden and pending sizes cannot be ordered", () => {
   const expected: Record<string, string[]> = {
     "bpc-157": ["2mg", "5mg", "10mg", "20mg"],
     retatrutide: ["5mg", "10mg", "15mg", "20mg", "30mg", "40mg", "50mg", "60mg", "100mg", "120mg"],
@@ -28,14 +28,15 @@ test("only owner-selected sizes are in stock; sold-out and pending sizes cannot 
     "mt-2": ["10mg"], "mots-c": ["10mg", "15mg", "20mg", "30mg", "40mg"],
     pinealon: ["5mg", "10mg", "20mg"], epitalon: ["10mg", "50mg"], "ghk-cu": ["50mg", "100mg"],
   };
-  const stocked: Record<string, string> = { "bpc-157": "10mg", retatrutide: "30mg", "tb-500": "10mg", "mots-c": "20mg" };
+  const stocked: Record<string, string> = { "bpc-157": "10mg", retatrutide: "30mg", "tb-500": "10mg", "mots-c": "20mg", "mt-2": "10mg", pinealon: "10mg", epitalon: "10mg", "ghk-cu": "50mg" };
   let pendingCount = 0, soldOutCount = 0;
   for (const product of products) {
     const variants = getProductVariants(product);
     assert.deepEqual(variants.map(variant => variant.id), expected[product.slug]);
-    assert.equal(getDefaultProductVariant(product).id, stocked[product.slug] ?? product.dosage);
+    assert.equal(getDefaultProductVariant(product).id, stocked[product.slug]);
+    assert.deepEqual(getAvailableProductVariants(product).map(variant => variant.id), [stocked[product.slug]]);
     for (const variant of variants) {
-      assert.equal(variant.inStock, !stocked[product.slug] || stocked[product.slug] === variant.id);
+      assert.equal(variant.inStock, stocked[product.slug] === variant.id);
       if (!variant.inStock) {
         soldOutCount++;
         assert.equal(createCartItem(product.slug, 1, variant.id), undefined);
@@ -61,8 +62,8 @@ test("only owner-selected sizes are in stock; sold-out and pending sizes cannot 
     assert.throws(() => priceOrder({ ...request, items: [{ slug: product.slug, variantId: "unknown", quantity: 1 }] }, 500, ["UT"]), /Invalid compound or size/);
     for (const invalidId of [null, "", 5]) assert.throws(() => priceOrder({ ...request, items: [{ slug: product.slug, variantId: invalidId, quantity: 1 }] }, 500, ["UT"]));
   }
-  assert.equal(soldOutCount, 19);
-  assert.equal(pendingCount, 8);
+  assert.equal(soldOutCount, 23);
+  assert.equal(pendingCount, 4);
 });
 
 test("legacy sold-out lines are removed without size substitution; available order snapshots retain size", () => {
@@ -163,7 +164,7 @@ test("HTTP checkout requires review; signed exact-amount webhook alone confirms 
       { items: [{ slug: "bpc-157", variantId: "5mg", quantity: 1 }], error: "This size is sold out. Choose an available size to order." },
       { items: [{ slug: "bpc-157", quantity: 1 }], error: "This size is sold out. Choose an available size to order." },
       { items: [{ slug: "bpc-157", variantId: "10mg", quantity: 1 }], error: "Pricing is pending for this size. Choose a priced size to order." },
-      { items: [{ slug: "pinealon", variantId: "5mg", quantity: 1 }], error: "Pricing is pending for this size. Choose a priced size to order." },
+      { items: [{ slug: "pinealon", variantId: "5mg", quantity: 1 }], error: "This size is sold out. Choose an available size to order." },
       { items: [{ slug: "bpc-157", variantId: "unknown", quantity: 1 }], error: "Invalid compound or size." },
       { items: [...request.items, { slug: "mt-2", variantId: "10mg", quantity: 1 }], error: "Duplicate compound and size." },
     ]) {

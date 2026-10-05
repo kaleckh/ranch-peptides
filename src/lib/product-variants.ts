@@ -22,8 +22,8 @@ const sizesBySlug: Record<string, readonly number[]> = {
   "ghk-cu": [50, 100],
 };
 
-// Owner-confirmed storefront stock. Unlisted compounds retain their existing
-// availability; size listings alone do not approve pricing or batch coverage.
+// Test-run stock: owner-selected sizes for these compounds, otherwise the
+// original catalog size. Supplier size listings do not establish owner stock.
 const availableSizeBySlug: Record<string, string> = {
   "bpc-157": "10mg",
   retatrutide: "30mg",
@@ -36,11 +36,15 @@ export function getProductVariants(product: Product): ProductVariant[] {
   return dosages.map(dosage => ({
     id: dosage,
     dosage,
-    inStock: !availableSizeBySlug[product.slug] || dosage === availableSizeBySlug[product.slug],
+    inStock: dosage === (availableSizeBySlug[product.slug] ?? product.dosage),
     // Only the owner's existing size has approved storefront pricing.
     price: dosage === product.dosage ? product.price : null,
     bulkPricing: dosage === product.dosage ? product.bulkPricing : [],
   }));
+}
+
+export function getAvailableProductVariants(product: Product): ProductVariant[] {
+  return getProductVariants(product).filter(variant => variant.inStock);
 }
 
 export function getDefaultProductVariant(product: Product): ProductVariant {

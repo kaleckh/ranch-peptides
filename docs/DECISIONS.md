@@ -1,5 +1,11 @@
 # Decisions
 
+## 2026-10-04: Current sizes only for the test run
+
+The owner wants the test-run catalog to show only sizes currently carried, removing the extra sizes and empty-stock appearance. Show one size per compound: BPC-157 10 mg, retatrutide 30 mg, TB-500 10 mg, MOTS-c 20 mg, and the original catalog sizes for MT-2 (10 mg), Pinealon (10 mg), Epitalon (10 mg), and GHK-Cu (50 mg). This supersedes the earlier instruction to display the supplier's entire range and sold-out size lists. The separate Coming soon compound previews remain as requested.
+
+Keep the 31 supplier reference definitions internally; offer only the eight current sizes and mark all 23 other sizes unavailable. Collection cards and product selectors hide those extras. Cart restoration and authoritative pricing continue to reject them without substituting a size. Keep original prices/bulk tiers for the four unchanged compounds; the four owner-selected sizes remain Pricing pending until prices are approved.
+
 ## 2026-10-04: Owner-selected stock sizes
 
 The owner sells only BPC-157 10 mg, retatrutide 30 mg, TB-500 10 mg, and MOTS-c 20 mg among those four compounds' listed sizes. Mark their other 19 sizes Sold out. Keep stock separate from pricing: the previous instruction to await new-size prices still applies, and the four available sizes remain Pricing pending until the owner supplies prices or explicitly approves transferring existing prices and bulk tiers. The other four compounds retain existing availability/pricing. This supersedes the earlier pending-only status of these 19 sizes.

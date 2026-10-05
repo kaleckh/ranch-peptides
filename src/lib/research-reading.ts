@@ -1,4 +1,5 @@
 import type { ResearchEntry } from "./research";
+import { additionalReadingDetails } from "./research-reading-additions";
 
 type EvidenceContext = Pick<ResearchEntry, "evidence" | "humanObservation" | "studyType">;
 
@@ -33,6 +34,7 @@ export interface StudyReadingDetails {
 // Paraphrased from the linked primary-source abstracts, or PMC full text.
 // Verified October 4, 2026. Do not infer missing sample sizes or follow-up.
 export const studyReadingDetails: Record<string, StudyReadingDetails> = {
+  ...additionalReadingDetails,
   "PMID 21030672": {
     title: "The promoting effect of pentadecapeptide BPC 157 on tendon healing involves tendon outgrowth, cell survival, and cell migration.",
     design: "Rat Achilles tendon explants and cultured tendon fibroblasts were studied with and without BPC-157. Fibroblasts are cells that help produce connective tissue.",

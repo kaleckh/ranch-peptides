@@ -3,6 +3,9 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { researchEntries, researchSlugs, evidenceLabel } from "@/lib/research";
 import { evidenceContext, studyReadingDetails } from "@/lib/research-reading";
+import { catalogCheckedLabel, catalogThroughLabel, researchCatalogs, pubmedId } from "@/lib/research-catalog";
+import { publicationNotice, publicationSearch, studyAnchor } from "@/lib/research-catalog-format";
+import ResearchBrowser from "../research-browser";
 import { ArrowIcon } from "@/components/arrow-icon";
 import styles from "../research.module.css";
 
@@ -18,7 +21,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   if (!entry) return {};
   return {
     title: `${entry.compound} Studies | SALT N’ PEP`,
-    description: `Explore selected ${entry.compound} research, including study models, findings, limitations, and primary sources.`,
+    description: `Browse ${entry.compound} publications indexed in PubMed and detailed explanations of selected studies, including methods, findings, and limitations.`,
   };
 }
 
@@ -27,6 +30,12 @@ export default async function CompoundResearchPage({ params }: Props) {
   const papers = researchEntries.filter((entry) => entry.slug === slug).sort((a, b) => Number(b.year) - Number(a.year));
   if (!papers.length) notFound();
   const compound = papers[0].compound;
+  const catalog = researchCatalogs[slug];
+  const indexed = new Map(catalog.papers.map((paper) => [paper.id, paper]));
+  const notes = papers.map((entry) => {
+    const publication = indexed.get(pubmedId(entry.sourceId))!;
+    return { sourceId: entry.sourceId, id: publication.id, year: entry.year, category: publication.category, search: `${publicationSearch(publication)} ${entry.focus} ${entry.model}`.toLowerCase() };
+  });
 
   return (
     <div className={`${styles.page} ${styles.detailPage}`}>
@@ -35,14 +44,16 @@ export default async function CompoundResearchPage({ params }: Props) {
       </nav>
       <header className={styles.header}>
         <h1>{compound} studies</h1>
-        <p>{papers.length} selected primary papers. A starting point for reading, not a complete assessment of the evidence.</p>
+        <p>{catalog.count.toLocaleString()} indexed publications · {papers.length} studies with detailed explanations.</p>
       </header>
-      <p className={styles.readingHint}>Start with the main finding on each card. Open it to understand the evidence, study details, and limitations, then follow the original source. Newest papers first.</p>
-      <section className={styles.detailStudies} aria-label={`${compound} selected studies`}>
+      {slug === "tb-500" && <p className={styles.readingHint}>This collection includes related thymosin beta4 research. A paper on the parent peptide does not establish that a TB-500 fragment or a product sold under that name has the same effects.</p>}
+      <ResearchBrowser compound={compound} area={papers[0].area} papers={catalog.papers} notes={notes}>
         {papers.map((entry) => {
           const reading = studyReadingDetails[entry.sourceId];
+          const publication = indexed.get(pubmedId(entry.sourceId))!;
+          const notice = publicationNotice(publication);
           return (
-            <details key={entry.sourceId} id={`study-${entry.sourceId.replace(/\W+/g, "-").toLowerCase()}`} className={styles.detailStudy}>
+            <details key={entry.sourceId} id={studyAnchor(entry.sourceId)} className={styles.detailStudy}>
               <summary className={styles.studySummary}>
                 <span className={styles.cardTop}><span className={entry.evidence === "human" ? styles.humanBadge : styles.badge}>{evidenceLabel(entry)}</span><span className={styles.year}>{entry.year}</span></span>
                 <span className={styles.topicTitle} role="heading" aria-level={2}>{entry.focus}</span>
@@ -51,6 +62,7 @@ export default async function CompoundResearchPage({ params }: Props) {
                 <span className={styles.readAction}><span className={styles.closedAction}>Explore study details</span><span className={styles.openAction}>Close study details</span><span aria-hidden="true" className={styles.expandIcon}>+</span></span>
               </summary>
               <div className={styles.studyBody}>
+                {notice && <p className={styles.notice}>{notice}</p>}
                 <dl className={styles.studyFacts}>
                   <div><dt>What was studied</dt><dd>{entry.model}</dd></div>
                   <div><dt>How to read this evidence</dt><dd>{evidenceContext(entry)}</dd></div>
@@ -65,7 +77,7 @@ export default async function CompoundResearchPage({ params }: Props) {
                 </div>
                 <div className={styles.publication}>
                   <h3>Original publication</h3>
-                  <p className={styles.paperTitle}>{entry.title ?? reading?.title ?? entry.focus}</p>
+                  <p className={styles.paperTitle}>{entry.title ?? reading?.title ?? publication.title}</p>
                   <p className={styles.publicationMeta}>{entry.authors} · <cite>{entry.journal}</cite> · {entry.year}</p>
                   <a className={styles.sourceLink} href={entry.source}>Read the original study <ArrowIcon /><small>{entry.sourceId} · {entry.sourceId.startsWith("PMCID") ? "PubMed Central" : "PubMed"}</small></a>
                 </div>
@@ -73,9 +85,10 @@ export default async function CompoundResearchPage({ params }: Props) {
             </details>
           );
         })}
-      </section>
+      </ResearchBrowser>
       <aside className={styles.boundary} aria-label="Research scope">
-        <p>Evidence labels describe the selected paper, not all research on {compound}. Trial analyses can draw on the same participants; paper counts are not counts of independent trials. Read the original publication for full methods, adverse events, and limitations. Coverage is not comprehensive; reading notes expanded October 4, 2026, with citations checked September 21–October 4, 2026.</p>
+        <p>The publication index contains every result from the PubMed name search collected {catalogCheckedLabel}, with publication dates through {catalogThroughLabel}. Years follow journal issues; online-first papers may have a later issue year. It includes reviews and notices and does not cover other databases or unindexed literature. The explained studies are selected papers; evidence labels describe each paper, not all research on {compound}. Trial analyses may reuse participants, so publication counts are not independent trial counts. Read the source and any correction or retraction notice for full methods, adverse events, and limitations.</p>
+        <details className={styles.searchScope}><summary>PubMed search used for this collection</summary><p>{catalog.query}</p><a href={`https://pubmed.ncbi.nlm.nih.gov/?term=${encodeURIComponent(catalog.query)}`}>Run this search on PubMed</a></details>
         <p>Educational information only; no dosing or treatment guidance. Products are for laboratory research and not for human consumption. Published findings do not verify the identity, quality, or safety of products sold here.</p>
       </aside>
       <Link className={styles.backLink} href="/science">Back to research library</Link>

@@ -2,10 +2,11 @@ import type { Metadata } from "next";
 import ResearchLibrary from "./research-library";
 import styles from "./research.module.css";
 import { researchIndex } from "@/lib/research";
+import { catalogCheckedLabel, catalogThroughLabel, indexedPublicationCount, researchCatalogGroups } from "@/lib/research-catalog";
 
 export const metadata: Metadata = {
   title: "Research Library | SALT N’ PEP",
-  description: "Explore a curated peptide research library with primary-source links, study models, and clear limitations for eight compounds.",
+  description: "Search peptide publications indexed in PubMed and read detailed study explanations, methods, findings, and limitations across eight compounds.",
 };
 
 export default function SciencePage() {
@@ -13,10 +14,11 @@ export default function SciencePage() {
     <div className={styles.page}>
       <header className={styles.header}>
         <h1>Research library</h1>
-        <p>{researchIndex.length} selected primary papers across eight compounds. Study models, original sources, and limitations in one place.</p>
+        <p>{indexedPublicationCount.toLocaleString()} indexed publications across eight compound collections, with detailed explanations for {researchIndex.length} selected studies.</p>
       </header>
 
-      <ResearchLibrary entries={researchIndex} />
+      <p className={styles.readingHint}>Open a compound to browse its full PubMed search results or read the explained studies. The broader index includes reviews, case reports, and publication notices alongside research papers.</p>
+      <ResearchLibrary entries={researchIndex} groups={researchCatalogGroups} />
 
       <details className={styles.guide}>
         <summary>How to read the evidence</summary>
@@ -38,7 +40,7 @@ export default function SciencePage() {
       </details>
 
       <aside className={styles.boundary} aria-label="Research library scope">
-        <p>This is a curated starting point, not a systematic review. Paper counts include secondary analyses of existing trials and do not represent independent trial counts. Read each original source for its methods, adverse events, and limitations. Expanded October 4, 2026; citations checked September 21–October 4, 2026.</p>
+        <p>The index contains all results returned by the compound-name and alias searches in PubMed, collected {catalogCheckedLabel}, for publication dates through {catalogThroughLabel}. It does not cover every database or every paper that could discuss a compound. Publications can appear in more than one collection; counts are not independent trial counts. Publication types follow PubMed indexing and do not establish study quality. The {researchIndex.length} explained studies are a selected reading list, not a systematic review.</p>
         <p>Educational information only; no dosing or treatment guidance. SALT N’ PEP products are intended for laboratory research and are not for human consumption. Published findings do not verify the identity, quality, or safety of products sold here.</p>
       </aside>
     </div>

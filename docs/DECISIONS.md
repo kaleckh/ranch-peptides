@@ -52,3 +52,9 @@ The owner rejected the narrow bibliography rows. Compound pages use a wider two-
 ## 2026-10-04: Product carousel as the homepage hero
 
 The owner wants to browse the peptides in the main homepage image, rather than a carousel below the hero, and supplied https://aurumpeptidelabs.com/ as a composition reference. Feature all eight compounds in a centered hero carousel with smaller neighboring product images, manual navigation, and a matching product link. Remove the lower repeated peptide section at the owner's request. Preserve SALT N’ PEP's ivory/charcoal identity, illustrative-photo labeling, and research-only positioning.
+
+## 2026-10-04: Complete PubMed search index and explained studies
+
+The owner requested both more papers beyond the 13–20 selected per compound and detailed explanations. Preserve the selected reading list and add a full date-bounded PubMed name/alias search index, with every result reachable through search, filters, sorting, and pagination. The current snapshot has 2,606 compound/publication matches (2,575 unique PMIDs); all 124 selected papers receive source-verified design, measurements, and results context. Distinguish indexed publications from editorial explanations, and never equate publication counts with independent trials or universal literature coverage.
+
+Publish bibliographic/indexing metadata and original-source links, keeping downloaded abstracts in ignored local data. Disclose exact queries, cutoff, and collection date. Refresh all records so newly indexed corrections/retractions are included; fail instead of silently publishing incomplete searches. Retraction/correction notices take category priority, while mixed letter/case-report and letter/review records retain their substantive filter category. Preserve static export, native accessible disclosures, the current ivory design, and the parent thymosin beta4/TB-500 distinction.

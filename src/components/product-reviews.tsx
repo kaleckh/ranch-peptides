@@ -1,18 +1,31 @@
 import { researchEntries } from "@/lib/research";
+import { getCustomerReviews } from "@/lib/customer-reviews";
 import Link from "next/link";
 import styles from "./product-reviews.module.css";
 import { ArrowIcon } from "./arrow-icon";
+import { CustomerReviewList } from "./customer-review-list";
 
 export function ProductReviews({ slug, name }: { slug: string; name: string }) {
   const research = researchEntries.find((entry) => entry.slug === slug);
+  const reviews = getCustomerReviews(slug);
+  const average = reviews.length ? (reviews.reduce((total, review) => total + review.rating, 0) / reviews.length).toFixed(1) : null;
   return <div className={styles.reviews}>
     <nav className={styles.jumpLinks} aria-label={`${name} reviews`}>
-      <a href="#customer-reviews">Customer reviews <span>0</span></a>
+      <a href="#customer-reviews">Customer reviews <span>{reviews.length}</span></a>
       <a href="#scientific-review">Scientific review <ArrowIcon direction="down" /></a>
     </nav>
     <section id="customer-reviews" className={styles.customers} aria-labelledby="customer-reviews-heading">
-      <div><p className={styles.eyebrow}>From the community</p><h2 id="customer-reviews-heading">Customer reviews.</h2><p className={styles.intro}>Feedback on {name}.</p></div>
-      <div className={styles.empty}><span className={styles.count}>0 <small>reviews</small></span><h3>No customer reviews yet.</h3><p>There are no published customer reviews for {name}.</p></div>
+      <div className={styles.customerHeading}>
+        <div><p className={styles.eyebrow}>From the community</p><h2 id="customer-reviews-heading">Customer reviews.</h2><p className={styles.intro}>Feedback on {name}.</p></div>
+        {average ? <div className={styles.ratingSummary}>
+          <p className={styles.count}>{average}<small>out of 5</small></p>
+          <p>{reviews.length} customer reviews</p>
+        </div> : <div className={styles.empty}><span className={styles.count}>0 <small>reviews</small></span><h3>No customer reviews yet.</h3><p>There are no published customer reviews for {name}.</p></div>}
+      </div>
+      {reviews.length > 0 && <>
+        <p className={styles.reviewNote}>Customer accounts are anecdotal and do not establish safety or efficacy. Products are for laboratory research use only.</p>
+        <CustomerReviewList key={slug} reviews={reviews} name={name} />
+      </>}
     </section>
     {research && <section id="scientific-review" className={styles.science} aria-labelledby="scientific-review-heading">
       <div className={styles.scienceHeading}><p className={styles.eyebrow}>A closer reading</p><h2 id="scientific-review-heading">The scientific review.</h2><p>One selected primary paper, with its findings and limits. A starting point for reading, not a complete assessment of the evidence.</p></div>

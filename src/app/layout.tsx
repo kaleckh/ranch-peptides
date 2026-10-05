@@ -3,6 +3,7 @@ import "./globals.css";
 import { Header } from "@/components/header";
 import { Footer } from "@/components/footer";
 import { CartProvider } from "@/lib/cart-context";
+import { SiteEntryGate } from "@/components/site-entry-gate";
 
 
 export const metadata: Metadata = {
@@ -24,9 +25,11 @@ export default function RootLayout({
     >
       <body className="min-h-full flex flex-col font-sans text-foreground">
         <CartProvider>
-          <Header />
-          <main id="main-content" className="flex-1">{children}</main>
-          <Footer />
+          <SiteEntryGate>
+            <Header />
+            <main id="main-content" tabIndex={-1} className="flex-1">{children}</main>
+            <Footer />
+          </SiteEntryGate>
         </CartProvider>
       </body>
     </html>

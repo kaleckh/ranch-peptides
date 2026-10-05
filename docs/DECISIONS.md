@@ -1,5 +1,9 @@
 # Decisions
 
+## 2026-10-04: Required entry confirmation
+
+The owner requested entry confirmation of being over 21 and understanding that these are research compounds. Require both unchecked statements before any storefront route becomes interactive. Remember acceptance for the current tab session, including navigation and reloads; ask again in a fresh session. When browser storage is unavailable, keep acceptance in memory during app navigation. Preserve static export by rendering the form and inert storefront in initial HTML, then using a native modal for keyboard and background interaction control. See `SITE_ENTRY.md` for behavior and verification.
+
 ## 2026-10-04: Peptaura size ranges with owner pricing
 
 The owner requested the Peptaura size range for each of the eight currently sold compounds and will provide new-size prices later. Keep the original size prices and bulk tiers, and display all 23 additional sizes as Pricing pending. Pending sizes are selectable for inspection, with quantity prices hidden and purchase disabled. Never infer prices from milligrams or import marketplace prices. Source links and the October 4 snapshot of 31 sizes are in `PRODUCT_SIZES.md`; Peptaura's multi-vendor listing does not establish owner inventory or batch coverage.

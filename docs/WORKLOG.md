@@ -1,5 +1,12 @@
 # Worklog
 
+## 2026-10-04 - Required age and research entry confirmation
+
+- Added a sitewide entry form requiring both I am over the age of 21 and I understand that these are research compounds. Both start unchecked, and Enter site is disabled until both are checked. Confirmation is retained for the current tab session, with an in-memory fallback when storage is unavailable.
+- Wrapped the shared storefront in `SiteEntryGate`, including direct route visits and pre-hydration static HTML. The native modal prevents Escape/backdrop dismissal, blocks background interaction and scrolling, starts focus on the first checkbox, and restores focus to main content after entry. Matched the ivory/charcoal palette and supported narrow and short screens.
+- Validation: full lint, production build, scoped whitespace checks, and Chromium checks passed at 1440×900, 768×900, 390×844, 320×568, and 667×375. Verified required states, keyboard focus, dismissal prevention, viewport fit, persistence/reload, fresh direct routes, unavailable storage, reduced motion, static HTML, and cart controls. Desktop, small-phone, and short-screen layouts were visually inspected. Missing Next.js segment-prefetch files produced separately recorded local-preview 404s; navigation and reload checks passed. Evidence is in ignored `data/site-entry-gate-*` and `data/check-site-entry-gate.mjs`.
+- Local preview: http://127.0.0.1:3016/. Policy and implementation notes are in `docs/SITE_ENTRY.md`. Concurrent size and research work was preserved; no push or deployment.
+
 ## 2026-10-04 - Peptaura size options with pending pricing
 
 - Added 31 size options across the eight currently sold compounds using Peptaura's catalog dose filters; the 23 new sizes show Pricing pending. Preserved original prices and every bulk tier. Collection cards list ranges; product selectors separate milligrams per vial from vial quantity, reset quantity after size changes, and disable ordering for pending sizes. Lab-report copy scopes results to tested samples. Sources and future pricing instructions are in `docs/PRODUCT_SIZES.md`.

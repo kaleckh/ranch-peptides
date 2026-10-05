@@ -1,0 +1,55 @@
+.count {
+  position: relative;
+}
+
+.countAdded {
+  animation: count-pop 700ms ease-out;
+}
+
+.sparks {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 48px;
+  height: 48px;
+  color: #a58a55;
+  pointer-events: none;
+  opacity: 0;
+  animation: spark-burst 700ms ease-out both;
+}
+
+@keyframes count-pop {
+  0%, 100% {
+    transform: scale(1);
+    background-color: transparent;
+  }
+  25% {
+    transform: scale(1.16);
+    background-color: #e7dcc5;
+  }
+}
+
+@keyframes spark-burst {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(.45) rotate(-12deg);
+  }
+  25% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1) rotate(0);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(1.15) rotate(8deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .countAdded {
+    animation: none;
+  }
+
+  .sparks {
+    display: none;
+  }
+}

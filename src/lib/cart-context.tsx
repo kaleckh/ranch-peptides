@@ -13,6 +13,7 @@ interface CartContextType {
   items: CartItem[];
   totalItems: number;
   totalPrice: number;
+  additionId: number;
   addItem: (product: Product, quantity: number) => void;
   removeItem: (slug: string) => void;
   updateQuantity: (slug: string, quantity: number) => void;
@@ -31,6 +32,7 @@ function getBulkPrice(product: Product, quantity: number): number {
 
 export function CartProvider({ children }: { children: ReactNode }) {
   const [items, setItems] = useState<CartItem[]>([]);
+  const [additionId, setAdditionId] = useState(0);
   const [hydrated, setHydrated] = useState(false);
   useEffect(() => {
     let restored: CartItem[] = [];
@@ -54,6 +56,7 @@ export function CartProvider({ children }: { children: ReactNode }) {
 
   const addItem = useCallback((product: Product, quantity: number) => {
     if (!Number.isInteger(quantity) || quantity < 1 || quantity > 100) return;
+    setAdditionId((previous) => previous + 1);
     setItems((prev) => {
       const existing = prev.find((i) => i.product.slug === product.slug);
       if (existing) {
@@ -93,7 +96,7 @@ export function CartProvider({ children }: { children: ReactNode }) {
   const totalPrice = items.reduce((sum, i) => sum + i.pricePerUnit * i.quantity, 0);
 
   return (
-    <CartContext.Provider value={{ items, totalItems, totalPrice, addItem, removeItem, updateQuantity, clearCart }}>
+    <CartContext.Provider value={{ items, totalItems, totalPrice, additionId, addItem, removeItem, updateQuantity, clearCart }}>
       {children}
     </CartContext.Provider>
   );

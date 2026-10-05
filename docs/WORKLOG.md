@@ -1,5 +1,17 @@
 # Worklog
 
+## 2026-10-04 - Header cart spark feedback
+
+- Added a brief warm-gold spark and count pulse to the top-right Bag after each Add to Cart click. A session-only addition counter replays the animation for repeated clicks; cart restoration, quantity edits, removal, and clearing do not trigger it. Decorative sparks ignore pointer events and assistive technology; reduced motion disables the animation.
+- Validation: full lint, production build (26 static routes), and Chromium checks at 1440px, 768px, 390px, and 320px passed. Verified quick repeat clicks, bundle quantities, animation completion, no horizontal overflow or page errors, drawer focus/Escape return, persistence without false feedback, and reduced motion. Screenshots and checks are in ignored `data/cart-spark-*` and `data/check-cart-spark.mjs`.
+- Local preview: http://127.0.0.1:3016/products/bpc-157. No push or deployment; concurrent customer-review work preserved.
+
+## 2026-10-04 - Isolated peptide collection images
+
+- Removed the rocks and studio backgrounds from all eight collection photos using transparent vial cutouts. Collection cards display the full vial on ivory; the homepage carousel and product detail photos retain their original imagery. Asset references and exact generation prompt are recorded in `docs/COLLECTION_IMAGES.md`.
+- Validation: full lint, production build (26 static routes), and Chromium checks at 1440px, 768px, 390px, and 320px passed. All eight cutouts load with transparency and contain sizing; search, category filtering, keyboard product navigation, and no horizontal overflow passed. Desktop/mobile screenshots and the verification script are in ignored `data/collection-cutouts-*` and `data/check-collection-cutouts.mjs`.
+- Local collection preview: http://127.0.0.1:3016/products. No push or deployment; concurrent research changes preserved and excluded from this package.
+
 ## 2026-10-03 - Clickable compound study pages
 
 - Made each research-library card open its compound study page and linked product scientific-review sections directly to the matching page. Added all eight static routes with the existing model, findings, limitations, citation, original publication link, and library return navigation.

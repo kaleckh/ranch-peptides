@@ -1,9 +1,11 @@
-import { readFileSync } from 'node:fs';
+import { existsSync, readFileSync } from 'node:fs';
+import { createHash } from 'node:crypto';
 import assert from 'node:assert/strict';
 import { researchEntries, researchIndex, researchSlugs, evidenceLabel } from '../src/lib/research.ts';
 import { evidenceContext, studyReadingDetails } from '../src/lib/research-reading.ts';
 import { catalogChecked, indexedPublicationCount, researchCatalogs, pubmedId } from '../src/lib/research-catalog.ts';
 import { publicationCategories, publicationNotice } from '../src/lib/research-catalog-format.ts';
+import { sourceExcerpts, studyRecord } from '../src/lib/research-study.ts';
 
 // Run after npm run build: node --import tsx scripts/check-research.mjs
 // Audits the relevance-selected bibliography, explained studies, and static exports.
@@ -11,6 +13,10 @@ const escape = (text) => text.replaceAll('&', '&amp;').replaceAll('<', '&lt;').r
 const library = readFileSync('out/science.html', 'utf8');
 const keys = new Set();
 assert.equal(researchSlugs.length, 8);
+const excerptSnapshot = JSON.parse(readFileSync('src/lib/research-source-excerpts.json', 'utf8'));
+assert.equal(excerptSnapshot.checked, catalogChecked, 'Excerpts and bibliography source dates match');
+const rawRecords = existsSync('data/full-literature-records.json') ? JSON.parse(readFileSync('data/full-literature-records.json', 'utf8')) : null;
+let readers = 0;
 for (const entry of researchEntries) {
   const key = `${entry.slug}:${entry.sourceId}`;
   assert.ok(!keys.has(key), `Duplicate citation: ${key}`);
@@ -77,6 +83,26 @@ for (const slug of researchSlugs) {
     assert.ok(['title', 'reviewed-source'].includes(publication.relevance?.basis), `${slug}/${publication.id}: relevance basis`);
     assert.ok(publication.relevance.reason.trim(), `${slug}/${publication.id}: inclusion reason`);
     assert.ok(!['42757290', '42752426', '34546033', '33263328', '37180036', '42041438'].includes(publication.id), `${slug}: general policy and non-biomedical applications excluded`);
+    const reader = studyRecord(slug, publication.id);
+    assert.ok(reader, `${slug}/${publication.id}: reader data`);
+    const readerPage = readFileSync(`out/science/${slug}/${publication.id}.html`, 'utf8');
+    readers += 1;
+    for (const field of ['title', 'authors', 'journal']) assert.ok(readerPage.includes(escape(publication[field])), `${slug}/${publication.id}: reader ${field}`);
+    assert.ok(readerPage.includes(`href="/science/${slug}"`), `${slug}/${publication.id}: return to collection`);
+    assert.ok(readerPage.includes(`href="https://pubmed.ncbi.nlm.nih.gov/${publication.id}/${publication.hasAbstract ? '#abstract' : ''}"`), `${slug}/${publication.id}: complete source reachable`);
+    assert.ok(readerPage.includes(escape(publication.relevance.reason)), `${slug}/${publication.id}: reader inclusion reason`);
+    const notice = publicationNotice(publication);
+    if (notice) assert.ok(readerPage.includes(escape(notice)), `${slug}/${publication.id}: reader publication notice`);
+    if (reader.entry) {
+      for (const field of ['finding', 'limitation', 'model']) assert.ok(readerPage.includes(escape(reader.entry[field])), `${slug}/${publication.id}: reader ${field}`);
+      for (const field of ['design', 'measures', 'context']) assert.ok(readerPage.includes(escape(reader.reading[field])), `${slug}/${publication.id}: reader ${field}`);
+    } else if (reader.excerpt) {
+      assert.ok(readerPage.includes(escape(reader.excerpt.text)), `${slug}/${publication.id}: attributed reader excerpt`);
+      if (reader.excerpt.truncated) assert.ok(readerPage.includes('shortened quotation'), `${slug}/${publication.id}: shortened quotation clearly labeled`);
+      assert.ok(readerPage.includes('brief excerpt cannot capture'), `${slug}/${publication.id}: excerpt scope`);
+    } else {
+      assert.ok(readerPage.includes('does not provide enough information to summarize'), `${slug}/${publication.id}: missing source is not invented`);
+    }
     if (publication.types.includes('Retraction Notice') || publication.types.includes('Retracted Publication')) {
       assert.equal(publication.category, 'other', `${slug}/${publication.id}: separate retractions`);
       assert.ok(publicationNotice(publication), `${slug}/${publication.id}: label retractions`);
@@ -106,3 +132,21 @@ console.log(`Verified ${researchEntries.length} citations across ${researchSlugs
 console.log(`Verified expanded methods and measurement notes for ${Object.keys(studyReadingDetails).length} papers.`);
 assert.equal(Object.keys(studyReadingDetails).length, researchEntries.length, 'Every selected paper has a full explanation');
 console.log(`Verified ${indexedPublicationCount} compound-focused publication entries, with no full abstracts republished.`);
+const selectedIds = new Set(Object.values(researchCatalogs).flatMap(catalog => catalog.papers.map(paper => paper.id)));
+for (const [id, excerpt] of Object.entries(sourceExcerpts)) {
+  assert.ok(selectedIds.has(id), `${id}: excerpt only for a relevant publication`);
+  assert.ok(excerpt.text.trim() && excerpt.text.split(/\s+/).length <= 25, `${id}: short source quotation`);
+  assert.ok(['abstract', 'conclusion'].includes(excerpt.kind), `${id}: excerpt kind`);
+  assert.ok(excerpt.kind !== 'conclusion' || /\b(conclusions?|interpretation)\b/i.test(excerpt.section), `${id}: conclusion label requires an explicit source heading`);
+  if (rawRecords) {
+    const sections = rawRecords[id].abstract.filter(section => section.text.trim());
+    assert.ok(sections.some(section => section.text.split(/\s+/).join(' ').includes(excerpt.text)), `${id}: exact source attribution`);
+    const hash = createHash('sha256').update(sections.map(section => `${section.label ?? ''}:${section.text}`).join('\n')).digest('hex');
+    assert.equal(excerpt.sourceHash, hash, `${id}: source fingerprint`);
+  }
+}
+assert.equal(readers, indexedPublicationCount, 'Every selected publication has an exported reading page');
+assert.equal(studyRecord('bpc-157', '42757290'), null, 'Excluded publications do not gain reader pages');
+assert.equal(studyRecord('unknown-compound', '37366315'), null, 'Unknown collections have no reader');
+assert.equal(studyRecord('pinealon', '37366315'), null, 'Wrong-collection PMID has no reader');
+console.log(`Verified ${readers} individual reading pages and ${Object.keys(sourceExcerpts).length} attributed short excerpts${rawRecords ? ', compared with cached source abstracts' : ''}.`);

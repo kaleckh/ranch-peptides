@@ -6,6 +6,7 @@ import { evidenceContext, studyReadingDetails } from "@/lib/research-reading";
 import { catalogCheckedLabel, catalogThroughLabel, researchCatalogs, pubmedId } from "@/lib/research-catalog";
 import { publicationNotice, publicationSearch, studyAnchor } from "@/lib/research-catalog-format";
 import ResearchBrowser from "../research-browser";
+import { StudyReaderLink } from "../study-navigation";
 import { ArrowIcon } from "@/components/arrow-icon";
 import styles from "../research.module.css";
 
@@ -47,7 +48,7 @@ export default async function CompoundResearchPage({ params }: Props) {
         <p>{catalog.count.toLocaleString()} compound-focused publications · {papers.length} studies with detailed explanations.</p>
       </header>
       {slug === "tb-500" && <p className={styles.readingHint}>This collection includes related thymosin beta4 research. A paper on the parent peptide does not establish that a TB-500 fragment or a product sold under that name has the same effects.</p>}
-      <ResearchBrowser compound={compound} area={papers[0].area} papers={catalog.papers} notes={notes}>
+      <ResearchBrowser slug={slug} compound={compound} area={papers[0].area} papers={catalog.papers} notes={notes}>
         {papers.map((entry) => {
           const reading = studyReadingDetails[entry.sourceId];
           const publication = indexed.get(pubmedId(entry.sourceId))!;
@@ -81,6 +82,7 @@ export default async function CompoundResearchPage({ params }: Props) {
                   <p className={styles.publicationMeta}>{entry.authors} · <cite>{entry.journal}</cite> · {entry.year}</p>
                   <p className={styles.indexingNote}><strong>Why included:</strong> {publication.relevance.reason}</p>
                   <a className={styles.sourceLink} href={entry.source}>Read the original study <ArrowIcon /><small>{entry.sourceId} · {entry.sourceId.startsWith("PMCID") ? "PubMed Central" : "PubMed"}</small></a>
+                  <StudyReaderLink className={styles.sourceLink} slug={slug} pmid={publication.id}>Open study summary <ArrowIcon /></StudyReaderLink>
                 </div>
               </div>
             </details>

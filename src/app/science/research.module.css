@@ -110,6 +110,7 @@
 .catalogGrid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:18px; }
 .catalogPaper { display:flex; flex-direction:column; min-width:0; padding:24px; border:1px solid #d4cec3; background:#f8f6f1; }
 .catalogPaper h2 { font-size:19px; line-height:1.45; letter-spacing:-.02em; font-weight:500; margin:16px 0 4px; overflow-wrap:anywhere; }
+.catalogPaper h2 a:hover,.catalogPaper h2 a:focus-visible { text-decoration:underline; text-underline-offset:4px; }
 .indexingNote { color:var(--muted); font-size:10px; line-height:1.7; margin:12px 0 20px; }
 .catalogLinks { display:flex; flex-wrap:wrap; align-items:flex-start; justify-content:space-between; gap:18px; border-top:1px solid var(--border); padding-top:16px; margin-top:auto; }
 .catalogLinks a,.catalogLinks button { cursor:pointer; text-align:left; font-size:12px; line-height:1.5; text-decoration:underline; text-underline-offset:4px; }
@@ -127,7 +128,23 @@
 .searchScope p { overflow-wrap:anywhere; margin:12px 0; }
 .searchScope a { text-decoration:underline; text-underline-offset:4px; }
 .resultsMeta { scroll-margin-top:110px; }
+.studyPage { max-width:1120px; }
+.readerHeader h1 { margin-top:18px; font-size:clamp(24px,3vw,34px); line-height:1.35; overflow-wrap:anywhere; }
+.readerFinding { margin-top:32px; border:1px solid #d4cec3; background:#f8f6f1; padding:28px 32px; }
+.readerFinding h2 { font-size:18px; font-weight:500; line-height:1.5; margin:12px 0; }
+.readerTakeaway { font-size:clamp(17px,2vw,20px); line-height:1.8; max-width:75ch; }
+.readerCaption { font-size:12px; line-height:1.8; color:var(--muted); margin-top:16px; }
+.readerFinding .sourceLink { margin-top:20px; }
+.readerFacts { margin-top:32px; }
+.studyPage .studyNotes h2,.readerContext h2,.readerSource h2 { font-size:17px; font-weight:500; line-height:1.5; margin-bottom:12px; }
+.readerContext { margin:32px 0; max-width:85ch; }
+.readerContext p { font-size:14px; line-height:1.85; color:#59554e; }
+.readerContext p+p { margin-top:12px; }
+.readerLinks { display:flex; flex-wrap:wrap; gap:24px; margin-top:22px; }
+.readerSource dd { overflow-wrap:anywhere; }
+.publication .sourceLink+.sourceLink { margin-left:24px; }
 @media(max-width:1000px) { .toolbar { flex-wrap:wrap; gap:16px; }.search { flex-basis:60%; }.filters { width:100%; }.study { padding:20px; }.citation { flex-direction:column; gap:12px; } }
 @media(max-width:650px) { .page { padding:24px 6% 45px; }.header p { font-size:13px; }.search { flex-basis:100%; }.compoundFilter { width:100%; }.studyGrid,.detailStudies,.studyNotes,.studyFacts { grid-template-columns:1fr; gap:22px; }.filters button { padding:11px 10px; }.guideItems { grid-template-columns:1fr; gap:20px; }.study { scroll-margin-top:90px; }.studySummary { padding:20px; }.studyBody { padding:0 20px 24px; } }
 @media(prefers-reduced-motion:reduce) { .studyLink { transition:none; } }
+@media(max-width:650px) { .readerFinding { padding:22px 20px; }.readerHeader h1 { font-size:24px; }.readerLinks { flex-direction:column; gap:12px; }.publication .sourceLink+.sourceLink { margin-left:0; display:block; } }
 @media(max-width:650px) { .catalogGrid { grid-template-columns:1fr; }.catalogPaper { padding:20px; }.typeFilter { width:100%; }.yearFilter { width:calc(50% - 8px); }.catalogLinks { flex-direction:column; }.viewSwitch button { padding:12px; font-size:11px; } }

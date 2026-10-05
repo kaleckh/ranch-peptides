@@ -1,8 +1,8 @@
 """Refresh date-bounded PubMed searches and publish a compound-focused selection.
 
 Usage: python scripts/refresh-research-catalog.py [--from-cache]
-Raw records are kept under ignored data/; only bibliography/indexing metadata is
-published after the shared relevance gate. Search completeness is checked before
+Raw records are kept under ignored data/; bibliography/indexing metadata and short
+attributed excerpts are published after the shared relevance gate. Completeness is checked before
 selection; the published collection is not an exhaustive or quality-rated review.
 """
 import argparse
@@ -15,6 +15,7 @@ from pathlib import Path
 from urllib.parse import urlencode
 from urllib.request import Request, urlopen
 from research_catalog_screening import load_policy, screen_catalogs
+from research_source_excerpts import excerpt_snapshot
 
 ROOT = Path(__file__).resolve().parents[1]
 QUERIES = {
@@ -149,7 +150,9 @@ def main():
     policy = load_policy()
     catalogs, exclusions = screen_catalogs(searches, cache, policy)
     snapshot = {"checked": checked, "through": through, "screening": {key: policy[key] for key in ["version", "reviewed", "rule"]}, "catalogs": catalogs}
+    excerpts = excerpt_snapshot(catalogs, cache, checked)
     snapshot_path.write_text(json.dumps(snapshot, ensure_ascii=False, separators=(",", ":")) + "\n", encoding="utf-8")
+    (ROOT / "src/lib/research-source-excerpts.json").write_text(json.dumps(excerpts, ensure_ascii=False, separators=(",", ":")) + "\n", encoding="utf-8")
     (data_dir / "research-screening-report.json").write_text(json.dumps(exclusions, ensure_ascii=False, indent=2), encoding="utf-8")
     for slug, catalog in catalogs.items():
         print(f"{slug}: {catalog['count']} included / {catalog['searchCount']} raw matches; {catalog['excludedCount']} excluded")

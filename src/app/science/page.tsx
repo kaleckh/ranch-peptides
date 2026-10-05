@@ -17,7 +17,7 @@ export default function SciencePage() {
         <p>{indexedPublicationCount.toLocaleString()} compound-focused publications across eight collections, with detailed explanations for {researchIndex.length} selected studies.</p>
       </header>
 
-      <p className={styles.readingHint}>Open a compound to browse publications and read the explained studies. Inclusion depends on relevance to the compound, whether the findings are positive, negative, or safety-related.</p>
+      <p className={styles.readingHint}>Open a compound, then click any paper for its reading page: a detailed study explanation or a brief abstract excerpt with the original source. Inclusion depends on relevance to the compound, whether the findings are positive, negative, or safety-related.</p>
       <ResearchLibrary entries={researchIndex} groups={researchCatalogGroups} />
 
       <details className={styles.guide}>

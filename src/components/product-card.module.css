@@ -1,5 +1,5 @@
 .card { display:block; min-width:0; color:var(--foreground); }
-.visual { position:relative; width:100%; aspect-ratio:1; overflow:hidden; background:#c6beb4; }
+.visual { position:relative; width:100%; aspect-ratio:1; overflow:hidden; }
 .visual img { transition:transform .3s ease; }
 .details { padding:16px 0 8px; }
 .identity { display:flex; justify-content:space-between; align-items:baseline; gap:12px; }

@@ -26,7 +26,7 @@ export async function previewRequest<T>(path: string, init: RequestInit): Promis
     const seen = new Set<string>();
     const items = request.items.map(item => {
       const line = createCartItem(item.slug, item.quantity, item.variantId);
-      if (!line || seen.has(line.id)) throw new Error("Unknown, unpriced, or duplicate demo compound and size.");
+      if (!line || seen.has(line.id)) throw new Error("Unknown, sold-out, unpriced, or duplicate demo compound and size.");
       seen.add(line.id);
       return { slug: line.product.slug, variantId: line.variant.id, quantity: line.quantity, name: `${line.product.shortName} · ${formatDosage(line.variant.dosage)}`, unitCents: Math.round(line.pricePerUnit * 100) };
     });

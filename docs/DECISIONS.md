@@ -1,5 +1,11 @@
 # Decisions
 
+## 2026-10-04: Owner-selected stock sizes
+
+The owner sells only BPC-157 10 mg, retatrutide 30 mg, TB-500 10 mg, and MOTS-c 20 mg among those four compounds' listed sizes. Mark their other 19 sizes Sold out. Keep stock separate from pricing: the previous instruction to await new-size prices still applies, and the four available sizes remain Pricing pending until the owner supplies prices or explicitly approves transferring existing prices and bulk tiers. The other four compounds retain existing availability/pricing. This supersedes the earlier pending-only status of these 19 sizes.
+
+Default collection cards, carousel details, and selectors to an available size. Sold-out choices stay visible and selectable for inspection, with ordering disabled. Reject sold-out lines in browser cart creation, saved-cart restoration, the checkout demo, and authoritative API pricing. Legacy requests without size IDs still resolve to their original size; drop/reject a sold-out line rather than silently substituting a new vial size. Preserve immutable existing order snapshots.
+
 ## 2026-10-04: Required entry confirmation
 
 The owner requested entry confirmation of being over 21 and understanding that these are research compounds. Require both unchecked statements before any storefront route becomes interactive. Remember acceptance for the current tab session, including navigation and reloads; ask again in a fresh session. When browser storage is unavailable, keep acceptance in memory during app navigation. Preserve static export by rendering the form and inert storefront in initial HTML, then using a native modal for keyboard and background interaction control. See `SITE_ENTRY.md` for behavior and verification.

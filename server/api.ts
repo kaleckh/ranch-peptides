@@ -82,7 +82,7 @@ export function createCheckoutServer(config: ReturnType<typeof loadConfig>, stor
       if (error instanceof Stripe.errors.StripeError) return send(502, { error: "Card checkout is temporarily unavailable. Please retry." });
       if (error instanceof z.ZodError || error instanceof SyntaxError) return send(400, { error: "Check your checkout details and try again." });
       const message = error instanceof Error ? error.message : "";
-      if (["Shipping is unavailable for this state.", "Invalid compound or size.", "Duplicate compound and size.", "Pricing is pending for this size. Choose a priced size to order.", "Checkout request was already used. Start a new request.", "Request too large.", "Payment session does not match order."].includes(message)) return send(400, { error: message });
+      if (["Shipping is unavailable for this state.", "Invalid compound or size.", "Duplicate compound and size.", "This size is sold out. Choose an available size to order.", "Pricing is pending for this size. Choose a priced size to order.", "Checkout request was already used. Start a new request.", "Request too large.", "Payment session does not match order."].includes(message)) return send(400, { error: message });
       send(500, { error: "Checkout is temporarily unavailable. Please retry or contact support." });
     }
   });

@@ -20,6 +20,7 @@ export function priceOrder(input: unknown, shippingCents: number, states: string
     const id = `${slug}:${variant.id}`;
     if (seen.has(id)) throw new Error("Duplicate compound and size.");
     seen.add(id);
+    if (!variant.inStock) throw new Error("This size is sold out. Choose an available size to order.");
     const price = getVariantUnitPrice(variant, quantity);
     if (price === null) throw new Error("Pricing is pending for this size. Choose a priced size to order.");
     return { slug, variantId: variant.id, name: `${product.shortName} · ${formatDosage(variant.dosage)}`, quantity, unitCents: Math.round(price * 100) };

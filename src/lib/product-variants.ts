@@ -8,14 +8,15 @@ export interface ProductVariant {
   bulkPricing: Product["bulkPricing"];
 }
 
-// Peptaura catalog size filters, checked October 4, 2026.
+// Peptaura catalog size filters, checked October 4, 2026, plus a sold-out
+// MT-2 5 mg option added for the owner's limited extra-size display.
 // These are size options, not a claim about supplier inventory or batch coverage.
 // Source links and pricing instructions are recorded in docs/PRODUCT_SIZES.md.
 const sizesBySlug: Record<string, readonly number[]> = {
   "bpc-157": [2, 5, 10, 20],
   retatrutide: [5, 10, 15, 20, 30, 40, 50, 60, 100, 120],
   "tb-500": [2, 5, 10, 20],
-  "mt-2": [10],
+  "mt-2": [5, 10],
   "mots-c": [10, 15, 20, 30, 40],
   pinealon: [5, 10, 20],
   epitalon: [10, 50],
@@ -29,6 +30,19 @@ const availableSizeBySlug: Record<string, string> = {
   retatrutide: "30mg",
   "tb-500": "10mg",
   "mots-c": "20mg",
+};
+
+// Show one or two sold-out alternatives alongside each current size.
+// Other reference sizes stay hidden and unavailable.
+const displayedSoldOutSizesBySlug: Record<string, readonly string[]> = {
+  "bpc-157": ["5mg", "20mg"],
+  retatrutide: ["10mg", "20mg"],
+  "tb-500": ["5mg", "20mg"],
+  "mt-2": ["5mg"],
+  "mots-c": ["10mg", "40mg"],
+  pinealon: ["5mg", "20mg"],
+  epitalon: ["50mg"],
+  "ghk-cu": ["100mg"],
 };
 
 export function getProductVariants(product: Product): ProductVariant[] {
@@ -45,6 +59,11 @@ export function getProductVariants(product: Product): ProductVariant[] {
 
 export function getAvailableProductVariants(product: Product): ProductVariant[] {
   return getProductVariants(product).filter(variant => variant.inStock);
+}
+
+export function getStorefrontProductVariants(product: Product): ProductVariant[] {
+  const soldOutSizes = displayedSoldOutSizesBySlug[product.slug] ?? [];
+  return getProductVariants(product).filter(variant => variant.inStock || soldOutSizes.includes(variant.id));
 }
 
 export function getDefaultProductVariant(product: Product): ProductVariant {

@@ -3,12 +3,12 @@
 import { useRef, useState } from "react";
 import { useCart } from "@/lib/cart-context";
 import { formatPrice, type Product } from "@/lib/products";
-import { formatDosage, getAvailableProductVariants, getDefaultProductVariant, getProductVariant } from "@/lib/product-variants";
+import { formatDosage, getDefaultProductVariant, getProductVariant, getStorefrontProductVariants } from "@/lib/product-variants";
 import styles from "./add-to-cart.module.css";
 
 export function AddToCartButton({ product }: { product: Product }) {
   const { addItem } = useCart();
-  const variants = getAvailableProductVariants(product);
+  const variants = getStorefrontProductVariants(product);
   const [selectedSize, setSelectedSize] = useState(getDefaultProductVariant(product).id);
   const variant = getProductVariant(product, selectedSize)!;
   const tiers = [...variant.bulkPricing].sort((a, b) => a.qty - b.qty);

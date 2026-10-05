@@ -41,13 +41,13 @@ export default function ResearchLibrary({ entries, groups }: { entries: typeof r
   }
 
   return <section id="study-library" className={styles.library} aria-label="Research publications">
-    <div className={styles.viewSwitch} role="group" aria-label="Choose library view"><button type="button" aria-pressed={view === "catalog"} onClick={() => setView("catalog")}>All indexed publications</button><button type="button" aria-pressed={view === "explained"} onClick={() => setView("explained")}>Explained studies</button></div>
+    <div className={styles.viewSwitch} role="group" aria-label="Choose library view"><button type="button" aria-pressed={view === "catalog"} onClick={() => setView("catalog")}>Compound publications</button><button type="button" aria-pressed={view === "explained"} onClick={() => setView("explained")}>Explained studies</button></div>
     <div className={styles.toolbar}>
       <label className={styles.search}><span>Search the library</span><input type="search" value={query} onChange={(event) => setQuery(event.target.value)} placeholder="Compound, title, topic, or author" /></label>
       <label className={styles.compoundFilter}><span>Compound</span><select aria-label="Compound" value={compound} onChange={(event) => setCompound(event.target.value)}><option value="all">All compounds</option>{groups.map((group) => <option key={group.slug} value={group.slug}>{group.compound}</option>)}</select></label>
       {view === "catalog" ? <label className={styles.typeFilter}><span>Publication type</span><select aria-label="Publication type" value={category} onChange={(event) => setCategory(event.target.value)}><option value="all">All publication types</option>{Object.entries(publicationCategories).map(([key, label]) => <option key={key} value={key}>{label}</option>)}</select></label> : <div className={styles.filters} role="group" aria-label="Filter explained studies by evidence type">{evidenceFilters.map((item) => <button key={item.value} type="button" aria-pressed={evidence === item.value} onClick={() => setEvidence(item.value)}>{item.label}</button>)}</div>}
     </div>
-    <div className={styles.resultsMeta}><p role="status">{count.toLocaleString()} of {total.toLocaleString()} {view === "catalog" ? "indexed publications" : "explained studies"} · {matching.length} {matching.length === 1 ? "compound" : "compounds"}</p>{(query || category !== "all" || evidence !== "all" || compound !== "all") && <button type="button" onClick={reset}>Reset filters</button>}</div>
+    <div className={styles.resultsMeta}><p role="status">{count.toLocaleString()} of {total.toLocaleString()} {view === "catalog" ? "compound publications" : "explained studies"} · {matching.length} {matching.length === 1 ? "compound" : "compounds"}</p>{(query || category !== "all" || evidence !== "all" || compound !== "all") && <button type="button" onClick={reset}>Reset filters</button>}</div>
     {matching.length ? <div className={styles.studyGrid}>{matching.map((group) => {
       const years = group.papers.map((paper) => paper.year);
       const explained = entries.filter((entry) => entry.slug === group.slug);
@@ -59,7 +59,7 @@ export default function ResearchLibrary({ entries, groups }: { entries: typeof r
       return <Link key={group.slug} href={`/science/${group.slug}${suffix}`} className={`${styles.study} ${styles.studyLink}`} aria-label={`View ${group.papers.length} ${group.compound} publications and ${group.explainedCount} explained studies`}>
         <div className={styles.cardTop}><span className={styles.eyebrow}>Research collection</span><span className={styles.year}>{Math.min(...years)}–{Math.max(...years)}</span></div>
         <h2>{group.compound}</h2>
-        <p className={styles.collectionCount}>{group.papers.length.toLocaleString()} <span>indexed publications</span></p>
+        <p className={styles.collectionCount}>{group.papers.length.toLocaleString()} <span>compound publications</span></p>
         <div className={styles.badges}><span className={styles.badge}>{group.explainedCount} detailed explanations</span>{group.related && <span className={styles.badge}>Related thymosin beta4</span>}{view === "explained" && explained.some((paper) => paper.evidence === "human") && <span className={styles.humanBadge}>Human evidence</span>}</div>
         <ul className={styles.paperTopics}>{group.matching.slice(0, 3).map((paper) => <li key={paper.id}>{paper.title}</li>)}</ul>
         <div className={styles.citation}><p>{group.matching.length.toLocaleString()} {view === "catalog" ? "publications" : "explained studies"}{query || compound !== "all" || (view === "catalog" ? category !== "all" : evidence !== "all") ? " match your filters" : " in this view"}</p><span className={styles.cardAction}>Browse research <ArrowIcon /></span></div>

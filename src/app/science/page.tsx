@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import ResearchLibrary from "./research-library";
 import styles from "./research.module.css";
 import { researchIndex } from "@/lib/research";
-import { catalogCheckedLabel, catalogThroughLabel, indexedPublicationCount, researchCatalogGroups } from "@/lib/research-catalog";
+import { catalogCheckedLabel, catalogThroughLabel, indexedPublicationCount, catalogSearchMatchCount, researchCatalogGroups } from "@/lib/research-catalog";
 
 export const metadata: Metadata = {
   title: "Research Library | SALT N’ PEP",
@@ -14,10 +14,10 @@ export default function SciencePage() {
     <div className={styles.page}>
       <header className={styles.header}>
         <h1>Research library</h1>
-        <p>{indexedPublicationCount.toLocaleString()} indexed publications across eight compound collections, with detailed explanations for {researchIndex.length} selected studies.</p>
+        <p>{indexedPublicationCount.toLocaleString()} compound-focused publications across eight collections, with detailed explanations for {researchIndex.length} selected studies.</p>
       </header>
 
-      <p className={styles.readingHint}>Open a compound to browse its full PubMed search results or read the explained studies. The broader index includes reviews, case reports, and publication notices alongside research papers.</p>
+      <p className={styles.readingHint}>Open a compound to browse publications and read the explained studies. Inclusion depends on relevance to the compound, whether the findings are positive, negative, or safety-related.</p>
       <ResearchLibrary entries={researchIndex} groups={researchCatalogGroups} />
 
       <details className={styles.guide}>
@@ -40,7 +40,8 @@ export default function SciencePage() {
       </details>
 
       <aside className={styles.boundary} aria-label="Research library scope">
-        <p>The index contains all results returned by the compound-name and alias searches in PubMed, collected {catalogCheckedLabel}, for publication dates through {catalogThroughLabel}. It does not cover every database or every paper that could discuss a compound. Publications can appear in more than one collection; counts are not independent trial counts. Publication types follow PubMed indexing and do not establish study quality. The {researchIndex.length} explained studies are a selected reading list, not a systematic review.</p>
+        <p>This collection includes {indexedPublicationCount.toLocaleString()} entries selected from {catalogSearchMatchCount.toLocaleString()} PubMed compound-name and alias search matches, collected {catalogCheckedLabel}, for publication dates through {catalogThroughLabel}. Papers qualify through a compound-focused title or a source review confirming direct compound involvement. General peptide policy/commentary and unrelated alias matches are excluded. Broader titles require review before inclusion, so this is a selected collection, not all literature or a systematic review.</p>
+        <p>Title-based relevance does not establish study quality. Read each paper’s inclusion reason and original source. Reviews, case reports, analytical studies, and modified preparations answer different questions from treatment trials. Publications can appear in more than one collection or reuse trial participants; counts are not independent trials. The {researchIndex.length} explained studies provide additional methods, findings, and limitations.</p>
         <p>Educational information only; no dosing or treatment guidance. SALT N’ PEP products are intended for laboratory research and are not for human consumption. Published findings do not verify the identity, quality, or safety of products sold here.</p>
       </aside>
     </div>

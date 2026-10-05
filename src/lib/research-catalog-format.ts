@@ -18,6 +18,10 @@ export type IndexedPublication = {
   topics: string[];
   hasAbstract: boolean;
   notices: string[];
+  relevance: {
+    basis: "title" | "reviewed-source";
+    reason: string;
+  };
 };
 
 export function publicationNotice(paper: Pick<IndexedPublication, "types" | "notices">) {
@@ -29,7 +33,7 @@ export function publicationNotice(paper: Pick<IndexedPublication, "types" | "not
 }
 
 export function publicationSearch(paper: IndexedPublication) {
-  return `${paper.id} ${paper.title} ${paper.authors} ${paper.journal} ${paper.year} ${paper.topics.join(" ")}`.toLowerCase();
+  return `${paper.id} ${paper.title} ${paper.authors} ${paper.journal} ${paper.year} ${paper.topics.join(" ")} ${paper.relevance.reason}`.toLowerCase();
 }
 
 export function studyAnchor(sourceId: string) {

@@ -9,9 +9,12 @@ export const catalogThroughLabel = displayDate(snapshot.through);
 export const researchCatalogs = snapshot.catalogs as Record<string, {
   query: string;
   count: number;
+  searchCount: number;
+  excludedCount: number;
   papers: IndexedPublication[];
 }>;
 export const indexedPublicationCount = Object.values(researchCatalogs).reduce((sum, catalog) => sum + catalog.count, 0);
+export const catalogSearchMatchCount = Object.values(researchCatalogs).reduce((sum, catalog) => sum + catalog.searchCount, 0);
 
 // This curated PMC citation and the PubMed citation are the same publication.
 export function pubmedId(sourceId: string) {

@@ -6,7 +6,7 @@ import { catalogChecked, indexedPublicationCount, researchCatalogs, pubmedId } f
 import { publicationCategories, publicationNotice } from '../src/lib/research-catalog-format.ts';
 
 // Run after npm run build: node --import tsx scripts/check-research.mjs
-// Audits the full bibliography, explained studies, and actual static exports.
+// Audits the relevance-selected bibliography, explained studies, and static exports.
 const escape = (text) => text.replaceAll('&', '&amp;').replaceAll('<', '&lt;').replaceAll('>', '&gt;').replaceAll('"', '&quot;').replaceAll("'", '&#x27;');
 const library = readFileSync('out/science.html', 'utf8');
 const keys = new Set();
@@ -59,8 +59,11 @@ for (const slug of researchSlugs) {
   assert.ok(page.includes('href="/science"'), `${slug}: return link`);
   const catalog = researchCatalogs[slug];
   assert.equal(catalog.count, catalog.papers.length, `${slug}: catalog count`);
+  assert.equal(catalog.count + catalog.excludedCount, catalog.searchCount, `${slug}: raw search and selection counts reconcile`);
   assert.ok(catalog.query.includes('[Date - Publication]'), `${slug}: date-bounded search`);
-  assert.ok(catalog.count >= papers.length, `${slug}: complete expanded catalog`);
+  assert.ok(catalog.count >= papers.length, `${slug}: selected explanations retained`);
+  assert.ok(page.includes('Why included:'), `${slug}: inclusion reasons displayed`);
+  assert.ok(page.includes('selected collection, not all research'), `${slug}: honest selection scope`);
   const ids = new Set();
   for (const publication of catalog.papers) {
     assert.ok(/^\d+$/.test(publication.id) && !ids.has(publication.id), `${slug}: unique PMID ${publication.id}`);
@@ -71,12 +74,15 @@ for (const slug of researchSlugs) {
     assert.ok(publication.category in publicationCategories, `${slug}/${publication.id}: publication type`);
     assert.ok(Array.isArray(publication.types) && Array.isArray(publication.topics) && Array.isArray(publication.notices), `${slug}/${publication.id}: indexing metadata`);
     assert.ok(!('abstract' in publication), `${slug}/${publication.id}: full abstracts must not be republished`);
+    assert.ok(['title', 'reviewed-source'].includes(publication.relevance?.basis), `${slug}/${publication.id}: relevance basis`);
+    assert.ok(publication.relevance.reason.trim(), `${slug}/${publication.id}: inclusion reason`);
+    assert.ok(!['42757290', '42752426', '34546033', '33263328', '37180036', '42041438'].includes(publication.id), `${slug}: general policy and non-biomedical applications excluded`);
     if (publication.types.includes('Retraction Notice') || publication.types.includes('Retracted Publication')) {
       assert.equal(publication.category, 'other', `${slug}/${publication.id}: separate retractions`);
       assert.ok(publicationNotice(publication), `${slug}/${publication.id}: label retractions`);
     }
   }
-  console.log(`${slug}: ${catalog.count} indexed publications, ${papers.length} complete explanations, static sources verified`);
+  console.log(`${slug}: ${catalog.count}/${catalog.searchCount} publications included, ${papers.length} explanations retained, static sources verified`);
 }
 assert.ok(researchIndex.every((entry) => !('finding' in entry) && !('limitation' in entry)), 'Full notes must stay off the client index');
 for (const id of ['21564053', '28905366']) {
@@ -84,7 +90,19 @@ for (const id of ['21564053', '28905366']) {
   assert.ok(publication.types.includes('Letter') && publication.types.includes('Case Reports'));
   assert.equal(publication.category, 'case-report', `${id}: mixed letter/case-report remains discoverable`);
 }
+for (const [slug, ids] of Object.entries({
+  'bpc-157': ['42328738', '32334036', '30116973'],
+  'retatrutide': ['42559975', '40735804', '39019866'],
+  'tb-500': ['11311052', '24098025', '33620224'],
+  'mt-2': ['23121206', '24355990', '24771717', '33460908', '35196505', '9050812'],
+  'epitalon': ['25535022'],
+  'ghk-cu': ['37107176'],
+})) {
+  for (const id of ids) assert.ok(researchCatalogs[slug].papers.some(paper => paper.id === id), `${slug}/${id}: direct analytical, safety, or negative findings retained`);
+}
+for (const id of ['22977870', '35107253', '31982792', '25420772']) assert.ok(!researchCatalogs.pinealon.papers.some(paper => paper.id === id), `${id}: unrelated longer sequences excluded`);
+assert.ok(!researchCatalogs['ghk-cu'].papers.some(paper => paper.id === '33192260'), 'Free-GHK experiment is not GHK-Cu evidence');
 console.log(`Verified ${researchEntries.length} citations across ${researchSlugs.length} exported compound pages.`);
 console.log(`Verified expanded methods and measurement notes for ${Object.keys(studyReadingDetails).length} papers.`);
 assert.equal(Object.keys(studyReadingDetails).length, researchEntries.length, 'Every selected paper has a full explanation');
-console.log(`Verified ${indexedPublicationCount} complete compound/publication matches, with no full abstracts republished.`);
+console.log(`Verified ${indexedPublicationCount} compound-focused publication entries, with no full abstracts republished.`);

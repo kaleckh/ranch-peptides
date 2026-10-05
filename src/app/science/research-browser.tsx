@@ -103,10 +103,10 @@ export default function ResearchBrowser({ compound, area, papers, notes, childre
 
   return <section className={styles.library} aria-label={`${compound} publications`}>
     <div className={styles.viewSwitch} role="group" aria-label="Choose reading view">
-      <button type="button" aria-pressed={view === "catalog"} onClick={() => changeView("catalog")}>All indexed publications <span>{papers.length.toLocaleString()}</span></button>
+      <button type="button" aria-pressed={view === "catalog"} onClick={() => changeView("catalog")}>Compound publications <span>{papers.length.toLocaleString()}</span></button>
       <button type="button" aria-pressed={view === "explained"} onClick={() => changeView("explained")}>Explained studies <span>{notes.length}</span></button>
     </div>
-    <p className={styles.readingHint}>{view === "catalog" ? "Browse every match in the PubMed name search. These records include studies, reviews, and notices. Open PubMed for the abstract and original source; papers with reading notes also link to a detailed explanation." : "Each reading card explains the main finding, study setup, measurements, results in context, and limitations. Open a card to read more."}</p>
+    <p className={styles.readingHint}>{view === "catalog" ? "Browse compound-focused studies, reviews, and publication notices. Each paper shows why it belongs in this collection. Open PubMed for the abstract and original source; selected papers also have a detailed explanation." : "Each reading card explains the main finding, study setup, measurements, results in context, and limitations. Open a card to read more."}</p>
     <div className={styles.toolbar}>
       <label className={styles.search}><span>Search publications</span><input type="search" value={query} onChange={(event) => { clearHash(); setQuery(event.target.value); setPage(1); }} placeholder="Title, topic, author, or PMID" /></label>
       <label className={styles.compoundFilter}><span>Publication type</span><select aria-label="Publication type" value={category} onChange={(event) => { clearHash(); setCategory(event.target.value); setPage(1); }}><option value="all">All publication types</option>{Object.entries(publicationCategories).map(([key, label]) => <option key={key} value={key}>{label}</option>)}</select></label>
@@ -126,6 +126,7 @@ export default function ResearchBrowser({ compound, area, papers, notes, childre
             <div className={styles.cardTop}><span className={styles.eyebrow}>{publicationCategories[paper.category]}</span><span className={styles.year}>{paper.year}</span></div>
             <h2>{paper.title}</h2>
             <p className={styles.publicationMeta}>{paper.authors} · <cite>{paper.journal}</cite></p>
+            <p className={styles.indexingNote}><strong>Why included:</strong> {paper.relevance.reason}</p>
             {notice && <p className={styles.notice}>{notice}</p>}
             <p className={styles.indexingNote}>{paper.types.join(" · ")}{!paper.hasAbstract ? " · No abstract indexed" : ""}</p>
             <div className={styles.catalogLinks}><a href={`https://pubmed.ncbi.nlm.nih.gov/${paper.id}/`}>Read on PubMed <ArrowIcon /><small>PMID {paper.id}</small></a>{sourceId && <button type="button" onClick={() => readNotes(sourceId)}>Read study explanation <ArrowIcon /></button>}</div>

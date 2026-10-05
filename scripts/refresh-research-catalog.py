@@ -1,8 +1,9 @@
-"""Refresh the complete, date-bounded PubMed name-search catalog (no result cap).
+"""Refresh date-bounded PubMed searches and publish a compound-focused selection.
 
-Usage: python scripts/refresh-research-catalog.py
+Usage: python scripts/refresh-research-catalog.py [--from-cache]
 Raw records are kept under ignored data/; only bibliography/indexing metadata is
-published. PubMed indexing is not an efficacy assessment or a systematic review.
+published after the shared relevance gate. Search completeness is checked before
+selection; the published collection is not an exhaustive or quality-rated review.
 """
 import argparse
 import json
@@ -13,6 +14,7 @@ from datetime import date
 from pathlib import Path
 from urllib.parse import urlencode
 from urllib.request import Request, urlopen
+from research_catalog_screening import load_policy, screen_catalogs
 
 ROOT = Path(__file__).resolve().parents[1]
 QUERIES = {
@@ -97,43 +99,61 @@ def record(paper):
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--through", default=date.today().isoformat(), help="Publication-date cutoff (YYYY-MM-DD; defaults to today)")
+    parser.add_argument("--through", help="Publication-date cutoff (YYYY-MM-DD; defaults to today online)")
+    parser.add_argument("--from-cache", action="store_true", help="Re-screen saved raw searches/records without changing their source-check date")
     args = parser.parse_args()
-    cutoff = date.fromisoformat(args.through)
     data_dir = ROOT / "data"
     data_dir.mkdir(exist_ok=True)
     raw_path = data_dir / "full-literature-records.json"
+    search_path = data_dir / "literature-search.json"
+    snapshot_path = ROOT / "src/lib/research-catalog-data.json"
     cache = json.loads(raw_path.read_text(encoding="utf-8")) if raw_path.exists() else {}
-    catalogs = {}
-    fetched = set()
-    for slug, base in QUERIES.items():
-        query = base + f' AND ("1900/01/01"[Date - Publication] : "{cutoff:%Y/%m/%d}"[Date - Publication])'
-        result = json.loads(fetch("esearch.fcgi", {"db": "pubmed", "term": query, "retmode": "json", "retmax": 9999, "sort": "pub date"}))["esearchresult"]
-        ids = result["idlist"]
-        if len(ids) != int(result["count"]):
-            raise ValueError(f"Search incomplete: {slug}")
-        # Re-fetch existing records too: corrections/retractions can be added later.
-        missing = [pmid for pmid in ids if pmid not in fetched]
-        for start in range(0, len(missing), 150):
-            batch = missing[start:start + 150]
-            root = ET.fromstring(fetch("efetch.fcgi", {"db": "pubmed", "id": ",".join(batch), "retmode": "xml"}))
-            returned = set()
-            for paper in root.findall("PubmedArticle"):
-                item = record(paper)
-                cache[item["id"]] = item
-                returned.add(item["id"])
-            absent = set(batch) - returned
-            if absent:
-                raise ValueError(f"No article record returned: {sorted(absent)}")
-            fetched.update(returned)
-            raw_path.write_text(json.dumps(cache, ensure_ascii=False, indent=2), encoding="utf-8")
-        papers = [{k: v for k, v in cache[pmid].items() if k != "abstract"} for pmid in ids]
-        papers.sort(key=lambda p: (p["year"], int(p["id"])), reverse=True)
-        catalogs[slug] = {"query": query, "count": len(papers), "papers": papers}
-        print(f"{slug}: {len(papers)} indexed publications, no truncated results", flush=True)
-    snapshot = {"checked": date.today().isoformat(), "through": cutoff.isoformat(), "catalogs": catalogs}
-    (ROOT / "src/lib/research-catalog-data.json").write_text(json.dumps(snapshot, ensure_ascii=False, separators=(",", ":")) + "\n", encoding="utf-8")
-    print(f"Saved {sum(c['count'] for c in catalogs.values())} compound/publication matches.")
+    if args.from_cache:
+        saved = json.loads(search_path.read_text(encoding="utf-8"))
+        # Support the original local manifest; its date comes from its published snapshot.
+        dates = saved if "searches" in saved else json.loads(snapshot_path.read_text(encoding="utf-8"))
+        checked, through = dates["checked"], dates["through"]
+        searches = saved.get("searches", saved)
+        if args.through and args.through != through:
+            raise ValueError("Cached search cutoff differs from --through; run an online refresh.")
+    else:
+        cutoff = date.fromisoformat(args.through or date.today().isoformat())
+        checked, through = date.today().isoformat(), cutoff.isoformat()
+        searches, fetched = {}, set()
+        for slug, base in QUERIES.items():
+            query = base + f' AND ("1900/01/01"[Date - Publication] : "{cutoff:%Y/%m/%d}"[Date - Publication])'
+            result = json.loads(fetch("esearch.fcgi", {"db": "pubmed", "term": query, "retmode": "json", "retmax": 9999, "sort": "pub date"}))["esearchresult"]
+            ids = result["idlist"]
+            if len(ids) != int(result["count"]):
+                raise ValueError(f"Search incomplete: {slug}")
+            # Re-fetch existing records too: corrections/retractions can be added later.
+            missing = [pmid for pmid in ids if pmid not in fetched]
+            for start in range(0, len(missing), 150):
+                batch = missing[start:start + 150]
+                root = ET.fromstring(fetch("efetch.fcgi", {"db": "pubmed", "id": ",".join(batch), "retmode": "xml"}))
+                returned = set()
+                for paper in root.findall("PubmedArticle"):
+                    item = record(paper)
+                    cache[item["id"]] = item
+                    returned.add(item["id"])
+                absent = set(batch) - returned
+                if absent:
+                    raise ValueError(f"No article record returned: {sorted(absent)}")
+                fetched.update(returned)
+                raw_path.write_text(json.dumps(cache, ensure_ascii=False, indent=2), encoding="utf-8")
+            searches[slug] = {"query": query, "count": len(ids), "ids": ids}
+            print(f"{slug}: fetched all {len(ids)} raw search matches", flush=True)
+        search_path.write_text(json.dumps({"checked": checked, "through": through, "searches": searches}, ensure_ascii=False, indent=2), encoding="utf-8")
+    if set(searches) != set(QUERIES):
+        raise ValueError("Raw searches must contain all eight compound collections.")
+    policy = load_policy()
+    catalogs, exclusions = screen_catalogs(searches, cache, policy)
+    snapshot = {"checked": checked, "through": through, "screening": {key: policy[key] for key in ["version", "reviewed", "rule"]}, "catalogs": catalogs}
+    snapshot_path.write_text(json.dumps(snapshot, ensure_ascii=False, separators=(",", ":")) + "\n", encoding="utf-8")
+    (data_dir / "research-screening-report.json").write_text(json.dumps(exclusions, ensure_ascii=False, indent=2), encoding="utf-8")
+    for slug, catalog in catalogs.items():
+        print(f"{slug}: {catalog['count']} included / {catalog['searchCount']} raw matches; {catalog['excludedCount']} excluded")
+    print(f"Saved {sum(c['count'] for c in catalogs.values())} compound-focused publication entries.")
 
 
 if __name__ == "__main__":

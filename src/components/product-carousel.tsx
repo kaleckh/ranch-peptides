@@ -18,6 +18,10 @@ export function ProductCarousel({ slides }: { slides: Slide[] }) {
     setActive((current) => (current + direction + count) % count);
   }
 
+  function selectSlide(index: number) {
+    setActive(index);
+  }
+
   function handleKeyDown(event: KeyboardEvent<HTMLDivElement>) {
     if (event.target !== event.currentTarget || event.altKey || event.ctrlKey || event.metaKey) return;
     switch (event.key) {
@@ -89,10 +93,23 @@ export function ProductCarousel({ slides }: { slides: Slide[] }) {
               aria-roledescription="slide"
               aria-label={`${slide.name}, ${index + 1} of ${count}`}
               aria-hidden={!visible}
-              inert={!visible}
             >
-              <Link className={styles.imageLink} href={slide.href} aria-label={`View ${slide.name} product`} tabIndex={index === active ? 0 : -1} draggable={false}>
-                {slide.image}
+              <Link
+                className={styles.imageLink}
+                href={slide.href}
+                aria-label={`View ${slide.name} product`}
+                tabIndex={index === active ? 0 : -1}
+                draggable={false}
+                onClick={(event) => {
+                  if (index !== active) {
+                    event.preventDefault();
+                    selectSlide(index);
+                  }
+                }}
+              >
+                <span className={styles.vialFrame}>
+                  {slide.image}
+                </span>
               </Link>
             </div>
           );

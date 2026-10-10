@@ -14,14 +14,25 @@ a,button { transition:color .2s,background .2s,border-color .2s; }
 .announcement { background:#282722; color:#eae6dd; text-align:center; font-size:9px; letter-spacing:.17em; padding:10px 16px; }
 .announcement span { margin-left:10px; color:#bcb7ac; }
 .site-header { position:sticky; top:0; z-index:50; height:88px; padding:0 5%; background:#f5f2ecf5; backdrop-filter:blur(15px); display:flex; align-items:center; justify-content:space-between; border-bottom:1px solid var(--border); }
-body:has(.hero) .site-header { position:absolute; top:30px; left:0; right:0; height:62px; padding-inline:4%; color:#d6c6aa; background:transparent; backdrop-filter:none; border-bottom:0; }
-body:has(.hero) .site-header .bag-count { border-color:#d6c6aa80; }
-body:has(.hero) .site-header .wordmark { visibility:hidden; }
-body:has(.hero) .delivery-banner { position:absolute; top:0; left:0; right:0; z-index:51; background:transparent; color:#24231f; }
-body:has(.hero) .delivery-banner { padding:6px 20px; gap:18px; opacity:.75; }
-body:has(.hero) .delivery-banner p { font-size:8px; }
-body:has(.hero) .delivery-banner p,body:has(.hero) .delivery-banner svg { color:#c9c3b9; }
-body:has(.hero) .wordmark { font-size:22px; }
+body:has(.home-hero) .site-header { position:absolute; top:28px; left:0; right:0; display:grid; grid-template-columns:minmax(0,1fr) auto minmax(0,1fr); height:54px; padding-inline:4%; color:#f5f2ec; background:transparent; backdrop-filter:none; border-bottom:1px solid #f5f2ec33; }
+body:has(.home-hero) .site-header .wordmark { justify-self:start; }
+body:has(.home-hero) .site-header .desktop-nav { justify-self:center; }
+body:has(.home-hero) .site-header .header-actions { justify-self:end; }
+body:has(.home-hero) .site-header .bag-count { border-color:#d6c6aa80; }
+body:has(.home-hero) .delivery-banner { position:absolute; top:0; left:0; right:0; z-index:51; background:transparent; color:#24231f; }
+body:has(.home-hero) .delivery-banner { padding:6px 20px; gap:18px; opacity:.85; }
+body:has(.home-hero) .delivery-banner p { font-size:8px; }
+body:has(.home-hero) .delivery-banner p,body:has(.home-hero) .delivery-banner svg { color:#f5f2ec; text-shadow:0 1px 8px #171613aa; }
+body:has(.home-hero) .wordmark { font-size:22px; }
+@media (max-width:480px) {
+	body:has(.home-hero) .delivery-banner { flex-direction:row; flex-wrap:nowrap; gap:clamp(8px,2.5vw,14px); padding:6px 12px; }
+	body:has(.home-hero) .delivery-banner .divider { display:block; }
+	body:has(.home-hero) .delivery-banner .delivery,
+	body:has(.home-hero) .delivery-banner .research { font-size:clamp(7px,2vw,9px); white-space:nowrap; }
+}
+@media (max-width:760px) {
+	body:has(.home-hero) .site-header { top:30px; display:flex; height:54px; padding-inline:16px; }
+}
 .wordmark { font-size:25px; letter-spacing:.13em; font-weight:800; white-space:nowrap; display:inline-flex; align-items:center; gap:8px; }
 .wordmark>span:first-child { font-size:14px; letter-spacing:0; }
 .desktop-nav { display:flex; gap:28px; font-size:11px; }
@@ -32,10 +43,10 @@ body:has(.hero) .wordmark { font-size:22px; }
 .bag-count { border:1px solid #b5afa3; border-radius:50%; min-width:25px; height:25px; display:grid; place-items:center; font-size:10px; }
 .menu-button { display:none; padding:8px; }
 .mobile-nav { position:absolute; top:100%; left:0; right:0; padding:10px 6% 24px; background:var(--background); border-bottom:1px solid var(--border); box-shadow:0 12px 20px #0001; }
-body:has(.hero) .mobile-nav { background:#f5f2ece8; }
+body:has(.home-hero) .mobile-nav { background:#f5f2ece8; }
 .mobile-nav a { display:flex; align-items:center; justify-content:space-between; padding:18px 0; border-bottom:1px solid var(--border); }
 .mobile-nav a svg { width:14px; height:14px; flex:0 0 auto; }
-body:has(.hero) .site-header .mobile-header-delivery { display:none; }
+body:has(.home-hero) .site-header .mobile-header-delivery { display:none; }
 .hero { position:relative; isolation:isolate; width:100%; min-height:100svh; overflow:hidden; border-bottom:1px solid var(--border); }
 .hero-backdrop { position:absolute; inset:0; z-index:-2; display:block; width:100%; height:100%; background:#b8afa2; }
 .hero-backdrop::before,.hero-backdrop::after { content:none; }

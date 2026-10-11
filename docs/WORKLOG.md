@@ -2,7 +2,7 @@
 
 ## 2026-10-10 - Five-vial mobile carousel
 
-- Restored the larger mobile center vial and the previous adjacent-vial size and positions. Added the two small, blurred, faded outer vials at the edges without changing the mobile stage height or product-details layout.
+- Restored the larger mobile center vial and the previous adjacent-vial size and positions. Added the two small, blurred, faded outer vials at the edges and moved mobile arrows below the vial artwork without changing the stage height or product-details layout.
 - Kept the desktop carousel rules, all eight products, image assets, swipe handling, navigation controls, and animated centering behavior unchanged.
 - Validation: browser checks at 320, 375, 390, and 430 px confirmed all five positions are visible with no horizontal page overflow; 1280 px desktop computed styles remain on the original desktop rules.
 
